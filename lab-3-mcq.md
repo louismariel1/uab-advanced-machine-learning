@@ -2,9 +2,7 @@
 
  ## Self-Supervised Learning: Comprehensive MCQ Study Guide
 
- **How to use this:** Try answering each question before looking at the answer. The explanations are deliberately detailed because they teach the underlying assignment, not just the correct option.
-
----
+ ---
 
  # Part 1 — Big Picture
 
