@@ -1,7 +1,3 @@
-Absolutely. Below is a **comprehensive MCQ-based study guide** covering the assignment from the high-level concepts down to the Python implementation details.
-
- I’ve arranged it progressively so you can learn the assignment by answering questions rather than reading a long theory explanation.
-
  # Advanced Machine Learning — Practical 3
 
  ## Self-Supervised Learning: Comprehensive MCQ Study Guide
