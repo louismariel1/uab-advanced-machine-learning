@@ -1,4 +1,5 @@
 
+ # Summary of Practical 3: Pretext Learning 
  > **Unlabelled images → invent a learning task → pre-train feature extractor → transfer feature extractor → train classifier on small labelled dataset → compare against training from scratch.**
 
  ## 1\. What problem are you solving?
@@ -1357,4 +1358,4 @@ validation accuracy
           final accuracy
 ```
 
- **The key piece you are responsible for implementing is the pretext task.** Everything else in the notebook is mostly scaffolding to let you measure whether your idea actually improves downstream performance.
+ **The key piece that needs to be implemented is the pretext task.** Everything else in the notebook is mostly scaffolding to let measure whether the idea actually improves downstream performance.
