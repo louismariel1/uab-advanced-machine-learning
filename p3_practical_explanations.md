@@ -2,6 +2,68 @@
  # Summary of Practical 3: Pretext Learning 
  > **Unlabelled images → invent a learning task → pre-train feature extractor → transfer feature extractor → train classifier on small labelled dataset → compare against training from scratch.**
 
+ Yes — **conceptually, this is a very good summary of the notebook and the practical**. The overall pipeline and the distinction between pretext learning, transfer, and downstream evaluation are clear and correct.
+
+ There are a few things I would **tighten or qualify**, though, so you don't accidentally state something more strongly than the notebook actually establishes:
+
+ 1. **“Self-supervised learning” vs. “pretext learning”**\
+    Your terminology is reasonable. The practical specifically frames the exercise around a _pretext task_. Calling it self-supervised learning is appropriate because the artificial targets are generated from the input data rather than supplied by humans.
+2. **The “10,000 labelled / 50,000 unlabelled” numbers**\
+    If those numbers are illustrative rather than exact notebook dataset sizes, make that explicit. Your later description correctly focuses on CIFAR-10 as the source and a selected CIFAR-100 subset as the target.
+3. **“Small labelled target dataset”**\
+    This is an important qualification. The target isn't necessarily a naturally small dataset; the practical constructs a restricted target problem/subset. I'd phrase it as **“the labelled target subset provided/constructed by the notebook”** unless the notebook explicitly specifies a particular sample count.
+4. **Rotation prediction isn't necessarily the required solution**\
+    Your summary generally makes this clear, but the later sections sometimes sound like rotation prediction is what the assignment _expects_. If the notebook says you must **design your own pretext task**, rotation is an example/recommendation, not necessarily the mandated task.
+5. **“The network can't simply memorize arbitrary pixel values”**\
+    I'd soften this. A sufficiently flexible network can exploit shortcuts. The important point is that a _well-designed_ pretext task encourages useful representations; it does not guarantee them.
+6. **Fine-tuning vs. feature extraction**\
+    Your summary correctly describes fine-tuning as the main transfer stage. But if the notebook allows freezing the backbone, distinguish:
+   - **feature extraction:** freeze pretrained backbone, train new head;
+   - **fine-tuning:** update some/all pretrained backbone weights as well.
+7. **The strongest conclusion is downstream performance**\
+    This part of your summary is especially good. Pretext accuracy is an intermediate diagnostic; the meaningful comparison for the practical is the target-task performance of the pretrained/transfer model versus the scratch baseline.
+8. **“Everything else is mostly scaffolding”**\
+    I'd change this slightly. The pretext dataset/task is indeed the main piece you have to design, but **the experimental comparison, hyperparameters, augmentation choices, transfer strategy, plots, and interpretation are also part of the practical work**.
+
+ ### One thing I'd change in your final sentence
+
+ Instead of:
+
+ > **The key piece that needs to be implemented is the pretext task. Everything else in the notebook is mostly scaffolding...**
+
+ I'd use:
+
+ > **The main piece you need to design and implement is the pretext task. The rest of the notebook provides the training, transfer-learning, evaluation, and comparison framework needed to test whether the representation learned from that task actually improves the downstream target classification problem.**
+
+ That is more precise and avoids understating the experimental component.
+
+ ### Overall
+
+ Your mental model is essentially:
+
+```
+UNLABELLED SOURCE DATA
+        ↓
+design pretext task
+        ↓
+pretext training
+        ↓
+PRETRAINED BACKBONE
+        ↓
+discard pretext head
+        ↓
+attach target-task head
+        ↓
+fine-tune on labelled target data
+        ↓
+target validation performance
+        ↓
+compare with identical architecture trained from scratch
+```
+
+ **That is the core idea of the practical.** The most important conceptual point you've captured correctly is that **the purpose of the pretext task is not to maximize pretext accuracy for its own sake; it is to learn a representation that transfers effectively to the downstream task.**
+ 
+ 
  ## 1\. What problem are you solving?
 
  Imagine you have:
