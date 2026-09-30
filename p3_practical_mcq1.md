@@ -1,12 +1,6 @@
 # Advanced Machine Learning Practical 3 — Comprehensive MCQ
 
- ## Answers Directly Below Each Question
-
- This updated version keeps the **150-question coverage** of your original bank, but places the **correct answer and a short explanation immediately after every question**. This makes it useful for active revision rather than requiring you to constantly jump between the questions and a separate answer key.
-
- I have also tightened a few explanations where the distinction is important—for example, **pretext accuracy vs downstream performance**, **logits vs probabilities**, and **what exactly is transferred during fine-tuning**. For the PyTorch classification points, `CrossEntropyLoss` is designed to operate on logits with class-index targets, with class-index targets represented as integer/long tensors.  PyTorch Documentation+1
-
----
+ ---
 
  # Section A — Self-Supervised Learning Concepts
 
