@@ -1,5 +1,3 @@
-Absolutely. Since the audience will **only hear you**, the script should sound like a guided explanation rather than a description of diagrams or notebook cells. I’ll make the flow conversational, explain what each stage is doing and why, and explicitly connect the code to the machine-learning concepts.
-
  # Advanced Machine Learning Practical 3 — Narrative Explanation Script
 
  ## Introduction
