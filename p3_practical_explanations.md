@@ -4,9 +4,7 @@
 
  Yes — **conceptually, this is a very good summary of the notebook and the practical**. The overall pipeline and the distinction between pretext learning, transfer, and downstream evaluation are clear and correct.
 
- There are a few things I would **tighten or qualify**, though, so you don't accidentally state something more strongly than the notebook actually establishes:
-
- 1. **“Self-supervised learning” vs. “pretext learning”**\
+1. **“Self-supervised learning” vs. “pretext learning”**\
     Your terminology is reasonable. The practical specifically frames the exercise around a _pretext task_. Calling it self-supervised learning is appropriate because the artificial targets are generated from the input data rather than supplied by humans.
 2. **The “10,000 labelled / 50,000 unlabelled” numbers**\
     If those numbers are illustrative rather than exact notebook dataset sizes, make that explicit. Your later description correctly focuses on CIFAR-10 as the source and a selected CIFAR-100 subset as the target.
