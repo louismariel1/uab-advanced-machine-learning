@@ -1,5 +1,3 @@
-Absolutely. Below is a **presentation/viva-style narrative script** that walks through the notebook from beginning to end, connecting the **code → concept → experiment → interpretation**. It is written so you can essentially read it aloud while presenting the notebook.
-
  # Advanced Machine Learning Practical 3 — Full Narrative Script
 
  ## 1\. Introduction
