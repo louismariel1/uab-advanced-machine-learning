@@ -1,4 +1,4 @@
- # Lecture Script — Model Compression & Parameter-Efficient Learning
+ # Model Compression & Parameter-Efficient Learning
 
  ## 1\. Quantisation: Why Reduce Numerical Precision?
 
