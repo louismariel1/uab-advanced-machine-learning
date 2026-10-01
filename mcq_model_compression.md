@@ -2,10 +2,6 @@
 
  ## Lecture 4: Model Compression & Parameter-Efficient Learning
 
- Below is a **comprehensive exam-style MCQ set** based on all three chunks of the lecture. I’ve deliberately included both straightforward questions and questions designed to test whether you understand the **trade-offs and distinctions** rather than merely memorizing terminology.
-
- There are **60 questions**, organized by topic. Each question has **one best answer**, followed by an explanation.
-
 ---
 
  # Part I — Efficiency and Resource-Constrained ML
