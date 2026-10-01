@@ -1,7 +1,3 @@
-Absolutely. Since the audience **can hear you but cannot see you**, the script should be self-contained, conversational, and explicit about what the diagrams are conveying rather than relying on visual pointing.
-
- Below is a lecturer-style narrative covering the material in **Chunk 2 and Chunk 3**, from quantisation through pruning, parameter-efficient fine-tuning, adapters, prefix tuning, low-rank factorisation, and LoRA.
-
  # Lecture Script — Model Compression & Parameter-Efficient Learning
 
  ## 1\. Quantisation: Why Reduce Numerical Precision?
