@@ -170,5 +170,3 @@ Target:
  Overall, the transfer-learning approach produced better validation performance than training the same architecture from scratch.
 
  For the submission, include **two plots**: the baseline training/validation curves and the fine-tuning curves with the baseline comparison. Your existing `TrainingMetrics.plot()` machinery already produces these.
-
- One caveat: **don't invent the `[BASELINE]`, `[TRANSFER]`, or `[IMPROVEMENT]` numbers**—fill them in from the actual output of your run. The expected 5–10 percentage-point improvement in the exercise is only a guideline, not a guaranteed result.
