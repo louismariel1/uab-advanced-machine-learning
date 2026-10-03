@@ -759,7 +759,3 @@
  **Transfer learning is especially useful when the target dataset is small.**
 
  That is the central lesson of this practical.
-
- This version is deliberately written to **sound natural when spoken aloud**. It also avoids relying on visual references such as “look at this graph” or “as you can see here.” Instead, whenever code or a diagram is important, the narration explains **what the students should understand from it**.
-
- For the final section in particular, I would recommend actually **slowing down your delivery** and treating each short sentence as a separate point. The students should be able to follow the entire practical even if they are only listening and not looking at the notebook.
