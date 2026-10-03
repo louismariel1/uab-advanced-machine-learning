@@ -1,9 +1,3 @@
-Absolutely. Below is a **single lecturer-ready narrative script** that first teaches the theory naturally, then transitions into an interactive **MCQ-driven question-and-answer sequence**, while ensuring that all of the major concepts in the theory are covered.
-
- I have written it as something you can **actually say aloud to students**, rather than as lecture notes. The questions are deliberately phrased so you can pause, let students think, and then reveal/discuss the answer.
-
- # Advanced Machine Learning — Transfer Learning
-
  ## Complete Lecturer Narrative + Interactive Question-and-Answer Script
 
 ---
