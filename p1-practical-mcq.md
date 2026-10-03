@@ -1,5 +1,3 @@
-Absolutely. This practical is essentially a **hands-on task-transfer / transfer-learning experiment**: establish a baseline on a small CIFAR-100 target subset, pre-train the same CNN on the much larger CIFAR-10 source dataset, then replace the classifier and fine-tune on the target task.
-
  ## 1\. Assignment summary
 
  ### Main objective
