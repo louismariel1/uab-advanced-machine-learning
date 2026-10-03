@@ -1,6 +1,4 @@
-Your notebook is already implementing the required transfer-learning approach correctly.
-
- The key pieces are:
+# The key pieces are:
 
  1. **Pre-training:** `BasicCNN(num_classes=10)` is trained on CIFAR-10.
 2. **Checkpointing:** the pretrained weights are saved.
