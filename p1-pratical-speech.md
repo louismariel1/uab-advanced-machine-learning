@@ -1,9 +1,3 @@
-Absolutely. Since students **cannot see you** and can only hear your explanation, the script should be much more **oral, descriptive, and linear**. Every visual or code element should be introduced in simple words, and you should avoid phrases like “as you can see here” unless the material itself clearly identifies what students should look at.
-
- I would also make the final summary very explicit: **what we did, why we did it, and what we learned**.
-
- Here is a regenerated version designed as a **spoken lecture/narration script**.
-
  # Transfer Learning Practical — Narrative Lecture Script
 
  ## 1\. Introduction
