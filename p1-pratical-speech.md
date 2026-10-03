@@ -1,4 +1,4 @@
- # Transfer Learning Practical — Narrative Lecture Script
+ # Transfer Learning Practical
 
  ## 1\. Introduction
 
