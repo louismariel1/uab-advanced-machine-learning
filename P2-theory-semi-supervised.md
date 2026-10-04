@@ -57,9 +57,7 @@ $$
  For labelled examples, the usual objective is:
 
  $$
-\mathcal{L}_{sup}
-=
-\mathrm{CE}\left(y_i,f_\theta(x_i)\right)
+\mathcal{L}_{sup} = \mathrm{CE}\left(y_i,f_\theta(x_i)\right)
 $$
 
  where:
