@@ -1,4 +1,4 @@
-Absolutely. The three chunks form **one coherent story** rather than a collection of unrelated techniques. The lecture is essentially asking:
+# Model Compression
 
  > **Modern neural networks are extremely large and expensive. Do we really need all those parameters, all that numerical precision, and all those trainable weights? If not, how can we remove or avoid the unnecessary parts without losing much performance?**
 
