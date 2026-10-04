@@ -1,5 +1,3 @@
-Absolutely. I’ll build this as a **mastery-level MCQ bank** covering the practical from the motivation and theory all the way through the PyTorch implementation, debugging, experiments, and assessment/report requirements.
-
  # Comprehensive MCQ — Semi-Supervised Learning with UDA
 
  ## Part I — Big Picture: What Problem Are We Solving?
