@@ -573,9 +573,7 @@ $$
  Generate a pseudo-label:
 
  $$
-\hat y_j
-=
-\arg\max_y f_\theta(x_j)
+\hat y_j = \arg\max_y f_\theta(x_j)
 $$
 
  Then:
