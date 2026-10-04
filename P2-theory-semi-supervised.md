@@ -188,11 +188,7 @@ $$
  A generic objective is:
 
  $$
-\mathcal{L}
-=
-\mathcal{L}_{sup}
-+
-\lambda \mathcal{L}_{cons}
+\mathcal{L} = \mathcal{L}_{sup} + \lambda \mathcal{L}_{cons}
 $$
 
  where:
