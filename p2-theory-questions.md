@@ -206,9 +206,7 @@ $$
  The total objective typically contains:
 
  $$
-\mathcal{L} = \mathcal{L}_{\text{sup}}
-+
-\lambda \mathcal{L}_{\text{unsup}}
+\mathcal{L} = \mathcal{L}_{\text{sup}} + \lambda \mathcal{L}_{\text{unsup}}
 $$
 
  where:
@@ -220,8 +218,7 @@ $$
  For classification:
 
  $$
-\mathcal{L}_{\text{sup}}
-=
+\mathcal{L}_{\text{sup}} =
 \operatorname{CE}(y_i,f_\theta(x_i))
 $$
 
