@@ -1919,9 +1919,9 @@ $$
 5. **Loss balancing:**\
 
    $$
-   L = L_s+\lambda_uL_u
+   L=L_s+\lambda_uL_u
    $$
-   \
+   
     and $\lambda_u$, warmup, and confidence threshold are important experimental hyperparameters.
 
  If you can explain **why each of those five ideas exists, what tensor goes into each line of the code, why the clean prediction is detached, why KL is used, and how `lambda_u`, warmup, and confidence filtering affect training**, you understand the practical rather than merely memorising the code.
