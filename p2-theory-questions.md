@@ -1,5 +1,3 @@
-Below is the GitHub-ready, question-focused version. I’ve kept the mathematics in standard GitHub-compatible LaTeX and organised the material so you can **actively test yourself rather than passively reread it**.
-
  # Curriculum Learning & Semi-Supervised Learning — Question-Focused Exam-Ready Notes
 
  > **How to use these notes:** Cover the answers and try to answer each question yourself first.\
