@@ -579,13 +579,7 @@ $$
  Then:
 
  $$
-\boxed{
-\mathcal{L}
-=
-\mathrm{CE}(y_i,f_\theta(x_i))
-+
-\mathrm{CE}(\hat y_j,f_\theta(x_j))
-}
+\boxed{\mathcal{L} = \mathrm{CE}(y_i,f_\theta(x_i)) + \mathrm{CE}(\hat y_j,f_\theta(x_j))}
 $$
 
  **Key idea:** the model teaches itself.
@@ -597,9 +591,7 @@ $$
  Add noise or augmentation:
 
  $$
-x_j'
-=
-x_j+\eta
+x_j' = x_j+\eta
 $$
 
  Then encourage:
@@ -613,17 +605,7 @@ $$
  A simplified objective:
 
  $$
-\boxed{
-\mathcal{L}
-=
-\mathrm{CE}(y_i,f_\theta(x_i))
-+
-\mathrm{CE}
-\left(
-f_\theta(x_j),
-f_\theta(x_j+\eta)
-\right)
-}
+\boxed{\mathcal{L} = \mathrm{CE}(y_i,f_\theta(x_i)) + \mathrm{CE}\left(f_\theta(x_j),f_\theta(x_j+\eta)\right)}
 $$
 
  **Key idea:** the model should be invariant to perturbations.
@@ -635,27 +617,13 @@ $$
  Use a historical EMA target:
 
  $$
-\boxed{
-\mathcal{L}
-=
-\mathrm{CE}(y_i,f_\theta(x_i))
-+
-\mathrm{MSE}
-\left(
-f_\theta(x_j+\eta),
-\tilde z_j
-\right)
-}
+\boxed{\mathcal{L} = \mathrm{CE}(y_i,f_\theta(x_i)) + \mathrm{MSE} \left(f_\theta(x_j+\eta),\tilde z_j\right)}
 $$
 
  where:
 
  $$
-\tilde z_j
-=
-\alpha\tilde z_j^{\,old}
-+
-(1-\alpha)z_j
+\tilde z_j = \alpha\tilde z_j^{\,old} + (1-\alpha)z_j
 $$
 
  **Key idea:** smooth the target using previous predictions.
@@ -667,24 +635,13 @@ $$
  Maintain an EMA teacher model:
 
  $$
-\theta'
-=
-\mathrm{EMA}(\theta)
+\theta' = \mathrm{EMA}(\theta)
 $$
 
  and use:
 
  $$
-\boxed{
-\mathcal{L}
-=
-\mathrm{CE}(y_i,f_\theta(x_i))
-+
-\mathrm{MSE}
-\left(
-f_\theta(x_j+\eta),
-f_{\theta'}(x_j+\eta')
-\right)
+\boxed{\mathcal{L} = \mathrm{CE}(y_i,f_\theta(x_i)) + \mathrm{MSE} \left(f_\theta(x_j+\eta),f_{\theta'}(x_j+\eta')\right)
 }
 $$
 
@@ -847,32 +804,20 @@ These techniques can also be combined.
  ## Supervised learning
 
  $$
-\boxed{
-\mathcal{L}_{sup}
-=
-\mathrm{CE}(y_i,f_\theta(x_i))
-}
+\boxed{\mathcal{L}_{sup} = \mathrm{CE}(y_i,f_\theta(x_i))}
 $$
 
  ## Self-training
 
  $$
-\boxed{
-\hat y_j
-=
-\arg\max_y f_\theta(x_j)
+\boxed{\hat y_j = \arg\max_y f_\theta(x_j)
 }
 $$
 
  and:
 
  $$
-\boxed{
-\mathcal{L}
-=
-\mathcal{L}_{sup}
-+
-\mathrm{CE}(\hat y_j,f_\theta(x_j))
+\boxed{\mathcal{L} = \mathcal{L}_{sup} + \mathrm{CE}(\hat y_j,f_\theta(x_j))
 }
 $$
 
@@ -889,40 +834,21 @@ $$
  ## Temporal ensembling
 
  $$
-\boxed{
-\tilde z_t
-=
-\alpha\tilde z_{t-1}
-+
-(1-\alpha)z_t
+\boxed{\tilde z_t = \alpha\tilde z_{t-1} + (1-\alpha)z_t
 }
 $$
 
  ## Mean Teacher
 
  $$
-\boxed{
-\theta'
-=
-\alpha\theta'
-+
-(1-\alpha)\theta
+\boxed{\theta' = \alpha\theta' + (1-\alpha)\theta
 }
 $$
 
  and:
 
  $$
-\boxed{
-\mathcal{L}
-=
-\mathrm{CE}(y_i,f_\theta(x_i))
-+
-\mathrm{MSE}
-\left(
-f_\theta(x_j+\eta),
-f_{\theta'}(x_j+\eta')
-\right)
+\boxed{\mathcal{L} = \mathrm{CE}(y_i,f_\theta(x_i)) + \mathrm{MSE}\left(f_\theta(x_j+\eta),f_{\theta'}(x_j+\eta')\right)
 }
 $$
 
@@ -1033,13 +959,7 @@ $$
  If you only have one minute before the exam, remember:
 
  $$
-\boxed{
-\text{SSL}
-=
-\text{labelled data}
-+
-\text{unlabelled data}
-}
+\boxed{\text{SSL} = \text{labelled data} + \text{unlabelled data}}
 $$
 
  ### Self-training
@@ -1099,11 +1019,7 @@ $$
  > **Average the model instead of its predictions.**
 
  $$
-\theta'
-=
-\alpha\theta'
-+
-(1-\alpha)\theta
+\theta' = \alpha\theta' + (1-\alpha)\theta
 $$
 
  Then:
