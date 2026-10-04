@@ -358,11 +358,7 @@ $$
  Update it using an exponential moving average (EMA):
 
  $$
-\tilde z_i^t
-=
-\alpha\tilde z_i^{t-1}
-+
-(1-\alpha)z_i^t
+\tilde z_i^t = \alpha\tilde z_i^{t-1}+(1-\alpha)z_i^t
 $$
 
  where:
