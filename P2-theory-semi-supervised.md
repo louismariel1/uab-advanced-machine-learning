@@ -376,13 +376,7 @@ $$
  The EMA equation is:
 
  $$
-\boxed{
-\tilde z_t
-=
-\alpha\tilde z_{t-1}
-+
-(1-\alpha)z_t
-}
+\boxed{\tilde z_t = \alpha\tilde z_{t-1} + (1-\alpha)z_t}
 $$
 
  If $\\alpha$ is large, the history has greater influence.
