@@ -204,21 +204,18 @@ $$
  **Answer:**
 
  The total objective typically contains:
-
- $$
-\mathcal{L} = \mathcal{L}_{\text{sup}} + \lambda\mathcal{L}_{\text{unsup}}
+$$
+\mathcal{L} = Lsup+λLunsup\mathcal{L} = \mathcal{L}_{\text{sup}} + \lambda \mathcal{L}_{\text{unsup}}
 $$
 
- where:
+where:
+•	$\mathcal{L}_{\text{sup}}$ is computed using labelled examples;
+•	$\mathcal{L}_{\text{unsup}}$ exploits unlabelled examples;
+•	$\lambda$ controls the importance of the unsupervised objective.
 
- - $\\mathcal{L}\_{\\text{sup}}$ is computed using labelled examples;
-- $\\mathcal{L}\_{\\text{unsup}}$ exploits unlabelled examples;
-- $\\lambda$ controls the importance of the unsupervised objective.
-
- For classification:
-
- $$
-\mathcal{L}_{\text{sup}} = \operatorname{CE}(y_i,f_\theta(x_i))
+For classification:
+$$
+\mathcal{L}_{\text{sup}} = CE⁡(yi,fθ(xi))\mathcal{L}_{\text{sup}} = \operatorname{CE}(y_i,f_\theta(x_i))
 $$
 
 ---
