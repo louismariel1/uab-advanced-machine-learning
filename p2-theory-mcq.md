@@ -1,5 +1,3 @@
-Absolutely. I’ll structure it as a **GitHub-compatible Markdown file**, with the questions covering the full lecture material and with the **answer and explanation immediately after each question** so it can also be used for revision or teaching.
-
  # Curriculum Learning & Semi-Supervised Learning — Comprehensive MCQ
 
  > **Purpose:** Comprehensive exam-preparation questions covering Curriculum Learning, Self-Training, Co-Training, Pseudo-Labels, Consistency Regularisation, UDA, Temporal Ensembling, Mean Teacher, Model Stability, Active Learning, and the relationships between these approaches.
