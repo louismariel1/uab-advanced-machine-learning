@@ -1,7 +1,3 @@
-Absolutely. Since students can **only hear you**, the script should be written as a **spoken narrative**, not as something that depends on slides, figures, or students seeing code. It should also move naturally through **questions → explanation → code concept → practical result**, so it feels like a guided viva/exam preparation rather than a lecture.
-
- Below is the regenerated version, incorporating your **actual results: 71.2% baseline → 80.7% transfer learning**.
-
  # Practical 1 — Question-Focused Narrative Speech
 
  ## Opening
