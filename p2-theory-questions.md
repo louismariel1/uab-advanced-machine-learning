@@ -1,6 +1,4 @@
-Absolutely. I’ll regenerate the full notes as a **GitHub-safe Markdown document**, keeping the question-and-answer learning format and simplifying the LaTeX to avoid unsupported macros.
-
- # Curriculum Learning & Semi-Supervised Learning — Exam-Ready Q&A Notes
+# Curriculum Learning & Semi-Supervised Learning — Exam-Ready Q&A Notes
 
  > **How to use these notes:** Cover the answers and try to answer each question yourself. The questions are ordered to build the concepts from fundamentals → methods → equations → comparisons → exam-level reasoning.
 
