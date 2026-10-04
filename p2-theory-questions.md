@@ -206,9 +206,7 @@ $$
  The total objective typically contains:
 
  $$
-\mathcal{L}
-=
-\mathcal{L}_{\text{sup}}
+\mathcal{L} = \mathcal{L}_{\text{sup}}
 +
 \lambda \mathcal{L}_{\text{unsup}}
 $$
