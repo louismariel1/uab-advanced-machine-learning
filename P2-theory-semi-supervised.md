@@ -1,6 +1,4 @@
-Absolutely. I’ll format it as a GitHub-ready `.md` file using **LaTeX math delimiters** (`$...$` and `$$...$$`) that GitHub renders correctly, while keeping the notes concise and exam-focused.
-
- # Curriculum Learning & Semi-Supervised Learning — Exam-Ready Notes
+# Curriculum Learning & Semi-Supervised Learning — Exam-Ready Notes
 
  ## 1\. Curriculum Learning
 
