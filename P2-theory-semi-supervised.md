@@ -499,22 +499,7 @@ $$
  The objective can be written as:
 
  $$
-\mathcal{L}
-=
-\underbrace{
-\mathrm{CE}
-\left(
-y_i,f_\theta(x_i)
-\right)
-}_{\text{supervised loss}}
-+
-\underbrace{
-\mathrm{MSE}
-\left(
-f_\theta(x_j+\eta),
-f_{\theta'}(x_j+\eta')
-\right)
-}_{\text{unsupervised consistency loss}}
+\mathcal{L} = \underbrace{\mathrm{CE}\left(y_i,f_\theta(x_i)\right)}_{\text{supervised loss}}+\underbrace{\mathrm{MSE}\left(f_\theta(x_j+\eta),f_{\theta'}(x_j+\eta')\right)}_{\text{unsupervised consistency loss}}
 $$
 
  where:
