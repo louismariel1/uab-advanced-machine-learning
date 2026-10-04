@@ -235,11 +235,7 @@ $$
  The total loss contains:
 
  $$
-\mathcal{L}
-=
-\mathcal{L}_{sup}
-+
-\lambda\mathcal{L}_{cons}
+\mathcal{L} = \mathcal{L}_{sup} + \lambda\mathcal{L}_{cons}
 $$
 
  The important idea is not the exact architecture, but:
