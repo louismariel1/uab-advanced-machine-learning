@@ -1,6 +1,4 @@
-Yes errors that will occur after deployment. QAT is more expensive than PTQ but can recover the zeros are stored and processed using a dense representation, little computational benefit may occur. To obtain throughout weight matrices. These require specialised sparse representations and operations to exploit effectively GPU hardware can process efficiently. Therefore, the reduction in parameters is more directly translated into reduced. The current question-focused narrative is useful for **teaching and understanding**, but not all of those questions are necessarily at **exam level**.
-
- For exam preparation, I would extend it in three layers:
+# Model Compression 
 
  - **Conceptual questions** — “What is quantisation and why does it reduce memory?”
 - **Application/comparison questions** — “A model loses accuracy after PTQ. What would you do and why?”
