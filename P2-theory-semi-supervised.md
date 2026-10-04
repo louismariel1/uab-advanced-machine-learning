@@ -250,7 +250,7 @@ $$
 
  For an unlabelled example:
 
- 1. Obtain the prediction for the original input.
+1. Obtain the prediction for the original input.
 2. Apply a strong augmentation.
 3. Predict again.
 4. Force the predictions to agree.
@@ -266,9 +266,7 @@ $$
  For labelled examples, ordinary supervised cross-entropy is sufficient:
 
  $$
-\mathcal{L}_{labelled}
-=
-\mathrm{CE}(y,f_\theta(x))
+\mathcal{L}_{labelled} = \mathrm{CE}(y,f_\theta(x))
 $$
 
  For unlabelled examples, the consistency loss is applied when the model's original prediction is sufficiently confident.
@@ -276,13 +274,7 @@ $$
  A simplified form is:
 
  $$
-\mathcal{L}_{unlabelled}
-=
-\mathrm{CE}
-\left(
-f_\theta(x),
-f_\theta(\mathrm{Aug}(x))
-\right)
+\mathcal{L}_{unlabelled} = \mathrm{CE}\left(f_\theta(x),f_\theta(\mathrm{Aug}(x))\right)
 $$
 
  ### Why use a confidence threshold?
