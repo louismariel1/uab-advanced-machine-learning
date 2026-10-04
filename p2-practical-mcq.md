@@ -1893,33 +1893,19 @@ Optimizer step
  The fundamental equation is:
 
  $$
-\boxed{
-L_{\text{total}}
-=
-L_{\text{supervised}}
-+
-\lambda_u L_{\text{unsupervised}}
-}
+\boxed{L_{\text{total}} = L_{\text{supervised}} + \lambda_u L_{\text{unsupervised}}}
 $$
 
  with:
 
  $$
-L_{\text{supervised}}
-=
-CE(f(x_L),y_L)
+L_{\text{supervised}} = CE(f(x_L),y_L)
 $$
 
  and conceptually:
 
  $$
-L_{\text{unsupervised}}
-=
-KL\left(
-p_{\text{clean}}
-\;\|\;
-p_{\text{augmented}}
-\right)
+L_{\text{unsupervised}} = KL\left(p_{\text{clean}}\;\|\;p_{\text{augmented}}\right)
 $$
 
  where the clean prediction acts as the consistency target.
@@ -1933,7 +1919,7 @@ $$
 5. **Loss balancing:**\
 
    $$
-   L=L_s+\lambda_uL_u
+   L = L_s+\lambda_uL_u
    $$
    \
     and $\lambda_u$, warmup, and confidence threshold are important experimental hyperparameters.
