@@ -1001,11 +1001,7 @@ $$
  > **Average predictions over time.**
 
  $$
-\tilde z_t
-=
-\alpha\tilde z_{t-1}
-+
-(1-\alpha)z_t
+\tilde z_t = \alpha\tilde z_{t-1} + (1-\alpha)z_t
 $$
 
  Problem:
