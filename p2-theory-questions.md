@@ -1702,5 +1702,3 @@ $$
 \text{Mean Teacher}
 }
 $$
-
- This version deliberately avoids `\operatorname` and uses GitHub-friendly constructs such as `\mathrm{CE}`, `\mathrm{MSE}`, `\arg\max`, subscripts, superscripts, and standard mathematical operators.
