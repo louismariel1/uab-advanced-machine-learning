@@ -1,6 +1,4 @@
- # Advanced Machine Learning
-
- ## Curriculum Learning & Semi-Supervised Learning — Exam-Ready Notes
+# Curriculum Learning & Semi-Supervised Learning — Exam-Ready Notes
 
 ---
 
