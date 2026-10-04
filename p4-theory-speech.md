@@ -1,4 +1,4 @@
-Absolutely. Below is a **question-driven teaching script** designed specifically for an **audio-only lecture**. The teacher continually asks questions, gives students a few seconds to think, then provides the answer and builds toward the next idea.
+# Model Compression
 
  The narrative follows the conceptual progression of the notes: **why efficiency matters → numerical precision → quantisation → pruning → why compression works → parameter-efficient fine-tuning → adapters → separable convolutions → low-rank factorisation → LoRA → QLoRA**.
 
