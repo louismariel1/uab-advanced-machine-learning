@@ -269,11 +269,7 @@ $$
  A generic objective is:
 
  $$
-L
-=
-L_{\text{sup}}
-+
-\lambda L_{\text{unsup}}
+L = L_{\text{sup}} + \lambda L_{\text{unsup}}
 $$
 
  where:
@@ -291,9 +287,7 @@ $$
  For labelled data, a typical classification loss is cross-entropy:
 
  $$
-L_{\text{sup}}
-=
-\mathrm{CE}(y_i,f_\theta(x_i))
+L_{\text{sup}} = \mathrm{CE}(y_i,f_\theta(x_i))
 $$
 
  where:
@@ -333,9 +327,7 @@ $$
  For an unlabelled example $x\_j$:
 
  $$
-\hat{y}_j
-=
-\arg\max_y f_\theta(x_j)_y
+\hat{y}_j = \arg\max_y f_\theta(x_j)_y
 $$
 
  The predicted class with the highest probability becomes the pseudo-label.
@@ -349,11 +341,7 @@ $$
  The loss can be written approximately as:
 
  $$
-L
-=
-\mathrm{CE}(y_i,f_\theta(x_i))
-+
-\mathrm{CE}(\hat{y}_j,f_\theta(x_j))
+L = \mathrm{CE}(y_i,f_\theta(x_i)) + \mathrm{CE}(\hat{y}_j,f_\theta(x_j))
 $$
 
  The first term is the supervised loss.
@@ -507,13 +495,7 @@ $$
  A generic form is:
 
  $$
-L_{\text{cons}}
-=
-D
-\left(
-f_\theta(x),
-f_\theta(x+\eta)
-\right)
+L_{\text{cons}} = D\left(f_\theta(x),f_\theta(x+\eta)\right)
 $$
 
  where $D$ measures the difference between the two predictions.
@@ -562,27 +544,19 @@ $$
  For labelled examples, we can use the normal supervised loss:
 
  $$
-L_{\text{sup}}
-=
-\mathrm{CE}(y,f_\theta(x))
+L_{\text{sup}} = \mathrm{CE}(y,f_\theta(x))
 $$
 
  For unlabelled examples, we use a consistency loss:
 
  $$
-L_{\text{unsup}}
-=
-D(f_\theta(x+\eta_1),f_\theta(x+\eta_2))
+L_{\text{unsup}} = D(f_\theta(x+\eta_1),f_\theta(x+\eta_2))
 $$
 
  The overall objective becomes:
 
  $$
-L
-=
-L_{\text{sup}}
-+
-\lambda L_{\text{unsup}}
+L = L_{\text{sup}} + \lambda L_{\text{unsup}}
 $$
 
 ---
@@ -710,11 +684,7 @@ $$
  The lecture gives an exponential moving average:
 
  $$
-\tilde{z}_i^{(t)}
-=
-\alpha \tilde{z}_i^{(t-1)}
-+
-(1-\alpha)z_i^{(t)}
+\tilde{z}_i^{(t)} = \alpha \tilde{z}_i^{(t-1)} + (1-\alpha)z_i^{(t)}
 $$
 
  where $\\alpha$ controls how strongly previous predictions are retained.
@@ -734,13 +704,7 @@ $$
  Repeatedly expanding the update gives:
 
  $$
-\tilde{z}^{(t)}
-=
-\alpha^t\tilde{z}^{(0)}
-+
-(1-\alpha)
-\sum_{k=1}^{t}
-\alpha^{t-k}z^{(k)}
+\tilde{z}^{(t)} = \alpha^t\tilde{z}^{(0)} + (1-\alpha)\sum_{k=1}^{t}\alpha^{t-k}z^{(k)}
 $$
 
  Therefore, older predictions receive exponentially decreasing weights.
@@ -882,17 +846,13 @@ $$
  Therefore:
 
  $$
-\text{student}
-=
-\text{fast-changing model}
+\text{student} = \text{fast-changing model}
 $$
 
  while:
 
  $$
-\text{teacher}
-=
-\text{smoothed historical model}
+\text{teacher} = \text{smoothed historical model}
 $$
 
  This produces a more stable target.
@@ -906,13 +866,7 @@ $$
  A simplified form is:
 
  $$
-L_{\text{unsup}}
-=
-\mathrm{MSE}
-\left(
-f_\theta(x+\eta),
-f_{\theta'}(x+\eta')
-\right)
+L_{\text{unsup}} = \mathrm{MSE}\left(f_\theta(x+\eta),f_{\theta'}(x+\eta')\right)
 $$
 
  where:
@@ -932,16 +886,7 @@ $$
  The objective can be written as:
 
  $$
-L
-=
-\mathrm{CE}(y_i,f_\theta(x_i))
-+
-\lambda
-\mathrm{MSE}
-\left(
-f_\theta(x_j+\eta),
-f_{\theta'}(x_j+\eta')
-\right)
+L = \mathrm{CE}(y_i,f_\theta(x_i)) + \lambda\mathrm{MSE}\left(f_\theta(x_j+\eta),f_{\theta'}(x_j+\eta')\right)
 $$
 
  The first term is the supervised loss.
@@ -1008,9 +953,7 @@ $$
  The model predicts a pseudo-label for an unlabelled example:
 
  $$
-\hat{y}
-=
-\arg\max_y f_\theta(x)
+\hat{y} = \arg\max_y f_\theta(x)
 $$
 
  The model then trains on that prediction.
@@ -1044,11 +987,7 @@ $$
  Instead of using a potentially unreliable current prediction as the target, temporal ensembling uses an EMA of previous predictions:
 
  $$
-\tilde{z}^{(t)}
-=
-\alpha\tilde{z}^{(t-1)}
-+
-(1-\alpha)z^{(t)}
+\tilde{z}^{(t)} = \alpha\tilde{z}^{(t-1)} + (1-\alpha)z^{(t)}
 $$
 
  This produces a smoother target.
@@ -1092,9 +1031,7 @@ $$
  Use the model's own predictions:
 
  $$
-\hat{y}_j
-=
-\arg\max_y f_\theta(x_j)
+\hat{y}_j = \arg\max_y f_\theta(x_j)
 $$
 
  and train on the pseudo-label.
@@ -1114,13 +1051,7 @@ $$
  Compare the current prediction against an EMA of previous predictions:
 
  $$
-L_{\text{unsup}}
-=
-\mathrm{MSE}
-\left(
-f_\theta(x_j+\eta),
-\tilde{z}_j
-\right)
+L_{\text{unsup}} = \mathrm{MSE}\left(f_\theta(x_j+\eta),\tilde{z}_j\right)
 $$
 
  ### Mean Teacher
@@ -1128,21 +1059,13 @@ $$
  Compare the student prediction against the teacher prediction:
 
  $$
-L_{\text{unsup}}
-=
-\mathrm{MSE}
-\left(
-f_\theta(x_j+\eta),
-f_{\theta'}(x_j+\eta')
-\right)
+L_{\text{unsup}} = \mathrm{MSE}\left(f_\theta(x_j+\eta),f_{\theta'}(x_j+\eta')\right)
 $$
 
  with:
 
  $$
-\theta'
-=
-\mathrm{EMA}(\theta)
+\theta' = \mathrm{EMA}(\theta)
 $$
 
 ---
@@ -1343,11 +1266,7 @@ $$
  An EMA smooths parameter changes:
 
  $$
-\theta'_t
-=
-\alpha\theta'_{t-1}
-+
-(1-\alpha)\theta_t
+\theta'_t = \alpha\theta'_{t-1} + (1-\alpha)\theta_t
 $$
 
  Therefore, the averaged model is less sensitive to individual noisy updates.
@@ -1410,9 +1329,7 @@ $$
  ## 67\. If you see this equation, what method is it describing?
 
  $$
-\hat{y}_j
-=
-\arg\max_y f_\theta(x_j)
+\hat{y}_j = \arg\max_y f_\theta(x_j)
 $$
 
  **Answer:**
@@ -1426,11 +1343,7 @@ $$
  ## 68\. If you see this equation, what method is it describing?
 
  $$
-\tilde{z}^{(t)}
-=
-\alpha\tilde{z}^{(t-1)}
-+
-(1-\alpha)z^{(t)}
+\tilde{z}^{(t)} = \alpha\tilde{z}^{(t-1)} + (1-\alpha)z^{(t)}
 $$
 
  **Answer:**
@@ -1444,11 +1357,7 @@ $$
  ## 69\. If you see this equation, what method is it describing?
 
  $$
-\theta'
-=
-\alpha\theta'
-+
-(1-\alpha)\theta
+\theta' = \alpha\theta' + (1-\alpha)\theta
 $$
 
  **Answer:**
@@ -1462,9 +1371,7 @@ $$
  ## 70\. If you see this equation, what method is it describing?
 
  $$
-L_{\text{unsup}}
-=
-D(f_\theta(x),f_\theta(x+\eta))
+L_{\text{unsup}} = D(f_\theta(x),f_\theta(x+\eta))
 $$
 
  **Answer:**
@@ -1478,16 +1385,7 @@ $$
  ## 71\. If you see this equation, what method is it describing?
 
  $$
-L
-=
-\mathrm{CE}(y,f_\theta(x))
-+
-\lambda
-\mathrm{MSE}
-\left(
-f_\theta(x+\eta),
-f_{\theta'}(x+\eta')
-\right)
+L = \mathrm{CE}(y,f_\theta(x)) + \lambda\mathrm{MSE}\left(f_\theta(x+\eta),f_{\theta'}(x+\eta')\right)
 $$
 
  **Answer:**
