@@ -88,7 +88,7 @@ $$
  We then train using both:
 
  $$
-\mathcal{L} = \underbrace{\mathrm{CE}(y_i,f_\theta(x_i)) }_{\text{supervised}} + \underbrace{\mathrm{CE}(\haty_j,f_\theta(x_j))}_{\text{unsupervised}}
+\mathcal{L} = \underbrace{\mathrm{CE}(y_i,f_\theta(x_i)) }_{\text{supervised}} + \underbrace{\mathrm{CE}(\hat(y_j),f_\theta(x_j))}_{\text{unsupervised}}
 $$
 
  ### Intuition
