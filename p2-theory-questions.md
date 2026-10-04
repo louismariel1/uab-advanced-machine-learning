@@ -218,8 +218,7 @@ $$
  For classification:
 
  $$
-\mathcal{L}_{\text{sup}} =
-\operatorname{CE}(y_i,f_\theta(x_i))
+\mathcal{L}_{\text{sup}} = \operatorname{CE}(y_i,f_\theta(x_i))
 $$
 
 ---
@@ -264,9 +263,7 @@ $$
  For an unlabelled example $x\_j$:
 
  $$
-\hat{y}_j
-=
-\arg\max_y f_\theta(x_j)_y
+\hat{y}_j = \arg\max_y f_\theta(x_j)_y
 $$
 
  The model's most likely class becomes the pseudo-label.
@@ -280,11 +277,7 @@ $$
  A simplified objective is:
 
  $$
-\mathcal{L}
-=
-\operatorname{CE}(y_i,f_\theta(x_i))
-+
-\operatorname{CE}(\hat{y}_j,f_\theta(x_j))
+\mathcal{L} = \operatorname{CE}(y_i,f_\theta(x_i)) + \operatorname{CE}(\hat{y}_j,f_\theta(x_j))
 $$
 
  The first term is the supervised loss and the second is the pseudo-labelled unsupervised loss.
@@ -407,12 +400,7 @@ $$
  A generic formulation is:
 
  $$
-\mathcal{L}_{\text{cons}}
-=
-d\left(
-f_\theta(x),
-f_\theta(x')
-\right)
+\mathcal{L}_{\text{cons}} = d\left(f_\theta(x),f_\theta(x')\right)
 $$
 
  where $d$ is a distance between predictions.
@@ -420,13 +408,7 @@ $$
  For example:
 
  $$
-\mathcal{L}_{\text{cons}}
-=
-\operatorname{MSE}
-\left(
-f_\theta(x),
-f_\theta(x')
-\right)
+\mathcal{L}_{\text{cons}} = \operatorname{MSE}\left(f_\theta(x),f_\theta(x')\right)
 $$
 
  or a cross-entropy/KL-divergence-based objective.
@@ -505,20 +487,13 @@ $$
  For labelled examples, we can directly use the ground-truth label:
 
  $$
-\mathcal{L}_{\text{sup}}
-=
-\operatorname{CE}(y,f_\theta(x))
+\mathcal{L}_{\text{sup}} = \operatorname{CE}(y,f_\theta(x))
 $$
 
  For unlabelled examples, we impose consistency:
 
  $$
-\mathcal{L}_{\text{unsup}}
-=
-d\left(
-f_\theta(x),
-f_\theta(\operatorname{augment}(x))
-\right)
+\mathcal{L}_{\text{unsup}} = d\left(f_\theta(x),f_\theta(\operatorname{augment}(x))\right)
 $$
 
 ---
@@ -611,11 +586,7 @@ $$
  The lecture gives an exponential moving average (EMA):
 
  $$
-\tilde{z}_i^{\,t}
-=
-\alpha \tilde{z}_i^{\,t-1}
-+
-(1-\alpha)z_i^t
+\tilde{z}_i^{\,t} = \alpha \tilde{z}_i^{\,t-1} + (1-\alpha)z_i^t
 $$
 
  where:
@@ -639,14 +610,7 @@ $$
  Repeatedly expanding the recurrence gives:
 
  $$
-\tilde{z}^{\,t}
-=
-(1-\alpha)z^t
-+
-\alpha(1-\alpha)z^{t-1}
-+
-\alpha^2(1-\alpha)z^{t-2}
-+\cdots
+\tilde{z}^{\,t} = (1-\alpha)z^t + \alpha(1-\alpha)z^{t-1} + \alpha^2(1-\alpha)z^{t-2}+\cdots
 $$
 
  Therefore, older predictions receive exponentially decreasing weights.
@@ -682,11 +646,7 @@ $$
  The general EMA mechanism is:
 
  $$
-m_t
-=
-\beta m_{t-1}
-+
-(1-\beta)x_t
+m_t = \beta m_{t-1} + (1-\beta)x_t
 $$
 
  The reason is similar: **smooth noisy quantities using information from previous steps**.
@@ -724,17 +684,13 @@ $$
  Instead of:
 
  $$
-\tilde{z}_i
-=
-\operatorname{EMA}(\text{past predictions})
+\tilde{z}_i = \operatorname{EMA}(\text{past predictions})
 $$
 
  we maintain:
 
  $$
-\theta'
-=
-\operatorname{EMA}(\theta)
+\theta' = \operatorname{EMA}(\theta)
 $$
 
  where:
@@ -791,19 +747,7 @@ $$
  The lecture gives the objective:
 
  $$
-\mathcal{L}
-=
-\operatorname{CE}
-\left(
-y_i,
-f_\theta(x_i)
-\right)
-+
-\operatorname{MSE}
-\left(
-f_\theta(x_j+\eta),
-f_{\theta'}(x_j+\eta')
-\right)
+\mathcal{L} = \operatorname{CE}\left(y_i,f_\theta(x_i)\right) + \operatorname{MSE}\left(f_\theta(x_j+\eta),f_{\theta'}(x_j+\eta')\right)
 $$
 
  where:
@@ -867,19 +811,13 @@ $$
  For an unlabelled example $x\_j$:
 
  $$
-\hat{y}_j
-=
-\arg\max f_\theta(x_j)
+\hat{y}_j = \arg\max f_\theta(x_j)
 $$
 
  Then:
 
  $$
-\mathcal{L}
-=
-\operatorname{CE}(y_i,f_\theta(x_i))
-+
-\operatorname{CE}(\hat{y}_j,f_\theta(x_j))
+\mathcal{L} = \operatorname{CE}(y_i,f_\theta(x_i)) + \operatorname{CE}(\hat{y}_j,f_\theta(x_j))
 $$
 
  The model uses its own prediction as a pseudo-label.
@@ -901,9 +839,7 @@ $$
  Self-training:
 
  $$
-\hat{y}
-=
-\arg\max f_\theta(x)
+\hat{y} = \arg\max f_\theta(x)
 $$
 
  Consistency:
@@ -953,17 +889,13 @@ $$
  ### Temporal ensembling
 
  $$
-\tilde{z}_i
-=
-\operatorname{EMA}(\text{predictions for example }i)
+\tilde{z}_i = \operatorname{EMA}(\text{predictions for example }i)
 $$
 
  ### Mean Teacher
 
  $$
-\theta'
-=
-\operatorname{EMA}(\theta)
+\theta' = \operatorname{EMA}(\theta)
 $$
 
  The teacher can therefore generate fresh predictions at every update.
@@ -1015,20 +947,13 @@ $$
  The overall objective is generally:
 
  $$
-\mathcal{L}
-=
-\mathcal{L}_{\text{sup}}
-+
-\lambda\mathcal{L}_{\text{unsup}}
+\mathcal{L} = \mathcal{L}_{\text{sup}} + \lambda\mathcal{L}_{\text{unsup}}
 $$
 
  with:
 
  $$
-\mathcal{L}_{\text{sup}}
-=
-\operatorname{CE}
-(y_i,f_\theta(x_i))
+\mathcal{L}_{\text{sup}} = \operatorname{CE} (y_i,f_\theta(x_i))
 $$
 
  The difference between methods lies mainly in how $\\mathcal{L}\_{\\text{unsup}}$ is constructed.
@@ -1042,21 +967,13 @@ $$
  Using a pseudo-label:
 
  $$
-\mathcal{L}_{\text{unsup}}
-=
-\operatorname{CE}
-\left(
-\hat{y}_j,
-f_\theta(x_j)
-\right)
+\mathcal{L}_{\text{unsup}} = \operatorname{CE}\left(\hat{y}_j,f_\theta(x_j)\right)
 $$
 
  where:
 
  $$
-\hat{y}_j
-=
-\arg\max f_\theta(x_j)
+\hat{y}_j = \arg\max f_\theta(x_j)
 $$
 
 ---
@@ -1068,13 +985,7 @@ $$
  A conceptual form is:
 
  $$
-\mathcal{L}_{\text{unsup}}
-=
-\operatorname{CE}
-\left(
-f_\theta(x_j),
-f_\theta(x_j+\eta)
-\right)
+\mathcal{L}_{\text{unsup}} = \operatorname{CE}\left(f_\theta(x_j),f_\theta(x_j+\eta)\right)
 $$
 
  or another suitable distance between the two predictions.
@@ -1098,13 +1009,7 @@ $$
  The lecture gives:
 
  $$
-\mathcal{L}_{\text{unsup}}
-=
-\operatorname{MSE}
-\left(
-f_\theta(x_j+\eta),
-\tilde{z}_j
-\right)
+\mathcal{L}_{\text{unsup}} = \operatorname{MSE}\left(f_\theta(x_j+\eta),\tilde{z}_j\right)
 $$
 
  where $\\tilde{z}\_j$ is the EMA target based on previous predictions.
@@ -1118,21 +1023,13 @@ $$
  The lecture gives:
 
  $$
-\mathcal{L}_{\text{unsup}}
-=
-\operatorname{MSE}
-\left(
-f_\theta(x_j+\eta),
-f_{\theta'}(x_j+\eta')
-\right)
+\mathcal{L}_{\text{unsup}} = \operatorname{MSE}\left(f_\theta(x_j+\eta),f_{\theta'}(x_j+\eta')\right)
 $$
 
  where:
 
  $$
-\theta'
-=
-\operatorname{EMA}(\theta)
+\theta' = \operatorname{EMA}(\theta)
 $$
 
 ---
@@ -1179,9 +1076,7 @@ $$
  The teacher parameters are:
 
  $$
-\theta'
-=
-\operatorname{EMA}(\theta)
+\theta' = \operatorname{EMA}(\theta)
 $$
 
 ---
@@ -1362,11 +1257,7 @@ $$
  The teacher is an EMA of the student:
 
  $$
-\theta'
-=
-\alpha\theta'_{\text{old}}
-+
-(1-\alpha)\theta
+\theta' = \alpha\theta'_{\text{old}} + (1-\alpha)\theta
 $$
 
  Therefore, sudden changes in the student are smoothed out.
@@ -1410,9 +1301,7 @@ $$
  Pseudo-labelling typically creates a hard target:
 
  $$
-\hat{y}
-=
-\arg\max f(x)
+\hat{y} = \arg\max f(x)
 $$
 
  Consistency regularisation instead compares predictions:
@@ -1441,11 +1330,7 @@ $$
  They are therefore **not independently trained models**.
 
  $$
-\theta'
-\leftarrow
-\alpha\theta'
-+
-(1-\alpha)\theta
+\theta'\leftarrow\alpha\theta' + (1-\alpha)\theta
 $$
 
 ---
@@ -1528,59 +1413,31 @@ $$
  ### General semi-supervised objective
 
  $$
-\boxed{
-\mathcal{L}
-=
-\mathcal{L}_{\text{sup}}
-+
-\lambda\mathcal{L}_{\text{unsup}}
-}
+\boxed{\mathcal{L} = \mathcal{L}_{\text{sup}} + \lambda\mathcal{L}_{\text{unsup}}}
 $$
 
  ### Supervised classification loss
 
  $$
-\boxed{
-\mathcal{L}_{\text{sup}}
-=
-\operatorname{CE}
-(y_i,f_\theta(x_i))
-}
+\boxed{\mathcal{L}_{\text{sup}} = \operatorname{CE}(y_i,f_\theta(x_i))}
 $$
 
  ### Pseudo-label
 
  $$
-\boxed{
-\hat{y}_j
-=
-\arg\max_y f_\theta(x_j)_y
-}
+\boxed{\hat{y}_j = \arg\max_y f_\theta(x_j)_y}
 $$
 
  ### Self-training
 
  $$
-\boxed{
-\mathcal{L}_{\text{unsup}}
-=
-\operatorname{CE}
-(\hat{y}_j,f_\theta(x_j))
-}
+\boxed{\mathcal{L}_{\text{unsup}} = \operatorname{CE}(\hat{y}_j,f_\theta(x_j))}
 $$
 
  ### Consistency regularisation
 
  $$
-\boxed{
-\mathcal{L}_{\text{cons}}
-=
-d
-\left(
-f_\theta(x),
-f_\theta(x')
-\right)
-}
+\boxed{\mathcal{L}_{\text{cons}} = d\left(f_\theta(x),f_\theta(x')\right)}
 $$
 
  ### UDA
@@ -1596,53 +1453,25 @@ $$
  ### Temporal ensembling
 
  $$
-\boxed{
-\tilde{z}_i^{\,t}
-=
-\alpha\tilde{z}_i^{\,t-1}
-+
-(1-\alpha)z_i^t
-}
+\boxed{\tilde{z}_i^{\,t} = \alpha\tilde{z}_i^{\,t-1} + (1-\alpha)z_i^t}
 $$
 
  ### Temporal ensembling loss
 
  $$
-\boxed{
-\mathcal{L}_{\text{unsup}}
-=
-\operatorname{MSE}
-\left(
-f_\theta(x_j+\eta),
-\tilde{z}_j
-\right)
-}
+\boxed{\mathcal{L}_{\text{unsup}} = \operatorname{MSE}\left(f_\theta(x_j+\eta),\tilde{z}_j\right)}
 $$
 
  ### Mean Teacher parameter update
 
  $$
-\boxed{
-\theta'
-=
-\alpha\theta'_{\text{old}}
-+
-(1-\alpha)\theta
-}
+\boxed{\theta' = \alpha\theta'_{\text{old}} + (1-\alpha)\theta}
 $$
 
  ### Mean Teacher loss
 
  $$
-\boxed{
-\mathcal{L}_{\text{unsup}}
-=
-\operatorname{MSE}
-\left(
-f_\theta(x_j+\eta),
-f_{\theta'}(x_j+\eta')
-\right)
-}
+\boxed{\mathcal{L}_{\text{unsup}} = \operatorname{MSE} \left(f_\theta(x_j+\eta), f_{\theta'}(x_j+\eta') \right)}
 $$
 
 ---
@@ -1674,9 +1503,7 @@ $$
  **Mean Teacher** solves these problems by maintaining an EMA of the model parameters instead:
 
  $$
-\theta'
-=
-\operatorname{EMA}(\theta)
+\theta' = \operatorname{EMA}(\theta)
 $$
 
  The teacher provides stable targets while the student is trained using both supervised and consistency losses.
@@ -1817,13 +1644,7 @@ $$
  **Temporal ensembling** stabilises the target:
 
  $$
-\boxed{
-\tilde z_t
-=
-\alpha\tilde z_{t-1}
-+
-(1-\alpha)z_t
-}
+\boxed{\tilde z_t = \alpha\tilde z_{t-1} + (1-\alpha)z_t}
 $$
 
  but storing predictions for every example does not scale well.
@@ -1831,40 +1652,19 @@ $$
  **Mean Teacher** moves the EMA from predictions to model parameters:
 
  $$
-\boxed{
-\theta'
-=
-\alpha\theta'
-+
-(1-\alpha)\theta
-}
+\boxed{\theta' = \alpha\theta' + (1-\alpha)\theta}
 $$
 
  and trains the student to match the teacher:
 
  $$
-\boxed{
-\mathcal{L}
-=
-\mathcal{L}_{\text{sup}}
-+
-\lambda
-\mathcal{L}_{\text{consistency}}
-}
+\boxed{\mathcal{L} = \mathcal{L}_{\text{sup}} + \lambda\mathcal{L}_{\text{consistency}}}
 $$
 
  The single most important conceptual progression is:
 
  $$
-\boxed{
-\text{Self-training}
-\rightarrow
-\text{Consistency}
-\rightarrow
-\text{Temporal Ensembling}
-\rightarrow
-\text{Mean Teacher}
-}
+\boxed{\text{Self-training}\rightarrow\text{Consistency}\rightarrow\text{Temporal Ensembling}\rightarrow\text{Mean Teacher}}
 $$
 
  while **curriculum learning** provides the broader idea of strategically controlling which examples the model learns from and when.
