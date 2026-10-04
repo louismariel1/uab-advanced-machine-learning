@@ -1,7 +1,8 @@
- # Curriculum Learning & Semi-Supervised Learning — Question-Focused Exam-Ready Notes
+Absolutely. I’ll regenerate the full notes as a **GitHub-safe Markdown document**, keeping the question-and-answer learning format and simplifying the LaTeX to avoid unsupported macros.
 
- > **How to use these notes:** Cover the answers and try to answer each question yourself first.\
->  Questions marked **⭐** are especially important for an exam.
+ # Curriculum Learning & Semi-Supervised Learning — Exam-Ready Q&A Notes
+
+ > **How to use these notes:** Cover the answers and try to answer each question yourself. The questions are ordered to build the concepts from fundamentals → methods → equations → comparisons → exam-level reasoning.
 
 ---
 
@@ -10,282 +11,364 @@
  ## 1\. What is curriculum learning?
 
  **Answer:**\
- Curriculum learning is a training strategy where examples are presented to a model in a meaningful order, typically starting with **easier examples** and gradually introducing **harder examples**.
+ Curriculum learning is a training strategy where examples are presented to a model in a deliberate order, typically from **easy to difficult**.
 
- The key idea is:
+ The basic idea is:
 
- > Instead of training on all examples with equal difficulty from the beginning, control the order in which the model encounters them.
+ > Start with examples that are easy for the model to learn, then gradually introduce harder examples.
 
- The analogy is human education: learn simple concepts before advanced ones.
-
----
-
- ## 2\. ⭐ Why might curriculum learning improve neural-network training?
-
- **Answer:**
-
- A curriculum can:
-
- - make early optimisation easier;
-- provide more useful gradients during the initial stages of training;
-- help the model learn simple patterns before complex ones;
-- reduce the influence of noisy or ambiguous examples early on;
-- potentially improve convergence speed;
-- sometimes improve final generalisation.
-
- The important intuition is that **the training dynamics depend not only on what data the model sees, but also on when it sees it**.
+ Instead of training on the entire dataset with a random sampling strategy, curriculum learning changes the **training distribution over time**.
 
 ---
 
- ## 3\. What is the difference between example difficulty and label quality?
+ ## 2\. What is the intuition behind curriculum learning?
 
  **Answer:**
 
- They are related but distinct.
+ Humans often learn progressively:
 
- - **Example difficulty:** how difficult an input is for the model to learn correctly.
-- **Label quality:** how trustworthy/correct the associated label is.
+ 1. Learn simple concepts.
+2. Build a foundation.
+3. Introduce more difficult examples.
+4. Eventually solve complex problems.
+
+ Curriculum learning applies a similar idea to machine learning.
+
+ If the model first learns simple patterns, these patterns can provide a useful foundation for learning harder examples.
+
+---
+
+ ## 3\. What is the central assumption behind curriculum learning?
+
+ **Answer:**
+
+ The central assumption is that **the order in which training examples are presented can affect optimisation and generalisation**.
+
+ An appropriate curriculum may:
+
+ - make optimisation easier,
+- provide better initial representations,
+- reduce the difficulty of early training,
+- improve convergence,
+- and sometimes improve final generalisation.
+
+---
+
+ ## 4\. What does "easy" mean in curriculum learning?
+
+ **Answer:**
+
+ "Easy" is task-dependent.
+
+ An example might be considered easy if:
+
+ - it has a clear label,
+- it contains little noise,
+- it has a simple structure,
+- the model already predicts it correctly,
+- or it has a low training loss.
+
+ Difficulty can therefore be defined using either:
+
+ - **human/domain knowledge**, or
+- **information obtained from the model itself**.
+
+---
+
+ ## 5\. What is a hand-designed curriculum?
+
+ **Answer:**
+
+ A hand-designed curriculum uses prior knowledge to determine the order of examples.
+
+ For example, suppose we are training an image classifier.
+
+ We could begin with:
+
+ - large, clear images,
+- simple backgrounds,
+- unambiguous examples,
+
+ and later introduce:
+
+ - occluded images,
+- noisy images,
+- unusual viewpoints,
+- difficult classes.
+
+ The curriculum is designed before or during training using domain knowledge.
+
+---
+
+ ## 6\. What is self-paced learning?
+
+ **Answer:**
+
+ Self-paced learning lets the **model determine which examples are currently easy enough to learn**.
+
+ A common strategy is:
+
+ 1. Initially select easy examples.
+2. Train the model.
+3. Re-evaluate example difficulty.
+4. Gradually include harder examples.
+
+ Thus, unlike a fixed curriculum, the training process can adapt the curriculum based on the model's current state.
+
+---
+
+ ## 7\. How can training loss be used to estimate difficulty?
+
+ **Answer:**
+
+ A simple approach is to use the model's loss on an example.
 
  For example:
 
- | Example | Difficulty | Label quality |
-| --- | --- | --- |
-| Clear image of a cat | Easy | High |
-| Blurry image of a cat | Hard | High |
-| Ambiguous image | Hard | High/uncertain |
-| Clearly identifiable image with wrong label | Easy | Low |
-
-Curriculum learning can exploit either **difficulty**, **label quality**, or both.
-
----
-
- ## 4\. ⭐ What does a curriculum define?
-
- **Answer:**
-
- A curriculum defines a schedule for the training data.
-
- Conceptually:
-
  $$
-\text{easy examples}
-\rightarrow
-\text{medium examples}
-\rightarrow
-\text{hard examples}
+\text{difficulty}(x_i) \approx L(x_i)
 $$
 
- The schedule can be defined using a measure of difficulty.
+ A low-loss example is treated as easy, while a high-loss example is treated as difficult.
+
+ However, high loss does not necessarily mean that an example is intrinsically difficult.
+
+ It could also indicate:
+
+ - label noise,
+- an incorrect label,
+- an unusual sample,
+- or that the model has not yet learned the relevant feature.
 
 ---
 
- ## 5\. How can we determine whether an example is "easy"?
+ ## 8\. Why can curriculum learning help optimisation?
 
  **Answer:**
 
- There is no universal definition of difficulty.
+ Early in training, the model may struggle to learn from a highly heterogeneous dataset.
 
- Possible measures include:
+ Starting with easier examples can provide useful gradients and representations.
 
- - model loss;
-- prediction confidence;
-- number of previous errors;
-- human-provided difficulty;
-- label quality;
-- input complexity;
-- distance from a prototype;
-- uncertainty;
-- teacher-model confidence.
-
- Therefore, curriculum learning is not simply "sort the dataset by difficulty"; we first need a **difficulty criterion**.
-
----
-
- ## 6\. ⭐ What is self-paced learning?
-
- **Answer:**
-
- Self-paced learning is closely related to curriculum learning, but instead of relying entirely on a predefined ordering, the **model itself determines which examples it is currently capable of learning from**.
-
- The model may initially select easy examples and gradually include harder ones.
-
- A simplified conceptual objective is:
+ The training process can therefore look like:
 
  $$
-\min_{\theta}
-\sum_i v_i L_i(\theta)
-+
-\lambda R(v)
+\text{simple patterns}
+\rightarrow
+\text{useful representations}
+\rightarrow
+\text{more difficult patterns}
 $$
 
- where:
-
- - $L\_i(\\theta)$ is the loss for example $i$;
-- $v\_i$ determines whether/how strongly example $i$ is selected;
-- $\\lambda$ controls how aggressively examples are included.
+ This can make the optimisation trajectory easier to navigate.
 
 ---
 
- ## 7\. What is the difference between curriculum learning and self-paced learning?
+ ## 9\. Is curriculum learning guaranteed to improve performance?
 
  **Answer:**
 
- | Curriculum learning | Self-paced learning |
+ No.
+
+ Curriculum learning is a **training strategy**, not a guarantee of better performance.
+
+ A poorly designed curriculum can:
+
+ - introduce bias,
+- remove useful examples for too long,
+- reinforce incorrect assumptions about difficulty,
+- or cause the model to overfit easy examples.
+
+ Therefore, the curriculum itself must be evaluated.
+
+---
+
+ ## 10\. What is the difference between curriculum learning and random sampling?
+
+ **Answer:**
+
+ | Random sampling | Curriculum learning |
 | --- | --- |
-| Training order is often externally specified | Model determines selection |
-| Can use known difficulty | Usually based on current model loss/confidence |
-| Teacher-designed schedule is common | Adaptive schedule |
-| "Learn easy → hard" | "Learn what I can currently handle" |
-
-Both exploit the principle that **training on appropriately chosen examples can improve optimisation**.
-
----
-
- ## 8\. ⭐ What is the main danger of an overly aggressive curriculum?
-
- **Answer:**
-
- If we train too long only on easy examples, the model may:
-
- - fail to learn difficult regions of the data distribution;
-- overfit the easy subset;
-- develop biased representations;
-- never receive sufficient gradient information from hard examples.
-
- Therefore, a good curriculum must eventually expose the model to the **full relevant data distribution**.
+| Examples are sampled without deliberately controlling difficulty | Examples are deliberately ordered or weighted |
+| Training distribution is relatively stable | Training distribution changes over time |
+| No explicit notion of difficulty | Difficulty is used to control training |
+| Simple baseline | Structured training strategy |
 
 ---
 
  # Part II — Semi-Supervised Learning
 
- ## 9\. ⭐ What is semi-supervised learning?
+ ## 11\. What is semi-supervised learning?
 
  **Answer:**
 
- Semi-supervised learning uses a combination of:
+ Semi-supervised learning uses both:
 
- - a relatively small labelled dataset;
-- a larger unlabelled dataset.
+ - a relatively small amount of **labelled data**, and
+- a larger amount of **unlabelled data**.
 
- We can write:
+ We can write the datasets as:
 
  $$
-\mathcal{D}_L = \{(x_i,y_i)\}
+D_L = \{(x_i,y_i)\}
 $$
 
- for labelled data and
+ for labelled data, and
 
  $$
-\mathcal{D}_U = \{x_j\}
+D_U = \{x_j\}
 $$
 
  for unlabelled data.
 
- The objective is to use both datasets to improve the learned model.
+ The goal is to use the unlabelled data to improve the model beyond what could be achieved using only the labelled examples.
 
 ---
 
- ## 10\. Why is semi-supervised learning useful?
+ ## 12\. Why is semi-supervised learning useful?
 
  **Answer:**
 
- In many real-world problems:
+ Obtaining labels can be expensive.
 
- > Obtaining labels is expensive, but obtaining raw data is cheap.
+ For example:
 
- For example, collecting millions of images may be easy, while manually labelling every image may be expensive.
+ - medical images may require expert annotation,
+- speech data may require transcription,
+- scientific data may require specialist knowledge.
 
- Semi-supervised learning attempts to exploit the information contained in the large unlabelled dataset.
+ However, collecting raw unlabelled data can be relatively cheap.
+
+ Semi-supervised learning attempts to exploit this large supply of unlabelled data.
 
 ---
 
- ## 11\. ⭐ What is the basic semi-supervised learning objective?
+ ## 13\. What is the key assumption behind semi-supervised learning?
 
  **Answer:**
 
- The total objective typically contains:
-$$
-\mathcal{L} = Lsup+λLunsup\mathcal{L} = \mathcal{L}_{\text{sup}} + \lambda \mathcal{L}_{\text{unsup}}
-$$
+ The key assumption is that **unlabelled examples contain useful information about the structure of the data distribution**.
 
-where:
-•	$\mathcal{L}_{\text{sup}}$ is computed using labelled examples;
-•	$\mathcal{L}_{\text{unsup}}$ exploits unlabelled examples;
-•	$\lambda$ controls the importance of the unsupervised objective.
+ The model therefore tries to learn from both:
 
-For classification:
-$$
-\mathcal{L}_{\text{sup}} = CE⁡(yi,fθ(xi))\mathcal{L}_{\text{sup}} = \operatorname{CE}(y_i,f_\theta(x_i))
+ $$
+\text{label information}
++
+\text{data structure}
 $$
 
 ---
 
- ## 12\. What is the key assumption behind semi-supervised learning?
+ ## 14\. What is the general objective in semi-supervised learning?
 
  **Answer:**
 
- Semi-supervised learning assumes that the unlabelled data contains useful information about the underlying task.
+ The model typically has two components:
 
- Common assumptions include:
+ 1. A supervised loss using labelled examples.
+2. An unsupervised loss using unlabelled examples.
 
- - **smoothness assumption:** nearby examples should have similar predictions;
-- **cluster assumption:** examples in the same cluster tend to have the same label;
-- **manifold assumption:** data lies on a lower-dimensional structure;
-- **low-density separation:** decision boundaries should avoid dense regions of the data.
+ A generic objective is:
+
+ $$
+L
+=
+L_{\text{sup}}
++
+\lambda L_{\text{unsup}}
+$$
+
+ where:
+
+ - $L\_{\\text{sup}}$ is the supervised loss,
+- $L\_{\\text{unsup}}$ is the unsupervised loss,
+- $\\lambda$ controls the importance of the unsupervised objective.
+
+---
+
+ ## 15\. What is the supervised loss?
+
+ **Answer:**
+
+ For labelled data, a typical classification loss is cross-entropy:
+
+ $$
+L_{\text{sup}}
+=
+\mathrm{CE}(y_i,f_\theta(x_i))
+$$
+
+ where:
+
+ - $x\_i$ is the input,
+- $y\_i$ is its true label,
+- $f\_\\theta$ is the model.
+
+ This is standard supervised learning.
 
 ---
 
  # Part III — Self-Training
 
- ## 13\. ⭐ What is self-training?
+ ## 16\. What is self-training?
 
  **Answer:**
 
- Self-training is a simple semi-supervised technique where the model:
+ Self-training uses the model's own predictions on unlabelled examples as **pseudo-labels**.
 
- 1. trains on labelled data;
-2. predicts labels for unlabelled examples;
-3. treats some predictions as **pseudo-labels**;
-4. trains on those pseudo-labelled examples;
-5. repeats.
+ The basic process is:
+
+ 1. Train on labelled data.
+2. Predict labels for unlabelled examples.
+3. Treat sufficiently confident predictions as pseudo-labels.
+4. Train on those pseudo-labelled examples.
+5. Repeat.
 
 ---
 
- ## 14\. What is a pseudo-label?
+ ## 17\. What is a pseudo-label?
 
  **Answer:**
 
- A pseudo-label is a label generated by the model rather than provided by a human.
+ A pseudo-label is a label generated by the model rather than supplied by a human.
 
  For an unlabelled example $x\_j$:
 
  $$
-\hat{y}_j = \arg\max_y f_\theta(x_j)_y
+\hat{y}_j
+=
+\arg\max_y f_\theta(x_j)_y
 $$
 
- The model's most likely class becomes the pseudo-label.
+ The predicted class with the highest probability becomes the pseudo-label.
 
 ---
 
- ## 15\. ⭐ What is the loss for basic self-training?
+ ## 18\. What is the self-training objective?
 
  **Answer:**
 
- A simplified objective is:
+ The loss can be written approximately as:
 
  $$
-\mathcal{L} = \operatorname{CE}(y_i,f_\theta(x_i)) + \operatorname{CE}(\hat{y}_j,f_\theta(x_j))
+L
+=
+\mathrm{CE}(y_i,f_\theta(x_i))
++
+\mathrm{CE}(\hat{y}_j,f_\theta(x_j))
 $$
 
- The first term is the supervised loss and the second is the pseudo-labelled unsupervised loss.
+ The first term is the supervised loss.
+
+ The second term is the pseudo-label or unsupervised loss.
 
 ---
 
- ## 16\. Why is naive self-training dangerous?
+ ## 19\. Why is naive self-training dangerous?
 
  **Answer:**
 
- Because the model can make incorrect predictions and then **train on its own mistakes**.
+ Because the model can make mistakes and then **train on its own mistakes**.
 
  This creates a feedback loop:
 
@@ -303,80 +386,245 @@ $$
 
 ---
 
- ## 17\. ⭐ What is mode collapse in the context of naive self-training?
+ ## 20\. What is mode collapse in this context?
 
  **Answer:**
 
- Mode collapse occurs when the model increasingly predicts a limited set of classes or behaviours, potentially ignoring other modes/classes in the data.
+ Mode collapse refers to a situation where the model increasingly predicts a limited set of classes or patterns, rather than maintaining useful diversity.
 
- Because the model generates its own training labels, errors can reinforce themselves.
+ If pseudo-labels are biased, self-training can reinforce that bias.
 
- This is one reason why semi-supervised learning requires a **stability mechanism**.
+ Therefore, semi-supervised learning needs mechanisms that make the training process more stable.
 
 ---
 
  # Part IV — Co-Training
 
- ## 18\. ⭐ What is co-training?
+ ## 21\. What is co-training?
 
  **Answer:**
 
- Co-training uses **two different models** that learn from each other.
+ Co-training uses **two models** that teach each other.
 
- Each model:
+ The important idea is that the models should make sufficiently **independent errors**.
 
- 1. learns from labelled data;
-2. predicts labels for unlabelled data;
-3. provides confident predictions to the other model;
-4. the other model uses those predictions as additional supervision.
-
----
-
- ## 19\. Why can co-training be more stable than naive self-training?
-
- **Answer:**
-
- The two models ideally make **different errors** because they use different views/features of the data.
-
- Therefore:
-
- > One model can provide useful information to the other without simply reinforcing exactly the same mistakes.
-
- The key requirement is some form of **independence or diversity** between the models/views.
-
----
-
- ## 20\. ⭐ What is the central problem that co-training and consistency regularisation are trying to solve?
-
- **Answer:**
-
- Both address the instability of naive self-training.
-
- The central problem is:
+ For example:
 
  $$
-\text{model's prediction}
-\rightarrow
-\text{training target}
+f_{\theta_1}(x)
+\qquad
+f_{\theta_2}(x)
 $$
 
- If the prediction is wrong, the model can reinforce its own error.
+ Each model can generate pseudo-labels for the other.
 
- Co-training addresses this using **different models/views**.
+---
 
- Consistency regularisation addresses it using **different perturbations of the same input**.
+ ## 22\. Why can co-training be more stable than naive self-training?
+
+ **Answer:**
+
+ In self-training, a model teaches itself.
+
+ In co-training:
+
+ $$
+\text{Model 1}
+\rightarrow
+\text{Model 2}
+$$
+
+ and
+
+ $$
+\text{Model 2}
+\rightarrow
+\text{Model 1}
+$$
+
+ If the models use different views or representations of the data, their errors may be less correlated.
+
+ This reduces the chance that one model simply reinforces its own mistakes.
+
+---
+
+ ## 23\. What is the key requirement for effective co-training?
+
+ **Answer:**
+
+ The models should ideally have **different but complementary views of the data** and make relatively independent errors.
+
+ If both models make exactly the same mistakes, co-training provides little benefit.
 
 ---
 
  # Part V — Consistency Regularisation
 
- ## 21\. ⭐ What is consistency regularisation?
+ ## 24\. What is consistency regularisation?
 
  **Answer:**
 
- Consistency regularisation forces a model to produce similar predictions for different perturbed versions of the same input.
+ Consistency regularisation encourages a model to produce similar predictions for different perturbed versions of the same input.
 
- If $x$ and $x'$ are two versions of the same example:
+ The basic principle is:
+
+ > If two inputs represent the same underlying example, their predictions should be similar.
+
+ For example:
+
+ $$
+x
+\quad\text{and}\quad
+x+\eta
+$$
+
+ should produce similar predictions.
+
+---
+
+ ## 25\. Why is consistency regularisation useful for unlabelled data?
+
+ **Answer:**
+
+ An unlabelled example has no ground-truth label.
+
+ However, we can still require:
+
+ $$
+f_\theta(x)
+\approx
+f_\theta(x+\eta)
+$$
+
+ where $\\eta$ represents a perturbation or augmentation.
+
+ Thus, we can obtain a training signal without knowing the true class.
+
+---
+
+ ## 26\. What is the generic consistency loss?
+
+ **Answer:**
+
+ A generic form is:
+
+ $$
+L_{\text{cons}}
+=
+D
+\left(
+f_\theta(x),
+f_\theta(x+\eta)
+\right)
+$$
+
+ where $D$ measures the difference between the two predictions.
+
+ Possible choices include:
+
+ - mean squared error,
+- KL divergence,
+- cross-entropy,
+- other distribution-matching losses.
+
+---
+
+ ## 27\. What is the main idea of the Pi-model?
+
+ **Answer:**
+
+ The Pi-model is an early implementation of consistency regularisation.
+
+ The model receives different perturbations of the same example and is encouraged to produce consistent predictions.
+
+ Conceptually:
+
+ $$
+x+\eta_1
+\rightarrow
+f_\theta(x+\eta_1)
+$$
+
+ and
+
+ $$
+x+\eta_2
+\rightarrow
+f_\theta(x+\eta_2)
+$$
+
+ should produce similar outputs.
+
+---
+
+ ## 28\. What happens to labelled and unlabelled examples in consistency training?
+
+ **Answer:**
+
+ For labelled examples, we can use the normal supervised loss:
+
+ $$
+L_{\text{sup}}
+=
+\mathrm{CE}(y,f_\theta(x))
+$$
+
+ For unlabelled examples, we use a consistency loss:
+
+ $$
+L_{\text{unsup}}
+=
+D(f_\theta(x+\eta_1),f_\theta(x+\eta_2))
+$$
+
+ The overall objective becomes:
+
+ $$
+L
+=
+L_{\text{sup}}
++
+\lambda L_{\text{unsup}}
+$$
+
+---
+
+ # Part VI — UDA
+
+ ## 29\. What is UDA?
+
+ **Answer:**
+
+ UDA stands for **Unsupervised Data Augmentation**.
+
+ The idea is to compare predictions on:
+
+ - an original example, and
+- a heavily augmented version of that example.
+
+ The model should be consistent under the augmentation.
+
+---
+
+ ## 30\. Why does UDA use strong augmentation?
+
+ **Answer:**
+
+ Strong augmentation creates a more challenging version of the same underlying example.
+
+ The model is encouraged to learn features that are invariant to irrelevant changes.
+
+ For example:
+
+ $$
+x
+\rightarrow
+\text{strong augmentation}
+\rightarrow
+x'
+$$
+
+ and we want:
 
  $$
 f_\theta(x)
@@ -384,215 +632,96 @@ f_\theta(x)
 f_\theta(x')
 $$
 
- The assumption is:
-
- > Small or semantically irrelevant changes to an input should not change its predicted class.
-
 ---
 
- ## 22\. What is the general consistency objective?
+ ## 31\. Why should UDA avoid trusting uncertain predictions?
 
  **Answer:**
 
- A generic formulation is:
+ Suppose the model predicts an unlabelled example with very low confidence.
+
+ Using that prediction as a target could introduce noise.
+
+ Therefore, UDA can apply the consistency loss only when the original prediction is sufficiently confident.
+
+ This gives:
 
  $$
-\mathcal{L}_{\text{cons}} = d\left(f_\theta(x),f_\theta(x')\right)
+\text{high confidence}
+\Rightarrow
+\text{use consistency target}
 $$
 
- where $d$ is a distance between predictions.
+ while uncertain predictions may be ignored.
 
- For example:
+---
+
+ # Part VII — Model Stability
+
+ ## 32\. Why is stability important in semi-supervised learning?
+
+ **Answer:**
+
+ Semi-supervised methods often use predictions generated by models as training targets.
+
+ If those predictions are unstable or incorrect, the model can reinforce its own errors.
+
+ Therefore, successful semi-supervised learning usually needs a mechanism that reduces **confirmation bias**.
+
+---
+
+ ## 33\. What are the three major stability ideas discussed in the lecture?
+
+ **Answer:**
+
+ 1. **Co-training**\
+    Use different models that ideally make independent errors.
+2. **Consistency regularisation**\
+    Require predictions to be stable under perturbations.
+3. **Temporal/model averaging**\
+    Use averaged predictions or an averaged model to create more stable targets.
+
+---
+
+ # Part VIII — Temporal Ensembling
+
+ ## 34\. What is temporal ensembling?
+
+ **Answer:**
+
+ Temporal ensembling creates a more stable target by averaging predictions for an example over previous training iterations.
+
+ Instead of trusting only the current prediction:
 
  $$
-\mathcal{L}_{\text{cons}} = \operatorname{MSE}\left(f_\theta(x),f_\theta(x')\right)
+z_i^{(t)}
 $$
 
- or a cross-entropy/KL-divergence-based objective.
-
----
-
- ## 23\. ⭐ Why does consistency regularisation work particularly well with unlabelled data?
-
- **Answer:**
-
- An unlabelled example does not provide a ground-truth $y$, but it **does provide multiple views of the same underlying example**.
-
- Therefore we can still impose:
+ we maintain an averaged prediction:
 
  $$
-f_\theta(x)
-\approx
-f_\theta(\operatorname{augment}(x))
-$$
-
- without knowing the true class.
-
----
-
- # Part VI — $\\Pi$-Model
-
- ## 24\. ⭐ What is the $\\Pi$-model?
-
- **Answer:**
-
- The $\\Pi$-model is an early implementation of consistency regularisation.
-
- The model applies stochastic perturbations/noise and encourages the predictions to agree.
-
- Conceptually:
-
- $$
-x+\eta
-\quad\text{and}\quad
-x+\eta'
-$$
-
- are two perturbed versions of the same input.
-
- The model minimises a consistency loss between their predictions.
-
----
-
- ## 25\. What is the main idea of the $\\Pi$-model in one sentence?
-
- **Answer:**
-
- > **The model should give the same answer when the same input is subjected to different stochastic perturbations.**
-
----
-
- # Part VII — UDA
-
- ## 26\. ⭐ What is UDA?
-
- **Answer:**
-
- UDA stands for **Unsupervised Data Augmentation**.
-
- It applies consistency training by comparing:
-
- - an original/unmodified example;
-- a strongly augmented version of the same example.
-
----
-
- ## 27\. How does UDA treat labelled and unlabelled examples differently?
-
- **Answer:**
-
- For labelled examples, we can directly use the ground-truth label:
-
- $$
-\mathcal{L}_{\text{sup}} = \operatorname{CE}(y,f_\theta(x))
-$$
-
- For unlabelled examples, we impose consistency:
-
- $$
-\mathcal{L}_{\text{unsup}} = d\left(f_\theta(x),f_\theta(\operatorname{augment}(x))\right)
+\tilde{z}_i^{(t)}
 $$
 
 ---
 
- ## 28\. ⭐ Why does UDA only apply the consistency loss when the original prediction is sufficiently confident?
+ ## 35\. What update rule is used for temporal ensembling?
 
  **Answer:**
 
- Because the original prediction is being used as a target.
-
- If:
+ The lecture gives an exponential moving average:
 
  $$
-f_\theta(x)
+\tilde{z}_i^{(t)}
+=
+\alpha \tilde{z}_i^{(t-1)}
++
+(1-\alpha)z_i^{(t)}
 $$
 
- is uncertain or incorrect, forcing the augmented example to match it can reinforce a bad prediction.
+ where $\\alpha$ controls how strongly previous predictions are retained.
 
- Therefore, UDA uses **confidence thresholding**.
-
- Conceptually:
-
- $$
-\text{if confidence}(f_\theta(x)) > \tau:
-\quad
-\text{apply consistency loss}
-$$
-
- Otherwise, ignore the unlabelled example for that update.
-
----
-
- # Part VIII — Stability in Semi-Supervised Learning
-
- ## 29\. ⭐ Why is stability so important in semi-supervised learning?
-
- **Answer:**
-
- Because the model is partially training against targets that are themselves generated by models.
-
- This creates a potential feedback loop:
-
- $$
-\text{prediction}
-\rightarrow
-\text{pseudo-target}
-\rightarrow
-\text{training}
-\rightarrow
-\text{new prediction}
-$$
-
- Without stabilisation, small errors can be amplified.
-
----
-
- ## 30\. What are the main stability mechanisms discussed in the lecture?
-
- **Answer:**
-
- Three major approaches are:
-
- 1. **Co-training**
-   - Use different models/views.
-2. **Consistency regularisation**
-   - Require predictions to be stable under perturbations.
-3. **Temporal ensembling / Mean Teacher**
-   - Construct more stable targets using information from previous model states.
-
----
-
- # Part IX — Temporal Ensembling
-
- ## 31\. ⭐ What problem does temporal ensembling solve?
-
- **Answer:**
-
- Consistency regularisation has a problem:
-
- > The target prediction and the current prediction may both be unreliable, especially early in training.
-
- Temporal ensembling makes the target more stable by averaging predictions from previous training steps.
-
----
-
- ## 32\. What is the temporal ensembling update?
-
- **Answer:**
-
- The lecture gives an exponential moving average (EMA):
-
- $$
-\tilde{z}_i^{\,t} = \alpha \tilde{z}_i^{\,t-1} + (1-\alpha)z_i^t
-$$
-
- where:
-
- - $z\_i^t$ is the current prediction;
-- $\\tilde{z}\_i^{,t}$ is the smoothed prediction;
-- $\\alpha$ controls how strongly we retain the previous estimate.
-
- The lecture gives approximately:
+ The paper used approximately:
 
  $$
 \alpha \approx 0.6
@@ -600,246 +729,303 @@ $$
 
 ---
 
- ## 33\. ⭐ Why is this called an exponential moving average?
+ ## 36\. Why is this called an exponential moving average?
 
  **Answer:**
 
- Repeatedly expanding the recurrence gives:
+ Repeatedly expanding the update gives:
 
  $$
-\tilde{z}^{\,t} = (1-\alpha)z^t + \alpha(1-\alpha)z^{t-1} + \alpha^2(1-\alpha)z^{t-2}+\cdots
+\tilde{z}^{(t)}
+=
+\alpha^t\tilde{z}^{(0)}
++
+(1-\alpha)
+\sum_{k=1}^{t}
+\alpha^{t-k}z^{(k)}
 $$
 
  Therefore, older predictions receive exponentially decreasing weights.
 
+ Recent predictions have greater influence than very old predictions.
+
 ---
 
- ## 34\. Why does temporal averaging stabilise predictions?
+ ## 37\. Why does temporal ensembling improve stability?
 
  **Answer:**
 
  Individual predictions can be noisy.
 
- Averaging across time smooths this noise:
+ Averaging predictions over time smooths this noise.
+
+ Therefore:
 
  $$
 \text{noisy predictions}
 \rightarrow
 \text{EMA}
 \rightarrow
-\text{stable target}
+\text{more stable target}
 $$
 
- The temporal lag also creates a form of resistance against sudden noisy changes.
+ The temporal lag also prevents the target from changing too rapidly.
+
+ This creates a form of resistance to noisy updates.
 
 ---
 
- ## 35\. ⭐ What is the connection between EMA and Adam?
+ ## 38\. Where else is the exponential moving average idea used?
 
  **Answer:**
 
- Adam also uses exponential moving averages to smooth quantities such as gradients and squared gradients.
+ A similar mechanism appears in optimisation algorithms such as **Adam**, where moving averages of gradient-related quantities are maintained.
 
- The general EMA mechanism is:
+ The common idea is:
 
- $$
-m_t = \beta m_{t-1} + (1-\beta)x_t
-$$
-
- The reason is similar: **smooth noisy quantities using information from previous steps**.
+ > Smooth noisy quantities over time instead of reacting completely to each individual update.
 
 ---
 
- # Part X — Limitations of Temporal Ensembling
+ # Part IX — Problems with Temporal Ensembling
 
- ## 36\. ⭐ What are the two main problems with temporal ensembling?
+ ## 39\. What are the main disadvantages of temporal ensembling?
 
  **Answer:**
 
- ### 1\. Poor scaling with dataset size
+ There are two major problems.
 
- We need to store a moving-average prediction $\\tilde{z}\_i$ for **every training example**.
+ ### 1\. Storage
 
- For a huge dataset, this becomes expensive.
+ We need to store a moving-average prediction for every training example:
 
- ### 2\. Updates only once per epoch
+ $$
+\tilde{z}_1,\tilde{z}_2,\ldots,\tilde{z}_N
+$$
 
- The stored prediction for an example is updated only when that example is encountered.
+ This becomes expensive for large datasets.
 
- Therefore, the target can lag behind the rapidly changing model.
+ ### 2\. Slow updates
+
+ The prediction for an example may only be updated when that example is encountered again.
+
+ Therefore, the target can lag behind the current state of the model.
 
 ---
 
- # Part XI — Mean Teacher
+ # Part X — Mean Teacher
 
- ## 37\. ⭐ What is the Mean Teacher algorithm?
+ ## 40\. What is the Mean Teacher algorithm?
 
  **Answer:**
 
- Mean Teacher replaces the stored EMA prediction for every individual example with an **EMA of the model parameters**.
+ Mean Teacher replaces the per-example moving-average predictions of temporal ensembling with a **moving-average model**.
 
- Instead of:
-
- $$
-\tilde{z}_i = \operatorname{EMA}(\text{past predictions})
-$$
-
- we maintain:
+ Instead of storing:
 
  $$
-\theta' = \operatorname{EMA}(\theta)
+\tilde{z}_i
 $$
 
- where:
-
- - $\\theta$ = student parameters;
-- $\\theta'$ = teacher parameters.
+ for every example, we maintain a second model whose parameters are an exponential moving average of the student's parameters.
 
 ---
 
- ## 38\. ⭐ Why is the second model called the "teacher"?
+ ## 41\. What are the student and teacher models?
 
  **Answer:**
 
- The teacher generates the targets that the student is trained to match.
+ The **student** is the model being directly trained.
 
- Conceptually:
+ Its parameters are:
 
  $$
-\boxed{
-\text{teacher}
-\rightarrow
-\text{stable target}
-\rightarrow
+\theta
+$$
+
+ The **teacher** is the EMA version of the student.
+
+ Its parameters are:
+
+ $$
+\theta'
+$$
+
+ The teacher generates the target that the student is trained to match.
+
+---
+
+ ## 42\. How are the teacher parameters updated?
+
+ **Answer:**
+
+ The teacher parameters are updated using an exponential moving average:
+
+ $$
+\theta'
+\leftarrow
+\alpha\theta'
++
+(1-\alpha)\theta
+$$
+
+ Thus, the teacher changes more slowly than the student.
+
+---
+
+ ## 43\. Why is the teacher more stable than the student?
+
+ **Answer:**
+
+ The student changes after every gradient update.
+
+ The teacher averages many previous versions of the student.
+
+ Therefore:
+
+ $$
 \text{student}
-}
+=
+\text{fast-changing model}
 $$
 
- The student is updated using gradient descent, while the teacher is updated using an EMA of the student.
+ while:
+
+ $$
+\text{teacher}
+=
+\text{smoothed historical model}
+$$
+
+ This produces a more stable target.
 
 ---
 
- ## 39\. What is the Mean Teacher parameter update?
+ ## 44\. What is the Mean Teacher consistency loss?
 
  **Answer:**
 
- The teacher parameters are updated using:
+ A simplified form is:
 
  $$
-\theta'
-\leftarrow
-\alpha\theta'
-+
-(1-\alpha)\theta
-$$
-
- Thus, the teacher is a smoothed version of the student's historical parameters.
-
----
-
- ## 40\. ⭐ What is the Mean Teacher consistency loss?
-
- **Answer:**
-
- The lecture gives the objective:
-
- $$
-\mathcal{L} = \operatorname{CE}\left(y_i,f_\theta(x_i)\right) + \operatorname{MSE}\left(f_\theta(x_j+\eta),f_{\theta'}(x_j+\eta')\right)
+L_{\text{unsup}}
+=
+\mathrm{MSE}
+\left(
+f_\theta(x+\eta),
+f_{\theta'}(x+\eta')
+\right)
 $$
 
  where:
 
- - $f\_\\theta$ is the student;
-- $f\_{\\theta'}$ is the teacher;
-- $\\eta,\\eta'$ are perturbations/noise.
+ - $\\theta$ are the student's parameters,
+- $\\theta'$ are the teacher's parameters,
+- $\\eta$ and $\\eta'$ are perturbations.
 
- The first term is supervised learning.
-
- The second term is consistency training.
+ The student is trained to agree with the teacher.
 
 ---
 
- ## 41\. ⭐ Why is Mean Teacher more scalable than temporal ensembling?
+ ## 45\. What is the full Mean Teacher objective?
 
  **Answer:**
 
- Temporal ensembling stores an EMA prediction for every example:
+ The objective can be written as:
 
  $$
-\{\tilde{z}_1,\tilde{z}_2,\ldots,\tilde{z}_N\}
-$$
-
- Mean Teacher instead stores one additional model:
-
- $$
-\theta'
-$$
-
- Therefore, it does not need a separate prediction vector for every training example.
-
----
-
- ## 42\. Why does Mean Teacher provide more up-to-date targets?
-
- **Answer:**
-
- The teacher parameters are updated continuously:
-
- $$
-\theta'
-\leftarrow
-\alpha\theta'
+L
+=
+\mathrm{CE}(y_i,f_\theta(x_i))
 +
-(1-\alpha)\theta
+\lambda
+\mathrm{MSE}
+\left(
+f_\theta(x_j+\eta),
+f_{\theta'}(x_j+\eta')
+\right)
 $$
 
- Thus the teacher can generate a new target every batch/example.
+ The first term is the supervised loss.
 
- Temporal ensembling can only update the stored prediction when the corresponding example is encountered.
+ The second term is the unsupervised consistency loss.
 
 ---
 
- # Part XII — Comparing the Main Semi-Supervised Methods
-
- ## 43\. ⭐ How does online self-training work?
+ ## 46\. Why does Mean Teacher scale better than temporal ensembling?
 
  **Answer:**
 
- For an unlabelled example $x\_j$:
+ Temporal ensembling stores an EMA prediction for every training example.
 
- $$
-\hat{y}_j = \arg\max f_\theta(x_j)
-$$
+ Mean Teacher stores only:
 
- Then:
+ - the student model,
+- the teacher model.
 
- $$
-\mathcal{L} = \operatorname{CE}(y_i,f_\theta(x_i)) + \operatorname{CE}(\hat{y}_j,f_\theta(x_j))
-$$
+ Therefore, it avoids maintaining a separate prediction vector for every example.
 
- The model uses its own prediction as a pseudo-label.
+ This makes it much more suitable for large datasets.
 
 ---
 
- ## 44\. ⭐ How does consistency regularisation differ from self-training?
+ ## 47\. Why does the Mean Teacher target update more frequently?
 
  **Answer:**
 
- Self-training says:
+ The teacher parameters are updated after training steps.
 
- > "My predicted class is the target."
+ Therefore, the teacher can change after every batch rather than waiting for an individual example to be encountered again.
 
- Consistency regularisation says:
+ This makes the target more responsive while still being smoother than the student.
 
- > "My prediction should remain stable under perturbations."
+---
 
- Self-training:
+ # Part XI — Comparing the Main Methods
+
+ ## 48\. What is the evolution from self-training to Mean Teacher?
+
+ **Answer:**
+
+ The main progression is:
 
  $$
-\hat{y} = \arg\max f_\theta(x)
+\text{Self-training}
+\rightarrow
+\text{Consistency regularisation}
+\rightarrow
+\text{Temporal ensembling}
+\rightarrow
+\text{Mean Teacher}
 $$
 
- Consistency:
+ Each stage addresses weaknesses in the previous approach.
+
+---
+
+ ## 49\. How does self-training work?
+
+ **Answer:**
+
+ The model predicts a pseudo-label for an unlabelled example:
+
+ $$
+\hat{y}
+=
+\arg\max_y f_\theta(x)
+$$
+
+ The model then trains on that prediction.
+
+ **Main problem:** confirmation bias.
+
+---
+
+ ## 50\. How does consistency regularisation improve self-training?
+
+ **Answer:**
+
+ Rather than requiring the model to generate a discrete pseudo-label, consistency regularisation requires predictions to remain stable under perturbations:
 
  $$
 f_\theta(x)
@@ -847,306 +1033,230 @@ f_\theta(x)
 f_\theta(x+\eta)
 $$
 
- The second approach does not necessarily require converting the prediction into a hard class label.
+ This avoids requiring a ground-truth label.
+
+ **Main idea:** learn invariance to perturbations.
 
 ---
 
- ## 45\. ⭐ How does temporal ensembling differ from ordinary consistency regularisation?
+ ## 51\. How does temporal ensembling improve consistency regularisation?
 
  **Answer:**
 
- Ordinary consistency regularisation compares the current prediction with another prediction:
+ Instead of using a potentially unreliable current prediction as the target, temporal ensembling uses an EMA of previous predictions:
 
  $$
-f_\theta(x+\eta)
-\approx
-f_\theta(x+\eta')
+\tilde{z}^{(t)}
+=
+\alpha\tilde{z}^{(t-1)}
++
+(1-\alpha)z^{(t)}
 $$
 
- Temporal ensembling uses a **historically averaged target**:
-
- $$
-f_\theta(x+\eta)
-\approx
-\tilde{z}
-$$
-
- where $\\tilde{z}$ is an EMA of previous predictions.
-
- Thus temporal ensembling makes the target more stable.
+ This produces a smoother target.
 
 ---
 
- ## 46\. ⭐ How does Mean Teacher improve upon temporal ensembling?
+ ## 52\. How does Mean Teacher improve temporal ensembling?
 
  **Answer:**
 
- It moves the EMA from the **predictions** to the **model parameters**.
+ Temporal ensembling stores an averaged prediction for every example.
+
+ Mean Teacher instead stores an averaged **model**:
+
+ $$
+\theta'
+\leftarrow
+\alpha\theta'
++
+(1-\alpha)\theta
+$$
+
+ The teacher can then generate predictions for arbitrary examples.
+
+ Thus, Mean Teacher:
+
+ - avoids per-example prediction storage,
+- updates continuously,
+- scales better to large datasets.
+
+---
+
+ # Part XII — The Timeline You Should Know
+
+ ## 53\. What is the timeline of the semi-supervised methods?
+
+ **Answer:**
+
+ ### Online self-training
+
+ Use the model's own predictions:
+
+ $$
+\hat{y}_j
+=
+\arg\max_y f_\theta(x_j)
+$$
+
+ and train on the pseudo-label.
+
+ ### Consistency regularisation
+
+ Require predictions to agree under perturbations:
+
+ $$
+f_\theta(x_j)
+\approx
+f_\theta(x_j+\eta)
+$$
 
  ### Temporal ensembling
 
+ Compare the current prediction against an EMA of previous predictions:
+
  $$
-\tilde{z}_i = \operatorname{EMA}(\text{predictions for example }i)
+L_{\text{unsup}}
+=
+\mathrm{MSE}
+\left(
+f_\theta(x_j+\eta),
+\tilde{z}_j
+\right)
 $$
 
  ### Mean Teacher
 
- $$
-\theta' = \operatorname{EMA}(\theta)
-$$
-
- The teacher can therefore generate fresh predictions at every update.
-
----
-
- ## 47\. Can you summarise the evolution of the methods?
-
- **Answer:**
-
- A useful conceptual progression is:
+ Compare the student prediction against the teacher prediction:
 
  $$
-\boxed{
-\text{Self-training}
-\rightarrow
-\text{Consistency}
-\rightarrow
-\text{Temporal Ensembling}
-\rightarrow
-\text{Mean Teacher}
-}
-$$
-
- ### Self-training
-
- Use the model's own prediction as a label.
-
- ### Consistency
-
- Force predictions to agree under perturbations.
-
- ### Temporal ensembling
-
- Make the target more stable by averaging predictions over time.
-
- ### Mean Teacher
-
- Make the target model itself an EMA of previous student models.
-
----
-
- # Part XIII — The Timeline Formula
-
- ## 48\. ⭐ What is the general supervised \+ unsupervised structure shared by these methods?
-
- **Answer:**
-
- The overall objective is generally:
-
- $$
-\mathcal{L} = \mathcal{L}_{\text{sup}} + \lambda\mathcal{L}_{\text{unsup}}
+L_{\text{unsup}}
+=
+\mathrm{MSE}
+\left(
+f_\theta(x_j+\eta),
+f_{\theta'}(x_j+\eta')
+\right)
 $$
 
  with:
 
  $$
-\mathcal{L}_{\text{sup}} = \operatorname{CE} (y_i,f_\theta(x_i))
-$$
-
- The difference between methods lies mainly in how $\\mathcal{L}\_{\\text{unsup}}$ is constructed.
-
----
-
- ## 49\. What is the unsupervised loss for online self-training?
-
- **Answer:**
-
- Using a pseudo-label:
-
- $$
-\mathcal{L}_{\text{unsup}} = \operatorname{CE}\left(\hat{y}_j,f_\theta(x_j)\right)
-$$
-
- where:
-
- $$
-\hat{y}_j = \arg\max f_\theta(x_j)
+\theta'
+=
+\mathrm{EMA}(\theta)
 $$
 
 ---
 
- ## 50\. What is the unsupervised loss for consistency regularisation/UDA?
+ # Part XIII — High-Value Comparison Questions
+
+ ## 54\. What is the difference between pseudo-labeling and consistency regularisation?
 
  **Answer:**
 
- A conceptual form is:
+ **Pseudo-labeling:**
 
  $$
-\mathcal{L}_{\text{unsup}} = \operatorname{CE}\left(f_\theta(x_j),f_\theta(x_j+\eta)\right)
-$$
-
- or another suitable distance between the two predictions.
-
- The important idea is:
-
- $$
-\boxed{
-\text{same input + different perturbation}
-\Rightarrow
-\text{same prediction}
-}
-$$
-
----
-
- ## 51\. What is the unsupervised loss for temporal ensembling?
-
- **Answer:**
-
- The lecture gives:
-
- $$
-\mathcal{L}_{\text{unsup}} = \operatorname{MSE}\left(f_\theta(x_j+\eta),\tilde{z}_j\right)
-$$
-
- where $\\tilde{z}\_j$ is the EMA target based on previous predictions.
-
----
-
- ## 52\. What is the unsupervised loss for Mean Teacher?
-
- **Answer:**
-
- The lecture gives:
-
- $$
-\mathcal{L}_{\text{unsup}} = \operatorname{MSE}\left(f_\theta(x_j+\eta),f_{\theta'}(x_j+\eta')\right)
-$$
-
- where:
-
- $$
-\theta' = \operatorname{EMA}(\theta)
-$$
-
----
-
- # Part XIV — Exam Comparison Questions
-
- ## 53\. ⭐ Compare self-training, UDA, temporal ensembling and Mean Teacher.
-
- **Answer:**
-
- | Method | Target | Main stabilisation idea |
-| --- | --- | --- |
-| Self-training | Model's own pseudo-label | Confidence filtering can help |
-| UDA | Prediction on original/weakly perturbed input | Consistency under augmentation |
-| Temporal ensembling | EMA of past predictions | Smooth target over time |
-| Mean Teacher | EMA teacher model prediction | Smooth model parameters |
-
----
-
- ## 54\. ⭐ Which method stores predictions for each training example?
-
- **Answer:**
-
- **Temporal ensembling.**
-
- It maintains:
-
- $$
-\tilde{z}_i
-$$
-
- for each example $i$.
-
- Mean Teacher avoids this by maintaining an EMA model.
-
----
-
- ## 55\. ⭐ Which method maintains a separate teacher model?
-
- **Answer:**
-
- **Mean Teacher.**
-
- The teacher parameters are:
-
- $$
-\theta' = \operatorname{EMA}(\theta)
-$$
-
----
-
- ## 56\. Which method uses two different models that teach one another?
-
- **Answer:**
-
- **Co-training.**
-
- The key idea is that the models should ideally make different errors because they have different views or representations.
-
----
-
- ## 57\. Which method is most directly based on data augmentation?
-
- **Answer:**
-
- **UDA — Unsupervised Data Augmentation.**
-
- It explicitly compares predictions for an original/weakly transformed example and a strongly augmented version.
-
----
-
- # Part XV — Active Learning
-
- ## 58\. ⭐ What is active learning?
-
- **Answer:**
-
- Active learning strategically chooses which unlabelled examples should be labelled by a human.
-
- The loop is:
-
- $$
-\text{unlabelled data}
+x
 \rightarrow
-\text{select informative examples}
+\hat{y}
 \rightarrow
-\text{human labels them}
+\text{train against } \hat{y}
+$$
+
+ The model creates a discrete target.
+
+ **Consistency regularisation:**
+
+ $$
+x,\ x'
 \rightarrow
-\text{retrain}
+f(x),f(x')
+\rightarrow
+\text{make predictions agree}
+$$
+
+ The target is another model prediction rather than necessarily a hard class label.
+
+---
+
+ ## 55\. What is the difference between temporal ensembling and Mean Teacher?
+
+ **Answer:**
+
+ | Temporal Ensembling | Mean Teacher |
+| --- | --- |
+| Averages predictions | Averages model parameters |
+| Stores an EMA prediction for each example | Stores an EMA teacher model |
+| Can require large memory for large datasets | More scalable |
+| Example-specific targets | Teacher can predict any example |
+| Updates when examples are revisited | Teacher updates after training steps |
+
+---
+
+ ## 56\. What is the difference between self-training and co-training?
+
+ **Answer:**
+
+ | Self-training | Co-training |
+| --- | --- |
+| One model teaches itself | Two models teach each other |
+| Errors can reinforce themselves | Different models can reduce correlated errors |
+| Vulnerable to confirmation bias | Can be more stable if views are sufficiently independent |
+
+---
+
+ ## 57\. What is the difference between curriculum learning and semi-supervised learning?
+
+ **Answer:**
+
+ **Curriculum learning** focuses on:
+
+ > **Which examples should the model learn from, and in what order?**
+
+ **Semi-supervised learning** focuses on:
+
+ > **How can we exploit unlabelled examples in addition to labelled examples?**
+
+ They address different problems, although they can be combined.
+
+---
+
+ # Part XIV — Active Learning
+
+ ## 58\. What is active learning?
+
+ **Answer:**
+
+ Active learning strategically selects the **most informative unlabelled examples** and asks for their labels.
+
+ The process is:
+
+ $$
+\text{unlabelled pool}
+\rightarrow
+\text{select informative samples}
+\rightarrow
+\text{human labelling}
+\rightarrow
+\text{train}
 $$
 
 ---
 
- ## 59\. ⭐ How is active learning different from semi-supervised learning?
+ ## 59\. How is active learning different from semi-supervised learning?
 
  **Answer:**
 
- ### Semi-supervised learning
+ Semi-supervised learning tries to exploit unlabelled data **without necessarily obtaining labels**.
 
- Uses unlabelled data **without necessarily obtaining new labels**.
+ Active learning chooses which examples should be **labelled next**.
 
- $$
-\text{labelled + unlabelled}
-\rightarrow
-\text{model}
-$$
+ Therefore:
 
- ### Active learning
-
- Selects examples and **requests labels** for the most informative ones.
-
- $$
-\text{unlabelled}
-\rightarrow
-\text{select}
-\rightarrow
-\text{human annotation}
-\rightarrow
-\text{new labelled data}
-$$
+ - Semi-supervised learning: **use unlabelled data**
+- Active learning: **choose what to label**
 
 ---
 
@@ -1154,154 +1264,259 @@ $$
 
  **Answer:**
 
- Both strategically control which examples are used during training.
+ Both involve strategically selecting training examples.
 
- - Curriculum learning chooses examples based on **difficulty/quality/order**.
-- Active learning chooses examples based on **informativeness/value of obtaining a label**.
+ Curriculum learning controls the **order/difficulty** of training examples.
+
+ Active learning controls **which examples are worth labelling**.
 
 ---
 
- # Part XVI — High-Value "Explain Why" Questions
+ # Part XV — Exam-Level Reasoning
 
- ## 61\. ⭐ Why can confidence thresholding improve pseudo-labelling?
+ ## 61\. Why is confirmation bias particularly dangerous in semi-supervised learning?
 
  **Answer:**
 
- A high-confidence prediction is more likely to be correct.
+ Because the model's predictions become part of its own training signal.
 
- If:
+ A small error can therefore become self-reinforcing:
+
+ $$
+\text{prediction error}
+\rightarrow
+\text{pseudo-label}
+\rightarrow
+\text{training signal}
+\rightarrow
+\text{stronger error}
+$$
+
+ This is why stability mechanisms are important.
+
+---
+
+ ## 62\. Why does consistency regularisation help reduce confirmation bias?
+
+ **Answer:**
+
+ It does not require the model to commit to an absolute class label for every unlabelled example.
+
+ Instead, it asks the model to maintain a stable prediction under small or meaningful perturbations.
+
+ This encourages:
+
+ $$
+\text{prediction stability}
+$$
+
+ rather than simply:
+
+ $$
+\text{prediction confidence}
+$$
+
+---
+
+ ## 63\. Why might confidence thresholding help pseudo-labeling?
+
+ **Answer:**
+
+ Low-confidence predictions are more likely to be incorrect.
+
+ Therefore, only using predictions satisfying:
 
  $$
 \max_y f_\theta(x) > \tau
 $$
 
- we accept the pseudo-label.
+ for some threshold $\\tau$ can reduce noisy pseudo-labels.
 
- Otherwise, we discard it.
-
- This reduces the probability of feeding incorrect pseudo-labels back into training.
+ The trade-off is that a high threshold may discard too many useful examples.
 
 ---
 
- ## 62\. ⭐ Why is confidence thresholding not a perfect solution?
+ ## 64\. Why is an EMA useful for machine learning models?
 
  **Answer:**
 
- Because neural networks can be **confident and wrong**.
+ Gradient updates are noisy.
 
- Therefore:
+ An EMA smooths parameter changes:
 
  $$
-\text{high confidence}
-\not\Rightarrow
-\text{guaranteed correctness}
+\theta'_t
+=
+\alpha\theta'_{t-1}
++
+(1-\alpha)\theta_t
 $$
 
- It reduces noisy labels but does not eliminate confirmation bias.
+ Therefore, the averaged model is less sensitive to individual noisy updates.
 
 ---
 
- ## 63\. ⭐ Why does consistency regularisation rely on augmentation being meaningful?
+ ## 65\. What happens when $\\alpha$ is close to 1?
 
  **Answer:**
 
- The augmentation must preserve the semantic label.
+ The EMA places more weight on the previous value.
 
- If:
-
- $$
-y(x) \neq y(\operatorname{augment}(x))
-$$
-
- then forcing:
+ For example:
 
  $$
-f(x)
-\approx
-f(\operatorname{augment}(x))
+\alpha \rightarrow 1
 $$
 
- would be harmful.
+ means:
 
- Therefore, augmentations should change irrelevant properties while preserving the underlying class.
+ - very slow adaptation,
+- strong smoothing,
+- more historical information,
+- but potentially greater lag.
 
 ---
 
- ## 64\. Why can consistency regularisation fail early in training?
+ ## 66\. What happens when $\\alpha$ is small?
 
  **Answer:**
 
- Early in training, the model's predictions may be unreliable.
+ The EMA follows the current model more closely.
 
- If both predictions are bad:
+ Thus:
 
  $$
-f_\theta(x)
-\approx
-f_\theta(x+\eta)
+\alpha \rightarrow 0
 $$
 
- the model may simply learn to be **consistently wrong**.
+ means less smoothing and faster adaptation.
 
- This motivates stabilisation techniques such as temporal ensembling and Mean Teacher.
+ There is therefore a trade-off:
+
+ $$
+\text{large }\alpha
+\Rightarrow
+\text{stable but slow}
+$$
+
+ $$
+\text{small }\alpha
+\Rightarrow
+\text{responsive but noisy}
+$$
 
 ---
 
- ## 65\. ⭐ Why does Mean Teacher provide a more stable target than the student?
+ # Part XVI — Formula Recognition Questions
+
+ ## 67\. If you see this equation, what method is it describing?
+
+ $$
+\hat{y}_j
+=
+\arg\max_y f_\theta(x_j)
+$$
 
  **Answer:**
 
- The teacher is an EMA of the student:
+ **Self-training / pseudo-labeling.**
 
- $$
-\theta' = \alpha\theta'_{\text{old}} + (1-\alpha)\theta
-$$
-
- Therefore, sudden changes in the student are smoothed out.
-
- The teacher changes more slowly and therefore provides a more stable target.
+ The model chooses its most likely class as a pseudo-label.
 
 ---
 
- # Part XVII — Conceptual Exam Traps
+ ## 68\. If you see this equation, what method is it describing?
 
- ## 66\. ⭐ Is semi-supervised learning the same as self-supervised learning?
+ $$
+\tilde{z}^{(t)}
+=
+\alpha\tilde{z}^{(t-1)}
++
+(1-\alpha)z^{(t)}
+$$
+
+ **Answer:**
+
+ **Temporal ensembling / exponential moving average.**
+
+ The prediction is averaged over time.
+
+---
+
+ ## 69\. If you see this equation, what method is it describing?
+
+ $$
+\theta'
+=
+\alpha\theta'
++
+(1-\alpha)\theta
+$$
+
+ **Answer:**
+
+ **Mean Teacher.**
+
+ The teacher parameters are an EMA of the student parameters.
+
+---
+
+ ## 70\. If you see this equation, what method is it describing?
+
+ $$
+L_{\text{unsup}}
+=
+D(f_\theta(x),f_\theta(x+\eta))
+$$
+
+ **Answer:**
+
+ **Consistency regularisation.**
+
+ The model is encouraged to make similar predictions for perturbed versions of the same input.
+
+---
+
+ ## 71\. If you see this equation, what method is it describing?
+
+ $$
+L
+=
+\mathrm{CE}(y,f_\theta(x))
++
+\lambda
+\mathrm{MSE}
+\left(
+f_\theta(x+\eta),
+f_{\theta'}(x+\eta')
+\right)
+$$
+
+ **Answer:**
+
+ **Mean Teacher.**
+
+ The first term is supervised classification loss.
+
+ The second term is student-teacher consistency loss.
+
+---
+
+ # Part XVII — Common Exam Traps
+
+ ## 72\. Is consistency regularisation the same as pseudo-labeling?
 
  **Answer:**
 
  No.
 
- ### Semi-supervised learning
-
- Uses some labelled examples and some unlabelled examples:
+ Pseudo-labeling explicitly generates a class target:
 
  $$
-\boxed{
-\text{labelled + unlabelled}
-}
+\hat{y}
 $$
 
- ### Self-supervised learning
-
- Constructs a learning signal from the data itself, typically without human labels.
-
- The lecture notes that consistency regularisation can be generalised into more powerful self-supervised approaches.
-
----
-
- ## 67\. Is consistency regularisation the same as pseudo-labelling?
-
- **Answer:**
-
- No.
-
- Pseudo-labelling typically creates a hard target:
-
- $$
-\hat{y} = \arg\max f(x)
-$$
-
- Consistency regularisation instead compares predictions:
+ Consistency regularisation instead requires two predictions to agree:
 
  $$
 f(x)
@@ -1309,203 +1524,163 @@ f(x)
 f(x')
 $$
 
- It can therefore retain more information from the model's probability distribution.
+ They are related but conceptually different.
 
 ---
 
- ## 68\. Is Mean Teacher the same as training two independent models?
+ ## 73\. Is the Mean Teacher teacher model trained by gradient descent?
 
  **Answer:**
 
- No.
+ Not directly.
 
- In Mean Teacher:
+ The student is trained using gradient descent.
 
- - the student is trained using gradient descent;
-- the teacher is an EMA of the student.
-
- They are therefore **not independently trained models**.
+ The teacher is updated using an EMA of the student's parameters:
 
  $$
-\theta'\leftarrow\alpha\theta' + (1-\alpha)\theta
+\theta'
+\leftarrow
+\alpha\theta'
++
+(1-\alpha)\theta
 $$
+
+ This distinction is important.
 
 ---
 
- ## 69\. ⭐ Does the teacher receive gradient updates?
+ ## 74\. Is the teacher always better than the student?
 
  **Answer:**
 
- No, conceptually the teacher is updated through the EMA mechanism rather than ordinary backpropagation.
+ Not necessarily in an absolute sense.
 
- The student receives the gradient from the supervised and consistency losses.
+ The teacher is intended to provide a **more stable target** because it averages the student's historical parameters.
+
+ Its main advantage is stability rather than being independently trained to minimise a separate supervised objective.
 
 ---
 
- ## 70\. Why is the teacher called a "moving target"?
+ ## 75\. Why not simply use the current student prediction as the target?
 
  **Answer:**
 
- Because its predictions change as the teacher model parameters change.
+ Because then the target can change rapidly and may contain significant noise.
 
- However, because the teacher is an EMA of previous students, it moves more slowly and smoothly than the current student.
+ Using the student to generate its own target provides little stabilisation.
 
----
-
- # Part XVIII — Short Exam Questions
-
- ## 71\. Define curriculum learning in one sentence.
-
- **Answer:**\
- Curriculum learning trains a model using examples in a strategically chosen order, often from easy to difficult.
+ The teacher solves this by creating a slower-moving target.
 
 ---
 
- ## 72\. Define semi-supervised learning in one sentence.
+ # Part XVIII — One-Minute Revision
 
- **Answer:**\
- Semi-supervised learning combines labelled and unlabelled data to improve model learning.
+ ## 76\. What are the most important ideas to remember?
 
----
+ **Answer:**
 
- ## 73\. Define pseudo-labelling.
-
- **Answer:**\
- Pseudo-labelling treats a model's prediction on an unlabelled example as a temporary training label.
-
----
-
- ## 74\. Define consistency regularisation.
-
- **Answer:**\
- Consistency regularisation encourages a model to produce similar predictions for different perturbations of the same input.
-
----
-
- ## 75\. Define temporal ensembling.
-
- **Answer:**\
- Temporal ensembling creates a stable target by maintaining an exponential moving average of predictions over previous training iterations.
-
----
-
- ## 76\. Define Mean Teacher.
-
- **Answer:**\
- Mean Teacher maintains a teacher model whose parameters are an exponential moving average of the student's parameters.
-
----
-
- ## 77\. Define active learning.
-
- **Answer:**\
- Active learning selects informative unlabelled examples for human annotation.
-
----
-
- # Part XIX — Formula Sheet
-
- ## 78\. ⭐ What formulas should you know?
-
- ### General semi-supervised objective
+ ### Curriculum learning
 
  $$
-\boxed{\mathcal{L} = \mathcal{L}_{\text{sup}} + \lambda\mathcal{L}_{\text{unsup}}}
+\boxed{\text{Easy examples} \rightarrow \text{Hard examples}}
 $$
 
- ### Supervised classification loss
+ Controls the **training order**.
+
+ ### Semi-supervised learning
 
  $$
-\boxed{\mathcal{L}_{\text{sup}} = \operatorname{CE}(y_i,f_\theta(x_i))}
+\boxed{\text{Labelled data}+\text{Unlabelled data}}
 $$
 
- ### Pseudo-label
-
- $$
-\boxed{\hat{y}_j = \arg\max_y f_\theta(x_j)_y}
-$$
+ Uses unlabelled examples to improve learning.
 
  ### Self-training
 
  $$
-\boxed{\mathcal{L}_{\text{unsup}} = \operatorname{CE}(\hat{y}_j,f_\theta(x_j))}
+\boxed{\text{Model predicts pseudo-labels}}
 $$
+
+ Main danger: **confirmation bias**.
+
+ ### Co-training
+
+ $$
+\boxed{\text{Two models teach each other}}
+$$
+
+ Requires sufficiently different/error-independent views.
 
  ### Consistency regularisation
 
  $$
-\boxed{\mathcal{L}_{\text{cons}} = d\left(f_\theta(x),f_\theta(x')\right)}
+\boxed{f(x)\approx f(x+\eta)}
 $$
 
- ### UDA
-
- $$
-\boxed{
-f_\theta(x)
-\approx
-f_\theta(\operatorname{augment}(x))
-}
-$$
+ The model should be robust to perturbations.
 
  ### Temporal ensembling
 
  $$
-\boxed{\tilde{z}_i^{\,t} = \alpha\tilde{z}_i^{\,t-1} + (1-\alpha)z_i^t}
+\boxed{\text{EMA of predictions}}
 $$
 
- ### Temporal ensembling loss
+ Smooths noisy predictions over time.
+
+ ### Mean Teacher
 
  $$
-\boxed{\mathcal{L}_{\text{unsup}} = \operatorname{MSE}\left(f_\theta(x_j+\eta),\tilde{z}_j\right)}
+\boxed{\text{EMA of model parameters}}
 $$
 
- ### Mean Teacher parameter update
+ Teacher provides a stable target for the student.
+
+ ### Active learning
 
  $$
-\boxed{\theta' = \alpha\theta'_{\text{old}} + (1-\alpha)\theta}
+\boxed{\text{Select informative samples to label}}
 $$
 
- ### Mean Teacher loss
-
- $$
-\boxed{\mathcal{L}_{\text{unsup}} = \operatorname{MSE} \left(f_\theta(x_j+\eta), f_{\theta'}(x_j+\eta') \right)}
-$$
+ Optimises **which data should receive labels**.
 
 ---
 
- # Part XX — The "Explain the Whole Lecture" Question
+ # Part XIX — The Core Story of the Lecture
 
- ## 79\. ⭐ If asked to explain the evolution of semi-supervised learning methods, what should you say?
+ ## 77\. What is the overall conceptual story?
 
  **Answer:**
 
- Start with the fundamental problem:
+ The lecture can be remembered as a progression toward **stable learning from limited labels**.
 
- > We have limited labelled data but lots of unlabelled data.
+ ### Step 1 — Self-training
 
- A simple solution is **self-training**: let the model generate pseudo-labels for unlabelled examples.
+ Use the model's own predictions.
 
- The problem is **confirmation bias**: incorrect predictions become training targets and can reinforce themselves.
+ **Problem:** the model can reinforce its mistakes.
 
- One solution is **co-training**, where different models/views teach each other and hopefully make independent errors.
+ ### Step 2 — Consistency regularisation
 
- Another solution is **consistency regularisation**, which does not require a human label. Instead, it requires the model to make consistent predictions for different perturbations of the same input.
+ Instead of simply trusting pseudo-labels, require predictions to be stable under perturbations.
 
- The $\\Pi$-model is an early implementation of this idea, while **UDA** uses strong data augmentation and confidence filtering.
+ **Problem:** both predictions can still be unreliable early in training.
 
- However, consistency targets can themselves be unreliable early in training. **Temporal ensembling** improves stability by using an EMA of historical predictions.
+ ### Step 3 — Temporal ensembling
 
- Temporal ensembling has two major limitations: storing a prediction for every example and updating those predictions relatively infrequently.
+ Average predictions over time.
 
- **Mean Teacher** solves these problems by maintaining an EMA of the model parameters instead:
+ **Benefit:** smoother and more reliable targets.
 
- $$
-\theta' = \operatorname{EMA}(\theta)
-$$
+ **Problem:** storing predictions for every example does not scale well.
 
- The teacher provides stable targets while the student is trained using both supervised and consistency losses.
+ ### Step 4 — Mean Teacher
 
- The overall evolution is therefore:
+ Average the model itself rather than every individual prediction.
+
+ **Benefit:** a stable teacher can generate targets for any example and scales much better.
+
+ The conceptual progression is therefore:
 
  $$
 \boxed{
@@ -1513,7 +1688,7 @@ $$
 \rightarrow
 \text{Consistency}
 \rightarrow
-\text{Temporal Ensembling}
+\text{Temporal averaging}
 \rightarrow
 \text{Mean Teacher}
 }
@@ -1521,149 +1696,115 @@ $$
 
 ---
 
- # Part XXI — 30-Second Memory Map
+ # Part XX — Final Exam Checklist
 
- ## 80\. ⭐ Can you remember the entire topic using one diagram?
+ Before the exam, make sure you can answer all of these without looking at the notes:
 
- **Answer:**
-
-```
-                    SEMI-SUPERVISED LEARNING
-                              |
-               +--------------+--------------+
-               |                             |
-          Labelled data                 Unlabelled data
-               |                             |
-               +--------------+--------------+
-                              |
-                     How do we exploit it?
-                              |
-          +-------------------+-------------------+
-          |                   |                   |
-     Self-training        Consistency          Co-training
-          |              regularisation             |
-     Pseudo-labels            |              Two models/views
-          |             +-----+-----+
-   Confirmation bias     |           |
-                       UDA       Pi-model
-                                  |
-                           unstable targets
-                                  |
-                         Temporal Ensembling
-                                  |
-                        EMA predictions
-                                  |
-                         scaling / lag issues
-                                  |
-                            Mean Teacher
-                                  |
-                           EMA parameters
-                                  |
-                     +------------+------------+
-                     |                         |
-                  Student                  Teacher
-                     |                         |
-               gradient update             EMA update
-                     |                         |
-                     +------ consistency -----+
-```
+ - What is curriculum learning?
+- Why might easy-to-hard training help?
+- What is self-paced learning?
+- What is semi-supervised learning?
+- What are labelled and unlabelled datasets?
+- What is pseudo-labeling?
+- What is confirmation bias?
+- What is self-training?
+- Why can self-training collapse?
+- What is co-training?
+- Why should co-training models make independent errors?
+- What is consistency regularisation?
+- Why does consistency regularisation work without labels?
+- What is the Pi-model?
+- What is UDA?
+- Why use strong augmentation?
+- Why use confidence thresholds?
+- What is temporal ensembling?
+- What is an exponential moving average?
+- What does $\\alpha$ control?
+- Why does EMA improve stability?
+- What are the scalability problems of temporal ensembling?
+- What is Mean Teacher?
+- What is the difference between student and teacher?
+- How is the teacher updated?
+- Why is the teacher more stable?
+- Why does Mean Teacher scale better?
+- What is active learning?
+- How does active learning differ from semi-supervised learning?
+- How does curriculum learning differ from semi-supervised learning?
+- Can you identify self-training, consistency regularisation, temporal ensembling, and Mean Teacher from their equations?
+- Can you explain the progression from self-training to Mean Teacher?
 
 ---
 
- # Part XXII — Final Exam Checklist
-
- Before the exam, make sure you can answer these **without looking at the notes**:
-
- - [ ] What is curriculum learning?
-- [ ] Why can easy-to-hard training help optimisation?
-- [ ] What is self-paced learning?
-- [ ] What is semi-supervised learning?
-- [ ] What assumptions make semi-supervised learning possible?
-- [ ] What is self-training?
-- [ ] What is a pseudo-label?
-- [ ] Why does naive self-training suffer from confirmation bias?
-- [ ] What is mode collapse?
-- [ ] What is co-training?
-- [ ] Why can two models be more stable than one?
-- [ ] What is consistency regularisation?
-- [ ] Why should predictions be invariant to perturbations?
-- [ ] What is the $\\Pi$-model?
-- [ ] What is UDA?
-- [ ] Why does UDA use confidence thresholding?
-- [ ] Why can consistency regularisation be unstable early in training?
-- [ ] What is temporal ensembling?
-- [ ] What is an EMA?
-- [ ] Derive/explain the EMA equation.
-- [ ] Why does temporal ensembling stabilise predictions?
-- [ ] Why does temporal ensembling scale poorly?
-- [ ] What is Mean Teacher?
-- [ ] How is the teacher updated?
-- [ ] Why is the teacher more stable than the student?
-- [ ] Why does Mean Teacher scale better than temporal ensembling?
-- [ ] What is the Mean Teacher loss?
-- [ ] Compare self-training, UDA, temporal ensembling and Mean Teacher.
-- [ ] What is active learning?
-- [ ] How does active learning differ from semi-supervised learning?
-- [ ] Explain the historical progression from self-training to Mean Teacher.
-
----
-
- # One-Minute Final Summary
-
- The central problem is:
+ # Ultra-Short Memory Map
 
  $$
 \boxed{
-\text{few labels} + \text{many unlabelled examples}
+\begin{array}{c}
+\text{Curriculum Learning}\\
+\downarrow\\
+\text{Control example difficulty/order}
+\end{array}
 }
 $$
 
- The simplest solution is **self-training**:
+ $$
+\boxed{
+\begin{array}{c}
+\text{Self-training}\\
+\downarrow\\
+\text{Use model's predictions as labels}\\
+\downarrow\\
+\text{Confirmation bias}
+\end{array}
+}
+$$
 
  $$
-\text{prediction}
+\boxed{
+\begin{array}{c}
+\text{Consistency}\\
+\downarrow\\
+f(x)\approx f(x+\eta)
+\end{array}
+}
+$$
+
+ $$
+\boxed{
+\begin{array}{c}
+\text{Temporal Ensembling}\\
+\downarrow\\
+\text{EMA of predictions}
+\end{array}
+}
+$$
+
+ $$
+\boxed{
+\begin{array}{c}
+\text{Mean Teacher}\\
+\downarrow\\
+\text{EMA of model parameters}\\
+\downarrow\\
+\text{Stable teacher targets}
+\end{array}
+}
+$$
+
+ **The single most important conceptual chain:**
+
+ $$
+\boxed{
+\text{Limited labels}
 \rightarrow
-\text{pseudo-label}
-$$
-
- but this suffers from **confirmation bias**.
-
- **Consistency regularisation** instead says:
-
- $$
-\boxed{
-f(x) \approx f(\operatorname{augment}(x))
+\text{exploit unlabelled data}
+\rightarrow
+\text{stability is essential}
+\rightarrow
+\text{EMA provides stability}
+\rightarrow
+\text{Mean Teacher}
 }
 $$
 
- The problem is that the target may still be unreliable.
-
- **Temporal ensembling** stabilises the target:
-
- $$
-\boxed{\tilde z_t = \alpha\tilde z_{t-1} + (1-\alpha)z_t}
-$$
-
- but storing predictions for every example does not scale well.
-
- **Mean Teacher** moves the EMA from predictions to model parameters:
-
- $$
-\boxed{\theta' = \alpha\theta' + (1-\alpha)\theta}
-$$
-
- and trains the student to match the teacher:
-
- $$
-\boxed{\mathcal{L} = \mathcal{L}_{\text{sup}} + \lambda\mathcal{L}_{\text{consistency}}}
-$$
-
- The single most important conceptual progression is:
-
- $$
-\boxed{\text{Self-training}\rightarrow\text{Consistency}\rightarrow\text{Temporal Ensembling}\rightarrow\text{Mean Teacher}}
-$$
-
- while **curriculum learning** provides the broader idea of strategically controlling which examples the model learns from and when.
-
- This is structured so you can save it directly as something like `curriculum-semi-supervised-exam-questions.md` and have the equations render correctly on GitHub.
+ This version deliberately avoids `\operatorname` and uses GitHub-friendly constructs such as `\mathrm{CE}`, `\mathrm{MSE}`, `\arg\max`, subscripts, superscripts, and standard mathematical operators.
