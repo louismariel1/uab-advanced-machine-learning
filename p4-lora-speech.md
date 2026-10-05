@@ -1,5 +1,3 @@
-Absolutely. I’ll structure this as a **teacher-ready, question-driven spoken script**: you ask a question, give students a few seconds to think, then reveal/explain the answer. Because students cannot see the notebook, every visual/code concept will be described verbally.
-
  # Question-Driven Teaching Script: Practical 4 — LoRA
 
  ## Opening: What are we trying to solve?
