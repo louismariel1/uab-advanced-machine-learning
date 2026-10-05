@@ -1,4 +1,6 @@
-Absolutely. This assignment is essentially asking you to **implement LoRA from scratch in PyTorch, compare it against ordinary dense fine-tuning, and explain why LoRA is more parameter-efficient**.
+# Lora Assignment
+
+This assignment is essentially asking you to **implement LoRA from scratch in PyTorch, compare it against ordinary dense fine-tuning, and explain why LoRA is more parameter-efficient**.
 
  The key idea is:
 
