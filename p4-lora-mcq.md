@@ -1,8 +1,9 @@
+ # Advanced Machine Learning — Practical 4: LoRA
+ 
 Absolutely. Below is a **comprehensive mastery MCQ set** covering the notebook from beginning to end: transfer learning, CIFAR-10/CIFAR-100, PyTorch code, the model architecture, training loop, dense fine-tuning, LoRA mathematics, implementation details, parameter counting, optimizer state, timing, rank experiments, and the optional extensions.
 
  I’ve deliberately included some **code-tracing and “what happens if…” questions**, because those are often the hardest questions in an advanced ML practical.
 
- # Advanced Machine Learning — Practical 4: LoRA
 
  ## Comprehensive MCQ Mastery Test
 
