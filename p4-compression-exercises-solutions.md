@@ -1,6 +1,4 @@
-Absolutely. Below is a **step-by-step solution set** for the practical exercises, designed to move from basic concepts to exam-level implementation. The examples use **PyTorch** and small models so students can run them on a laptop.
-
- # Step-by-step solutions: Model Compression
+# Step-by-step solutions: Model Compression
 
  We'll cover:
 
