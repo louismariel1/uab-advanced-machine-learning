@@ -1,4 +1,4 @@
-# Practical 3 - Efficient Learning - Practical
+# Practical 3 - Self supervised Learning - Practical
 
 Absolutely. This assignment is essentially asking you to **invent a small self-supervised learning problem, train a CNN on it using unlabeled images, then reuse the learned CNN features for a different classification problem**.
 
