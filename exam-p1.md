@@ -1,5 +1,3 @@
-Yes. I’ll turn each practical into a **compact exam representation** that preserves what can realistically be assessed, while dropping implementation boilerplate, plotting helpers, download code, and other context-heavy details.
-
 ## Practical 1 — Exam Representation: Task Transfer / Transfer Learning
 
 ### 1\. Core problem
