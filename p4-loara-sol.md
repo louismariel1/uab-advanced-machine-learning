@@ -1,4 +1,4 @@
-# Practical Lora solution
+# P4 - Practical Lora solution
 The practical is essentially asking you to **implement LoRA correctly, fine-tune the CIFAR-10-pretrained model on a 5-class CIFAR-100 subset, and demonstrate that you can achieve similar accuracy while training far fewer parameters**.
 
  Below is a clean solution you can adapt directly into the notebook.
