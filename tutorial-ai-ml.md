@@ -1,10 +1,4 @@
-Absolutely. In fact, I think this is one of the **best ways to learn PyTorch/TensorFlow**: instead of starting with APIs, start by asking:
-
- > **What objects exist in the program → what happens to them → in what order → why is it happening → what does it produce?**
-
- We can build a tutorial around that mental model.
-
- # Tutorial: How to Read an AI/ML Program
+# Tutorial: How to Read an AI/ML Program
 
  We'll use **PyTorch** as the primary framework, because it exposes the underlying ideas quite clearly. Once you understand the concepts, TensorFlow becomes much easier to read.
 
