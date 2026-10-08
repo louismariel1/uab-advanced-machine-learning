@@ -1,3 +1,5 @@
+# Advanced Machine Learning
+
 Yes. I’ve restructured the mocks around the **actual UAB exam pattern**, rather than the earlier generic 100-mark format.
 
 The important characteristics I’m preserving are:
@@ -22,7 +24,7 @@ Below are the three redesigned mocks.
 
 :::writing{variant="document" id="61427" title="Advanced Machine Learning — UAB-Style Mock Exam 1"}
 
-# Advanced Machine Learning
+
 
 ## Mock Exam 1 — UAB Style
 
