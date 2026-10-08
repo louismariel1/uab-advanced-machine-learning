@@ -1,10 +1,4 @@
-Absolutely. I’ve regenerated the three exams below with GitHub-compatible LaTeX delimiters: inline formulas use `\( ... \)` and display formulas use `\[ ... \]`. I’ve also corrected places where the original had escaped Markdown/LaTeX inconsistently, such as `\(d \times d\)`, `\(r=8\)`, and `\(\Delta W\)`.
-
-## Mock Exam 1
-
-:::writing{variant="document" id="48317" title="Advanced Machine Learning — 90-Minute Mock Exam 1"}
-
-# Advanced Machine Learning
+# Advanced Machine Learning -  Mock Exam 1
 
 ## 90-Minute Mock Examination 1
 
