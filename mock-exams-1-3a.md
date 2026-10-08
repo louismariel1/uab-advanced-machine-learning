@@ -970,6 +970,4 @@ Your answer should not simply list techniques. **Explain why each technique is a
 - Section D: 17 min
 - Review: 5 min
 
-**Total: 90 minutes / 100 marks** :::
-
-The important GitHub-specific correction throughout is that formulas such as `\[ d_{in}=4096,\qquad d_{out}=4096. \]` should appear in the raw `.md` file exactly with **single backslashes**, not `\\`. Inline formulas should similarly use `\( ... \)`.
+**Total: 90 minutes / 100 marks**
