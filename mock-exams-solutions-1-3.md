@@ -1,8 +1,4 @@
-# Mock Exam 1 — Full Solutions
-
-:::writing{variant="document" id="64182" title="Advanced Machine Learning — Mock Exam 1 Full Solutions"}
-
-# Advanced Machine Learning
+# Advanced Machine Learning - Mock Exam 1 — Full Solutions
 
 ## Mock Examination 1 — Full Model Solutions
 
