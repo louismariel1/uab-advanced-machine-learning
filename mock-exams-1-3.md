@@ -1,6 +1,4 @@
-Absolutely. I’ll treat **Chunks 1–4 as the complete examinable syllabus** and make the three papers deliberately different, rather than simply changing numbers.
-
-I’ll use a **90-minute / 100-mark format** with a mixture of:
+# **90-minute / 100-mark format** with a mixture of:
 
 - conceptual MCQs,
 - short-answer explanations,
