@@ -1,5 +1,3 @@
-Below is a **full model solution and marking guide** for the 100-point mock exam. I’ll answer at the level I would recommend for a demanding UAB Advanced Machine Learning exam: not just definitions, but **reason → method → trade-off → application**.
-
 # Advanced Machine Learning — Mock Exam 1
 
 ## Comprehensive Solutions + Marking Scheme
