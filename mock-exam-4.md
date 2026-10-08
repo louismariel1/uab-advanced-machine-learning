@@ -1,10 +1,8 @@
-Yes. I checked the official UAB guide for **2026/2027**. Course **106575 – Advanced Machine Learning** is a 6-credit, 3rd-year Bachelor in Artificial Intelligence course, taught in English in the first semester.  UAB Apps
+# Practice Exam — Advanced Machine Learning (106575)
 
 The official syllabus covers **transfer/domain adaptation, parameter-efficient learning and compression, semi/self-supervised learning, ensembles and knowledge distillation, continual/online learning, multi-task/meta-learning, explainability, adversarial robustness/security, and federated learning/privacy**.  UAB Apps
 
 Since the written exams account for **50%** of the final mark and are explicitly intended to test both conceptual understanding and problem solving, I'd practice with an exam like this.  UAB Apps
-
-# Practice Exam — Advanced Machine Learning (106575)
 
 **Suggested time:** 90 minutes **Total:** 100 points **Difficulty:** Similar to what I would expect for a university-level theory/problem-solving exam **No internet / no AI assistance**
 
