@@ -57,7 +57,7 @@ A. It removes all pretrained weights B. It approximates the pretrained weights t
 
 ---
 
-**Q7.** If a square weight matrix has dimension $d \times d$, how many trainable parameters does a rank-$r$ LoRA update require?
+**Q7.** If a square weight matrix has dimension $d \times d$, how many trainable parameters does a rank-r LoRA update require?
 
 A. $d^2r$ B. $2dr$ C. $d+r$ D. $r^2$
 
