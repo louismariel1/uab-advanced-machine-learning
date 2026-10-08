@@ -1,3 +1,5 @@
+# Machine Learning advanced concepts
+
 Yes. The easiest way to make all of these concepts logical is to start with one common setup and then ask **"what information from another learning problem are we reusing?"**
 
 I'll use the same tiny example throughout.
