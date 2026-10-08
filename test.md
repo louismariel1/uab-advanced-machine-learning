@@ -1,6 +1,6 @@
 ### Q7. LoRA Parameter Count
 
-**Answer: B —****$2dr$****.**
+**Answer: B —****$$2dr$$****.**
 
 For a square matrix:
 
