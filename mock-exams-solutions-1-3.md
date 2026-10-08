@@ -1,7 +1,3 @@
-Absolutely. Below are the **full model solutions for Mock Exams 1–3**, with calculations shown and explanations written at the level I would expect for a strong exam answer.
-
-I’ve also included the **reasoning behind the answers**, because for this syllabus the distinction between merely knowing a definition and being able to apply it is likely to matter.
-
 # Mock Exam 1 — Full Solutions
 
 :::writing{variant="document" id="64182" title="Advanced Machine Learning — Mock Exam 1 Full Solutions"}
