@@ -1,9 +1,3 @@
-Yes. GitHub officially supports LaTeX in Markdown, with `$$ ... $$` or fenced `math` blocks for display equations and `$ ... $` for inline equations.  GitHub Docs
-
-Below is the **GitHub-ready****`.md`****version**. I’ve preserved the content while correcting the math syntax throughout. I recommend saving it as something like `advanced-machine-learning-mock-exams.md`.
-
-:::writing{variant="document" id="74163" title="Advanced Machine Learning — Mock Exams 1–3 Full Solutions"}
-
 # Advanced Machine Learning — Mock Exams 1–3 Full Solutions
 
 # Mock Exam 1 — Full Solutions
