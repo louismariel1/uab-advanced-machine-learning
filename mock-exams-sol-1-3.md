@@ -80,17 +80,13 @@ Quantisation does not inherently remove parameters.
 Each FP32 parameter requires 32 bits:
 
 $$
-1 \times 10^9 \times 32
-=
-32 \times 10^9 \text{ bits}
+1 \times 10^9 \times 32 = 32 \times 10^9 \text{ bits}
 $$
 
 Convert bits to bytes:
 
 $$
-\frac{32 \times 10^9}{8}
-=
-4 \times 10^9 \text{ bytes}
+\frac{32 \times 10^9}{8} = 4 \times 10^9 \text{ bytes}
 $$
 
 So approximately:
