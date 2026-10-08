@@ -115,10 +115,7 @@ where $W$ is frozen and $BA$ is trainable.
 
 ## Q7. LoRA Parameter Count
 
-**Answer: B 
-$$
-2dr
-$$
+**Answer: B ##$$ \math{2dr} $$##
 
 For a square matrix:
 
