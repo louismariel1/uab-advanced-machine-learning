@@ -1,11 +1,3 @@
-Absolutely. Below are **comprehensive model solutions for all three UAB-style mock exams**. I’ve written them as an **exam answer key**, with explanations of why the correct answers are correct and why the tempting alternatives are wrong where that is useful.
-
-The solutions follow the same principle as the real exam: **understanding the mechanism matters more than reproducing memorised definitions**.
-
----
-
-:::writing{variant="document" id="38264" title="Advanced Machine Learning — Comprehensive Solutions to Mock Exam 1"}
-
 # Advanced Machine Learning
 
 ## Comprehensive Solutions — Mock Exam 1
