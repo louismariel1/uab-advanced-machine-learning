@@ -390,7 +390,7 @@ $$
 and
 
 $$
-W'=W+BA
+W' = W+BA
 $$
 
 where
@@ -412,7 +412,7 @@ $$
 Therefore:
 
 $$
-N_{\text{dense}}=d^2.
+N_{\text{dense}} = d^2.
 $$
 
 ---
@@ -436,11 +436,7 @@ $$
 Therefore:
 
 $$
-N_{\text{LoRA}}
-=
-rd+dr
-=
-2dr.
+N_{\text{LoRA}} = rd+dr = 2dr.
 $$
 
 ---
@@ -450,11 +446,7 @@ $$
 The ratio is:
 
 $$
-\frac{N_{\text{LoRA}}}{N_{\text{dense}}}
-=
-\frac{2dr}{d^2}
-=
-\frac{2r}{d}.
+\frac{N_{\text{LoRA}}}{N_{\text{dense}}} = \frac{2dr}{d^2} = \frac{2r}{d}.
 $$
 
 When
@@ -529,11 +521,7 @@ $$
 Knowledge distillation often combines two losses:
 
 $$
-L
-=
-\alpha L_{\text{hard}}
-+
-(1-\alpha)L_{\text{distill}}.
+L = \alpha L_{\text{hard}} + (1-\alpha)L_{\text{distill}}.
 $$
 
 The first uses ground-truth labels.
@@ -603,10 +591,7 @@ Therefore, teacher biases, systematic mistakes, or vulnerabilities can potential
 Temperature $T$ can soften logits:
 
 $$
-p_i
-=
-\frac{\exp(z_i/T)}
-{\sum_j\exp(z_j/T)}.
+p_i = \frac{\exp(z_i/T)} {\sum_j\exp(z_j/T)}.
 $$
 
 A larger $T$ produces a softer probability distribution.
@@ -945,7 +930,7 @@ at initialisation.
 Therefore the effective weight matrix becomes:
 
 $$
-W'=W+\Delta W
+W' = W+\Delta W
 $$
 
 where $\Delta W$ is already non-zero.
@@ -985,7 +970,7 @@ $$
 This allows the initial adapted model to behave approximately like the original pretrained model:
 
 $$
-W'=W.
+W' = W.
 $$
 
 Training can then gradually introduce a task-specific update.
@@ -1063,9 +1048,7 @@ The coefficients $\alpha$ and $\beta$ control how strongly each task vector cont
 The merged model is:
 
 $$
-\theta_{\text{merged}}
-=
-\theta_0+\alpha\Delta_A+\beta\Delta_B.
+\theta_{\text{merged}} = \theta_0+\alpha\Delta_A+\beta\Delta_B.
 $$
 
 For example:
@@ -1143,11 +1126,7 @@ $$
 then:
 
 $$
-\theta_M
-\leftarrow
-\theta_M+(\theta_j-\theta_M)
-=
-\theta_j.
+\theta_M\leftarrow\theta_M+(\theta_j-\theta_M) = \theta_j.
 $$
 
 Therefore the meta-model becomes exactly the task-adapted model.
@@ -1159,9 +1138,7 @@ If $\beta$ is very small, then the meta-model moves only slightly toward the tas
 Thus $\beta$ controls the interpolation:
 
 $$
-\theta_M'
-=
-(1-\beta)\theta_M+\beta\theta_j.
+\theta_M' = (1-\beta)\theta_M+\beta\theta_j.
 $$
 
 ---
@@ -1224,9 +1201,7 @@ $$
 We can construct:
 
 $$
-\hat y_{\text{ensemble}}
-=
-\frac1n\sum_{i=1}^{n}\hat y_i.
+\hat y_{\text{ensemble}} = \frac1n\sum_{i=1}^{n}\hat y_i.
 $$
 
 This can reduce prediction variance.
