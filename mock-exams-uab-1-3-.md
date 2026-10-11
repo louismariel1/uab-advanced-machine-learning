@@ -1,27 +1,3 @@
-Yes. I’ve restructured the mocks around the **actual UAB exam pattern**, rather than the earlier generic 100-mark format.
-
-The important characteristics I’m preserving are:
-
-- **90 minutes**
-- **50 points**
-- Mixture of **multiple-choice and free-written answers**
-- MCQs may have **multiple correct answers**
-- Questions test **high-level intuition and reasoning**
-- You may need to **interpret an algorithm, pseudocode, equation, matrix, or code/error message**
-- Questions ask _why_ something works, not merely for definitions
-- Some questions combine several concepts
-- Very little emphasis on lengthy numerical calculation
-- Answers should be concise but technically justified
-- The three mocks increase in difficulty, but all remain plausible UAB-style exams
-
-The current UAB 2026/27 course guide also describes the course as focusing on resource-constrained learning, transfer/extension of existing models, model analysis, vulnerabilities, robustness, and privacy, with an emphasis on explaining principles, comparing methods, and selecting appropriate methods under constraints. ([UAB Apps](<https://apps.uab.cat/guies/public/html/2026/assignatura/106575/en?utm_source=chatgpt.com>))
-
-Below are the three redesigned mocks.
-
----
-
-:::writing{variant="document" id="61427" title="Advanced Machine Learning — UAB-Style Mock Exam 1"}
-
 # Advanced Machine Learning
 
 ## Mock Exam 1 — UAB Style
