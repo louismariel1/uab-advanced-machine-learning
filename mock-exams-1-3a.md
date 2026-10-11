@@ -156,6 +156,94 @@ Then explain why simply making **all** embeddings close together would not produ
 
 ---
 
+Question 4 — Contrastive Learning
+5 points
+
+A contrastive-learning model processes four images:
+
+𝑎
+,
+𝑎
+∗
+,
+𝑏
+,
+𝑏
+∗
+
+where 
+𝑎
+∗
+ is an augmentation of 
+𝑎
+, and 
+𝑏
+∗
+ is an augmentation of 
+𝑏
+.
+
+The model produces embeddings:
+
+𝑧
+𝑎
+,
+𝑧
+𝑎
+∗
+,
+𝑧
+𝑏
+,
+𝑧
+𝑏
+∗
+.
+
+For each pair, the training objective can either encourage a HIGH or LOW distance.
+
+Fill in the intended objective:
+
+Pair	Desired distance
+
+𝑎
+,
+𝑎
+∗
+	______
+
+𝑏
+,
+𝑏
+∗
+	______
+
+𝑎
+,
+𝑏
+	______
+
+𝑎
+,
+𝑏
+∗
+	______
+
+𝑎
+∗
+,
+𝑏
+	______
+
+𝑎
+∗
+,
+𝑏
+∗
+	______
+
+Then explain why simply making all embeddings close together would not produce useful representations.
+
 # Question 5 — Model Compression and Quantisation
 
 ### 6 points
