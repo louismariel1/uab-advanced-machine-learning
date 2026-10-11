@@ -219,7 +219,3 @@ Suggested duration: 60–75 minutes for this focused practice set.
 | 8–9 | Training procedure and implementation analysis | 10 |
 | 10 | Theoretical explanation | 5 |
 | Total |  | 35 |
-
-I have deliberately left out the answer key so that you can attempt the questions under exam conditions, just as you would with the past exam you shared.
-
-Next step: Answer the questions in order, either all at once or one at a time. I'll grade them against a point-by-point marking scheme, explain any mistakes, and identify the concepts you should revise.
