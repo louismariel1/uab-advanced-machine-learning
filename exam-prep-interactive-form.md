@@ -86,13 +86,15 @@ Rows and columns represent the respective input images.
 
 Reptile is a meta-learning algorithm for few-shot learning. Its update rule can be written as:
 
-\\[ \theta_M \leftarrow \theta_M + \beta(\theta_j-\theta_M) \\]
+$$
+\theta_M \leftarrow \theta_M + \beta(\theta_j - \theta_M)
+$$
 
-(a) (2 points) Explain what the terms \\(\theta_M\\) and \\(\theta_j\\) represent in this notation.
+**(a) (2 points)** Explain what the terms $\theta_M$ and $\theta_j$ represent in this notation.
 
-(b) (2 points) Describe the effect of setting the \\(\beta\\) parameter to \\(1.0\\).
+**(b) (2 points)** Describe the effect of setting the $\beta$ parameter to $1.0$.
 
-(c) (3 points) Model-Agnostic Meta-Learning (MAML) is a conceptually similar algorithm to Reptile that has the same overall objective. Explain the main difference between the two algorithms.
+**(c) (3 points)** Model-Agnostic Meta-Learning (MAML) is a conceptually similar algorithm to Reptile that has the same overall objective. Explain the main difference between the two algorithms.
 
 ## Question 7 — Ensemble Learning (7 points)
 
