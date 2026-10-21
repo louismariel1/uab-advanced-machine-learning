@@ -209,9 +209,7 @@ Selecting the single best network does not exploit complementary information fro
 Suppose each model's prediction contains an error component. Averaging independent or weakly correlated errors can reduce their contribution to the final prediction. For example, if the prediction errors are independent and have the same variance \(\sigma^2\), the variance of their average is:
 
 $$
-\operatorname{Var}(\bar{\epsilon})
-=
-\frac{\sigma^2}{n}
+\operatorname{Var}(\bar{\epsilon}) = \frac{\sigma^2}{n}
 $$
 
 for \(n\) models.
