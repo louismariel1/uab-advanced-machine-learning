@@ -66,11 +66,7 @@ A typical workflow is:
 A common objective is:
 
 $$
-\mathcal{L}
-=
-\alpha \mathcal{L}_{\mathrm{CE}}
-+
-(1-\alpha)T^2\mathcal{L}_{\mathrm{KD}}
+\mathcal{L} = \alpha \mathcal{L}_{\mathrm{CE}}+(1-\alpha)T^2\mathcal{L}_{\mathrm{KD}}
 $$
 
 where:
