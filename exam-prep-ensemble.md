@@ -51,18 +51,21 @@ Averaging is not a mechanism that automatically discovers the truth. If all five
 
 This illustrates why the number of models alone is insufficient. Adding more highly correlated models often yields diminishing returns.
 
-### Question 4 — How does averaging reduce variance?
+### Question 4 — How Does Averaging Reduce Variance?
 
-Correct answer: A.
+**Correct answer: A.**
 
-For \\(M\\) predictors with equal error variance \\(\sigma^2\\) and pairwise error correlation \\(\rho\\), the variance of their average is
+For \(M\) predictors with equal error variance \(\sigma^2\) and pairwise error correlation \(\rho\), the variance of their average is
 
-\\[ \operatorname{Var}(\bar f) = \sigma^2\left(\rho+\frac{1-\rho}{M}\right). \\]
+\[
+\operatorname{Var}(\bar f)
+= \sigma^2\left(\rho+\frac{1-\rho}{M}\right).
+\]
 
-This equation assumes equal variances and equal pairwise correlations.
+This equation assumes equal variances and equal pairwise error correlations.
 
-- If errors are independent, \\(\rho=0\\), and variance decreases to \\(\sigma^2/M\\).
-- If errors are perfectly correlated, \\(\rho=1\\), and variance remains \\(\sigma^2\\).
+- If errors are independent, \(\rho = 0\), and the variance decreases to \(\sigma^2/M\).
+- If errors are perfectly correlated, \(\rho = 1\), and the variance remains \(\sigma^2\).
 - If errors are positively correlated but not perfectly correlated, averaging can still reduce variance, although less dramatically.
 
 This is one of the central theoretical explanations for ensemble learning.
