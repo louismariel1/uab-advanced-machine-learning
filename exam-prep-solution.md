@@ -71,10 +71,10 @@ $$
 
 where:
 
-- \(\mathcal{L}_{\mathrm{CE}}\): supervised cross-entropy against ground-truth labels.
-- \(\mathcal{L}_{\mathrm{KD}}\): divergence between the teacher's and student's softened probability distributions, commonly KL divergence.
-- \(T\): temperature, typically greater than 1 for softened targets.
-- \(\alpha\): balances supervised learning and distillation.
+- **\(\mathcal{L}_{\mathrm{CE}}\)**: supervised cross-entropy against ground-truth labels.
+- **\(\mathcal{L}_{\mathrm{KD}}\)**: divergence between the teacher's and student's softened probability distributions, commonly KL divergence.
+- **\(T\)**: temperature, typically greater than 1 for softened targets.
+- **\(\alpha\)**: balances supervised learning and distillation.
 
 The \(T^2\) factor is a conventional scaling used in the standard formulation; not every implementation uses exactly this objective.
 
