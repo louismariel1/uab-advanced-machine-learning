@@ -129,15 +129,7 @@ The model should learn representations that remain similar despite appropriate a
 A simplified contrastive objective can be expressed as:
 
 $$
-\mathcal{L}
-=
--\log
-\frac{
-\exp\left(s(z_a,z_{a^*})/\tau\right)
-}{
-\sum_{k \ne a}
-\exp\left(s(z_a,z_k)/\tau\right)
-}
+\mathcal{L} = -\log\frac{\exp\left(s(z_a,z_{a^*})/\tau\right)}{\sum_{k \ne a}\exp\left(s(z_a,z_k)/\tau\right)}
 $$
 
 where \(s\) is a similarity measure, \(z\) denotes an embedding, and \(\tau\) is a temperature parameter. This illustrative loss increases the relative similarity of the positive pair compared with other candidates.
