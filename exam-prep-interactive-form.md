@@ -66,9 +66,9 @@ Answer space: explain whether it is possible and under what conditions.
 
 You aim to pre-train a vision backbone model using unsupervised data and contrastive learning. The training scheme is as follows:
 
-1. At batch time, sample two different images, \\(a\\) and \\(b\\), from the training set.
-2. Apply random augmentations to \\(a\\), producing \\(a^\*\\). Apply other random augmentations to \\(b\\), producing \\(b^\*\\).
-3. Pass all four images, \\([a,a^\*,b,b^\*]\\), through the model and retrieve their embeddings in the final layer's feature space.
+1. At batch time, sample two different images, $a$ and $b$, from the training set.
+2. Apply random augmentations to $a$, producing $a^*$. Apply other random augmentations to $b$, producing $b^*$.
+3. Pass all four images, $[a, a^*, b, b^*]$, through the model and retrieve their embeddings in the final layer's feature space.
 4. Calculate the loss using distances in feature space between these embeddings.
 
 Fill the matrix with HIGH or LOW, according to whether the model should be optimised to have high or low distances between the corresponding feature embeddings.
