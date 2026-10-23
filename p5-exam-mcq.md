@@ -436,9 +436,7 @@ KL divergence measures how one probability distribution differs from another.
 For distributions $P$ and $Q$,
 
 $$
-D_{\mathrm{KL}}(P\parallel Q)
-=
-\sum_i P(i)\log\frac{P(i)}{Q(i)}.
+D_{\mathrm{KL}}(P\parallel Q) = \sum_i P(i)\log\frac{P(i)}{Q(i)}.
 $$
 
 In knowledge distillation, the teacher's temperature-scaled output acts as the target distribution, while the student's temperature-scaled output is the distribution being trained to match.
