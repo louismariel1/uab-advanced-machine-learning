@@ -752,12 +752,3 @@ For a 3-mark question, explain the mechanism and its purpose.
 For a 4–6-mark question, structure your answer around the method's objective, essential steps, mathematical reasoning where appropriate, and the distinction or limitation relevant to the question.
 
 **The central lesson of Practical 6:** The goal is not simply to learn a fixed set of image categories. It is to learn representations or initial parameters that make it possible to recognise new categories from only a few labelled examples.
-
-Suggested GitHub workflow
-
-1. Create a repository for your Advanced Machine Learning revision notes.
-2. Add a file named `practical-6-few-shot-meta-learning.md`.
-3. Paste the full Markdown document above into the file and commit it.
-4. GitHub will render the headings, tables, equations, and collapsible model answers. The `<details>` blocks let you hide the answers while practising.
-
-Note: GitHub supports most of this Markdown directly. Mathematical equations are rendered by GitHub's math support, and the model-answer sections use native HTML `<details>` elements supported in GitHub Markdown.
