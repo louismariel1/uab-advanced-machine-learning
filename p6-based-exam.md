@@ -1,7 +1,3 @@
-Below is the complete practice exam in GitHub-compatible Markdown. It includes all 14 questions, model answers, explanations, marking schemes, equations, and a revision sheet. You can copy it directly into a file named `practical-6-few-shot-meta-learning.md`.
-
-Writing
-
 # Advanced Machine Learning — Practice Exam 6
 
 ## Few-Shot Learning and Meta-Learning
