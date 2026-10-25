@@ -2,8 +2,6 @@
 
 ## Chunk 1 of 2: Questions Q1–Q30
 
-## Chunk 1 overview
-
 Questions only
 
 Question range
@@ -417,6 +415,413 @@ Compare LoRA, meta-learning, and model merging for this scenario.
 
 Completed: Q1–Q30. Remaining: Q31–Q60.
 
-As requested, I will stop here. No solutions have been revealed.
+# TD1 — Advanced Machine Learning Mega Exam Question Pool
 
-When you're ready, confirm with “Generate chunk 2”, and I'll continue with Q31–Q60, covering continual learning, explainability, adversarial machine learning, privacy-preserving machine learning, and additional integrated exam questions.
+## Chunk 2 of 2: Questions Q31–Q60
+
+## Chunk 2 overview
+
+Questions only
+
+Question range
+
+# Q31–Q60
+
+Pool completion
+
+# 60 questions
+
+This chunk completes the question bank, focusing on continual learning, explainability, adversarial robustness, privacy-preserving ML, and integrated reasoning. No answers or hints are included.
+
+## Topic 7 — Continual learning, LwF and EWC
+
+### Q31. Catastrophic forgetting (2 points)
+
+A neural network is trained sequentially on two tasks. It achieves high accuracy on Task A, but after training on Task B, its accuracy on Task A drops substantially.
+
+Which statements are correct? Select all that apply.
+
+- A. This phenomenon is known as catastrophic forgetting.
+- B. It can occur because parameters useful for Task A are modified while learning Task B.
+- C. It proves that the network has insufficient capacity for Task B.
+- D. Continual learning methods aim to retain previous knowledge while learning new tasks.
+- E. The problem can always be solved by lowering the learning rate to zero.
+
+### Q32. Learning without Forgetting (LwF) (3 points)
+
+A model has been trained on Task A. When learning Task B, the original Task A training data are no longer available.
+
+(a) Explain the main idea behind Learning without Forgetting (LwF). (1 point)
+
+(b) Explain the role of the original model's predictions on new-task inputs. (1 point)
+
+(c) Give one limitation of LwF when the new-task inputs differ substantially from the original training distribution. (1 point)
+
+### Q33. Elastic Weight Consolidation (EWC) (4 points)
+
+EWC adds a regularisation term to the loss when learning a new task:
+
+$$
+L(\theta)=L_B(\theta)+
+\frac{\lambda}{2}\sum_i F_i(\theta_i-\theta_i^*)^2,
+$$
+
+where $\theta_i^*$ denotes the parameters learned on Task A and $F_i$ measures their estimated importance.
+
+(a) Explain the purpose of the quadratic regularisation term. (1 point)
+
+(b) Explain why parameters with large $F_i$ values are penalised more strongly when moved away from $\theta_i^*$. (1 point)
+
+(c) Describe the effect of increasing $\lambda$. (1 point)
+
+(d) Give one potential limitation of EWC. (1 point)
+
+### Q34. Compare continual-learning strategies (3 points)
+
+Compare LwF and EWC.
+
+(a) Identify the main mechanism used by LwF to preserve previous knowledge. (1 point)
+
+(b) Identify the main mechanism used by EWC. (1 point)
+
+(c) Give one circumstance in which either method might struggle to prevent forgetting. (1 point)
+
+### Q35. Evaluate a continual-learning experiment (3 points)
+
+A researcher obtains the following accuracies:
+
+| Model | Task A accuracy after Task A training | Task A accuracy after Task B training | Task B accuracy after Task B training |
+| --- | --- | --- | --- |
+| Sequential fine-tuning | 91% | 54% | 88% |
+| Fine-tuning with EWC | 91% | 78% | 82% |
+
+(a) Calculate the decrease in Task A accuracy for each method, in percentage points. (1 point)
+
+(b) Explain what the results suggest about EWC's effect on forgetting and learning the new task. (1 point)
+
+(c) Explain why these results do not establish that EWC will always outperform ordinary fine-tuning. (1 point)
+
+## Topic 8 — Explainability, interpretability, Grad-CAM and LIME
+
+### Q36. Interpretability versus explainability (2 points)
+
+Which statements are correct? Select all that apply.
+
+- A. Interpretability concerns how readily a model's internal operation or decisions can be understood.
+- B. Explainability methods can help investigate why a complex model made a prediction.
+- C. Every explanation method guarantees that the model's prediction is causally justified.
+- D. A highly accurate model is necessarily easy to interpret.
+- E. Explanations can help identify unexpected model behaviour or reliance on spurious features.
+
+### Q37. Grad-CAM (3 points)
+
+A researcher applies Grad-CAM to a convolutional neural network that predicts whether an image contains a bird.
+
+(a) Explain what Grad-CAM produces. (1 point)
+
+(b) Explain how gradients associated with the target class contribute to the heatmap. (1 point)
+
+(c) Give one limitation of interpreting a Grad-CAM heatmap as a complete explanation of a prediction. (1 point)
+
+### Q38. LIME and local surrogate models (3 points)
+
+LIME is used to explain a classifier's prediction for one image.
+
+(a) Explain the idea of a local surrogate model. (1 point)
+
+(b) Describe how perturbing the input can help LIME identify features associated with the prediction. (1 point)
+
+(c) Explain why an explanation produced by LIME can change when its perturbation samples or settings change. (1 point)
+
+### Q39. Grad-CAM versus LIME (3 points)
+
+Compare Grad-CAM and LIME for explaining image classification.
+
+(a) Describe the type of visual explanation Grad-CAM typically produces. (1 point)
+
+(b) Describe how LIME approximates the behaviour of the original model near a particular input. (1 point)
+
+(c) State one limitation shared by both approaches. (1 point)
+
+### Q40. Detecting a spurious correlation (3 points)
+
+A classifier achieves high validation accuracy when predicting cows and horses. Grad-CAM visualisations frequently highlight grass rather than the animals themselves.
+
+(a) Explain why this observation could indicate a problem. (1 point)
+
+(b) Describe one experiment that could test whether the model relies excessively on the background. (1 point)
+
+(c) Explain why a plausible-looking heatmap alone does not prove that the model uses the intended features. (1 point)
+
+## Topic 9 — Adversarial machine learning, PGD and robustness
+
+### Q41. Adversarial examples (2 points)
+
+Which statements about adversarial examples are correct? Select all that apply.
+
+- A. Small, carefully chosen input perturbations can change a model's prediction.
+- B. Every adversarial example must look visibly different from the original input.
+- C. Adversarial vulnerability can occur even when clean-data accuracy is high.
+- D. Adversarial examples can be used to evaluate model robustness.
+- E. A model that is accurate on a validation set is necessarily robust to adversarial attacks.
+
+### Q42. Projected Gradient Descent (PGD) (4 points)
+
+A researcher attacks a classifier by iteratively updating an input $x$ to increase its classification loss, while restricting the perturbation to a norm-bounded region around the original input $x_0$.
+
+(a) Explain the objective of the attack. (1 point)
+
+(b) Explain why the attack uses repeated gradient-based updates instead of a single update. (1 point)
+
+(c) Explain the purpose of projecting the perturbed input back into the allowed region. (1 point)
+
+(d) Describe what may happen if the allowed perturbation magnitude is increased. (1 point)
+
+### Q43. FGSM versus PGD (3 points)
+
+Compare the Fast Gradient Sign Method (FGSM) and Projected Gradient Descent (PGD).
+
+(a) Describe the main difference in their update procedures. (1 point)
+
+(b) Explain why PGD can often find stronger adversarial examples than a single FGSM step. (1 point)
+
+(c) Give one reason why attack strength depends on the choice of attack parameters. (1 point)
+
+### Q44. Adversarial training (3 points)
+
+A model is trained using adversarially perturbed inputs in addition to clean examples.
+
+(a) Explain the main objective of adversarial training. (1 point)
+
+(b) Describe one trade-off between clean accuracy and adversarial robustness. (1 point)
+
+(c) Explain why adversarial training should be evaluated using attacks that are sufficiently strong and appropriately configured. (1 point)
+
+### Q45. Interpret a robustness experiment (3 points)
+
+A researcher reports the following results:
+
+| Model | Clean accuracy | Accuracy under PGD attack |
+| --- | --- | --- |
+| Standard training | 92% | 18% |
+| Adversarial training | 86% | 57% |
+
+(a) Calculate the clean-accuracy difference between the two models, in percentage points. (1 point)
+
+(b) Explain what the results suggest about the effect of adversarial training. (1 point)
+
+(c) Explain why the results do not establish robustness against every possible attack. (1 point)
+
+## Topic 10 — Privacy-preserving machine learning and federated learning
+
+### Q46. Federated learning fundamentals (2 points)
+
+Which statements about federated learning are correct? Select all that apply.
+
+- A. Training data can remain on individual clients while model updates are communicated to a central server.
+- B. Federated learning guarantees that no information about training examples can be inferred.
+- C. A central server can aggregate updates from multiple participating clients.
+- D. Federated learning requires all training examples to be collected in one central dataset.
+- E. Federated learning can be useful when data are distributed across organisations or devices.
+
+### Q47. Federated averaging (FedAvg) (3 points)
+
+A central server coordinates training across multiple clients.
+
+(a) Describe the main steps of a typical federated averaging round. (1 point)
+
+(b) Explain why clients can train locally without sending their raw training examples to the server. (1 point)
+
+(c) State one challenge caused by clients having different data distributions. (1 point)
+
+### Q48. Differential privacy (4 points)
+
+A researcher applies differential privacy to a machine-learning training procedure.
+
+(a) Explain the purpose of differential privacy. (1 point)
+
+(b) Explain the role of adding calibrated random noise to a query or gradient-based update. (1 point)
+
+(c) Explain the trade-off between privacy strength and model utility. (1 point)
+
+(d) Explain why applying noise alone, without considering sensitivity and the privacy budget, does not establish a formal differential privacy guarantee. (1 point)
+
+### Q49. Privacy threats in federated learning (3 points)
+
+A company uses federated learning so employees' training data remain on their own devices. Model updates are sent to a central server.
+
+(a) Explain why keeping raw data local does not automatically guarantee privacy. (1 point)
+
+(b) Describe one additional privacy-preserving technique that could reduce the risk of information leakage. (1 point)
+
+(c) Explain one trade-off or limitation associated with the technique you proposed. (1 point)
+
+### Q50. Compare privacy-preserving approaches (3 points)
+
+A hospital consortium wants to train a shared model without pooling patient records in a central database.
+
+(a) Explain how federated learning can support this objective. (1 point)
+
+(b) Explain how differential privacy can provide a different kind of protection. (1 point)
+
+(c) Explain why the two approaches can be combined rather than treated as mutually exclusive alternatives. (1 point)
+
+## Topic 11 — Integrated algorithm interpretation and quantitative reasoning
+
+### Q51. Identify the learning algorithm from its update rule (3 points)
+
+A training procedure operates as follows:
+
+1. Calculate a loss for every training example.
+2. Select examples whose losses fall below a threshold.
+3. Update model parameters using only those selected examples.
+4. Gradually increase the threshold over training.
+
+(a) Identify the learning approach. (1 point)
+
+(b) Explain the intended effect of the selection process. (1 point)
+
+(c) Explain why a high-loss example should not automatically be considered an incorrect or useless example. (1 point)
+
+### Q52. Distinguish model efficiency metrics (3 points)
+
+A researcher compares two models and reports that Model A has fewer trainable parameters than Model B.
+
+(a) Explain why this does not necessarily imply that Model A has fewer total stored parameters. (1 point)
+
+(b) Explain why fewer trainable parameters do not necessarily imply shorter inference latency. (1 point)
+
+(c) Name one additional metric that would help compare the models for deployment. (1 point)
+
+### Q53. Interpret an optimisation objective (3 points)
+
+A model is trained using
+
+$$
+L=L_{\text{task}}+\lambda L_{\text{regularisation}}.
+$$
+
+(a) Explain the role of $L_{\text{task}}$. (1 point)
+
+(b) Explain the role of $L_{\text{regularisation}}$. (1 point)
+
+(c) Describe the potential effect of choosing $\lambda$ too large. (1 point)
+
+### Q54. Reason about a teacher–student system (3 points)
+
+A teacher produces reliable soft labels for common classes but makes systematic errors on a rare class. The student is trained on both ground-truth labels and teacher predictions.
+
+(a) Explain how the teacher's systematic errors could affect the student. (1 point)
+
+(b) Explain how the ground-truth loss can help counteract this problem. (1 point)
+
+(c) Suggest one experimental check to determine whether distillation improves performance on the rare class. (1 point)
+
+### Q55. Experimental validity and ablation studies (3 points)
+
+A researcher proposes that a new training component improves model accuracy. The new method changes the architecture, learning rate, augmentation policy, and training duration simultaneously.
+
+(a) Explain why the experiment cannot clearly identify which change caused the improvement. (1 point)
+
+(b) Describe the purpose of an ablation study. (1 point)
+
+(c) State one practice that would make the comparison more reliable. (1 point)
+
+## Topic 12 — Integrated application and exam-style reasoning
+
+### Q56. Choose a strategy for limited labelled data (4 points)
+
+A research team has a large unlabelled image dataset and a small labelled target dataset. The target task has five classes, and training a large model from scratch is expensive.
+
+Compare self-supervised pretraining, semi-supervised learning, and transfer learning.
+
+(a) Explain how self-supervised pretraining could exploit the unlabelled images. (1 point)
+
+(b) Explain how semi-supervised learning could exploit the unlabelled images during target-task training. (1 point)
+
+(c) Explain how transfer learning could reuse previously learned representations. (1 point)
+
+(d) Recommend a suitable pipeline and justify your choice. (1 point)
+
+### Q57. Explain a model's prediction and test robustness (4 points)
+
+A medical-image classifier predicts that an image contains a disease. A Grad-CAM heatmap highlights a region outside the relevant anatomy, and a small adversarial perturbation changes the prediction.
+
+(a) Explain what the heatmap might suggest about the model's learned behaviour. (1 point)
+
+(b) State one limitation of the heatmap as evidence about the model's decision process. (1 point)
+
+(c) Explain what the changed prediction suggests about adversarial robustness. (1 point)
+
+(d) Propose one additional experiment to investigate the model's reliability. (1 point)
+
+### Q58. Continual learning under privacy constraints (4 points)
+
+A hospital trains a model across several sites. Each site must keep its raw data local, and the shared model must retain knowledge from earlier tasks as new tasks arrive.
+
+(a) Explain how federated learning addresses the local-data constraint. (1 point)
+
+(b) Explain why continual learning is needed when tasks arrive sequentially. (1 point)
+
+(c) Describe one continual-learning strategy that could reduce forgetting. (1 point)
+
+(d) Explain one privacy or utility trade-off that remains even when these methods are combined. (1 point)
+
+### Q59. Evaluate a multi-method experiment (4 points)
+
+A researcher compares four approaches for adapting a pretrained model:
+
+| Method | Target accuracy | Trainable parameters | Training time |
+| --- | --- | --- | --- |
+| Full fine-tuning | 88% | 2,000,000 | 70 s |
+| Frozen backbone + head | 82% | 100,000 | 25 s |
+| LoRA | 86% | 120,000 | 55 s |
+| Distillation into a smaller student | 84% | 300,000 | 60 s |
+
+(a) Identify the method with the highest target accuracy. (1 point)
+
+(b) Identify the method with the fewest trainable parameters. (1 point)
+
+(c) Explain why no single method is necessarily best for every deployment requirement. (1 point)
+
+(d) Recommend one method for a scenario where trainable parameter count is important but accuracy must remain above 85%. Justify your choice. (1 point)
+
+### Q60. Integrated question: understand the algorithm, not just its name (5 points)
+
+A researcher begins with a pretrained model and performs the following procedure:
+
+1. Freezes most of the original model parameters.
+2. Introduces a small set of trainable parameters for adapting the model.
+3. Uses a labelled target dataset and a loss function to optimise those parameters.
+4. Evaluates the adapted model on a held-out target validation set.
+5. Compares accuracy, trainable parameter count, training time, and checkpoint size against full fine-tuning.
+
+(a) Identify a plausible parameter-efficient adaptation method and explain why it fits the procedure. (1 point)
+
+(b) Explain why freezing parameters reduces the number of parameters updated by the optimiser but does not remove their role in inference. (1 point)
+
+(c) Explain why a lower trainable parameter count does not guarantee a smaller complete checkpoint. (1 point)
+
+(d) Explain why validation accuracy alone is insufficient to establish that the method is preferable. (1 point)
+
+(e) Name one implementation check that would help establish whether the intended experiment was performed correctly. (1 point)
+
+## End of TD1 — Complete question pool
+
+## Question bank completed
+
+Chunk 1
+
+# Q1–Q30
+
+First six topic groups
+
+Chunk 2
+
+# Q31–Q60
+
+Remaining topics and integration
+
+The complete pool contains 60 numbered questions, with written subparts included where appropriate. It is a revision bank, not a single 50-point exam; some questions deliberately combine several concepts.
+
+The next stage is TD2 — the complete correction guide for Q1–Q60, keeping the original numbering and providing short, accurate, exam-ready answers with the essential reasoning and calculations.
