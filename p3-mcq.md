@@ -1,9 +1,3 @@
-Below is the GitHub Markdown (`.md`) version of the MCQ guide, with all 83 questions, correct answers, and explanations. I’ve preserved the question-focused structure and completed Q83, whose explanation was cut off in your supplied text.
-
-You can copy this into a file such as `advanced_ml_practical_3_mcq.md`.
-
-Writing
-
 # Advanced Machine Learning Practical 3: Self-Supervised Learning — Comprehensive MCQ Guide
 
 This question bank explains the assignment through multiple-choice questions (MCQs), with correct answers and detailed explanations. It covers the theory, the purpose of each notebook section, the PyTorch implementation, the experimental workflow, common coding errors, and the assessment requirements.
