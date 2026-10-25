@@ -1,4 +1,4 @@
-# TD1 — Advanced Machine Learning Mega Exam Question Pool
+# Advanced Machine Learning Mega Exam Question Pool
 
 ## Chunk 1 of 2: Questions Q1–Q30
 
