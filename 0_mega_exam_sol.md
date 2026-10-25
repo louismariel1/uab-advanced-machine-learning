@@ -306,6 +306,307 @@ The student trains using only ground-truth cross-entropy; the distillation term 
 
 (c) (1 point) A student may learn from the teacher's soft targets, gaining richer class-relation information than hard labels alone provide. Training regularization and optimization can also yield a better generalizing solution. Improvement is possible, not guaranteed.
 
+# TD1 — Advanced Machine Learning
+
+## Correction Guide: Q31–Q60 (Chunk 2)
+
+Short, accurate, exam-ready answers with essential reasoning and calculations.
+
+## Topic 7 — Continual learning, LwF and EWC
+
+### Q31. Catastrophic forgetting
+
+Correct answers: A, B, D.
+
+- A. Correct — this is catastrophic forgetting.
+- B. Correct — learning Task B can modify parameters important for Task A.
+- C. Incorrect — forgetting does not prove insufficient model capacity.
+- D. Correct — continual learning aims to retain previous knowledge while learning new tasks.
+- E. Incorrect — setting the learning rate to zero prevents learning.
+
+### Q32. Learning without Forgetting (LwF)
+
+(a) LwF preserves old-task behaviour by using the original model's predictions as soft targets while training the updated model on the new task.
+
+(b) The original predictions act as distillation targets, encouraging the new model to retain its previous outputs on new-task inputs.
+
+(c) If new-task inputs differ substantially from the old training distribution, the old model's predictions may not reliably preserve performance on Task A.
+
+### Q33. Elastic Weight Consolidation (EWC)
+
+(a) The quadratic penalty discourages changes to parameters important for Task A.
+
+(b) Large $F_i$ values indicate parameters estimated to be important, so moving them away from $\theta_i^*$ incurs a larger penalty.
+
+(c) Increasing $\lambda$ strengthens the constraint on parameter changes, generally reducing forgetting but potentially hindering learning Task B.
+
+(d) EWC may struggle when tasks require conflicting parameter changes or when its importance estimates are inaccurate.
+
+### Q34. Compare continual-learning strategies
+
+(a) LwF: Uses distillation to preserve the previous model's outputs on new-task inputs.
+
+(b) EWC: Uses importance-weighted regularisation to discourage changes to important parameters.
+
+(c) Both can struggle when tasks differ substantially, new tasks conflict with old ones, or the preservation mechanism inadequately represents previous knowledge.
+
+### Q35. Evaluate a continual-learning experiment
+
+(a) Decrease in Task A accuracy:
+
+- Sequential fine-tuning: $91-54=\boxed{37}$ percentage points.
+- EWC: $91-78=\boxed{13}$ percentage points.
+
+(b) EWC reduces forgetting by 24 percentage points compared with sequential fine-tuning, while Task B accuracy decreases from 88% to 82%, a trade-off of 6 percentage points.
+
+(c) The results cover only one experiment. Performance depends on the tasks, hyperparameters, model, and EWC importance estimates.
+
+## Topic 8 — Explainability, Grad-CAM and LIME
+
+### Q36. Interpretability versus explainability
+
+Correct answers: A, B, E.
+
+- A. Correct — interpretability concerns how understandable a model's operation or decisions are.
+- B. Correct — explainability methods help investigate individual predictions.
+- C. Incorrect — explanations do not guarantee causal justification.
+- D. Incorrect — high accuracy does not imply interpretability.
+- E. Correct — explanations can reveal spurious features or unexpected behaviour.
+
+### Q37. Grad-CAM
+
+(a) Grad-CAM produces a class-specific heatmap highlighting image regions that contribute to a CNN's prediction.
+
+(b) Gradients of the target-class score with respect to feature maps determine their importance; weighted feature maps are combined to produce the heatmap.
+
+(c) The heatmap is a coarse, partial explanation and does not prove that highlighted regions causally determine the prediction.
+
+### Q38. LIME and local surrogate models
+
+(a) A local surrogate is a simpler, interpretable model trained to approximate the original model's behaviour near one particular input.
+
+(b) LIME perturbs the input, observes the resulting predictions, and identifies features associated with changes in the output.
+
+(c) Different perturbation samples, neighbourhood definitions, or hyperparameters can produce different local approximations and explanations.
+
+### Q39. Grad-CAM versus LIME
+
+(a) Grad-CAM: Produces a spatial heatmap highlighting image regions relevant to a target class.
+
+(b) LIME: Perturbs the input and fits a simple, locally weighted surrogate model to approximate the original classifier.
+
+(c) Both provide incomplete, model- and configuration-dependent explanations that may not establish causal feature importance.
+
+### Q40. Detecting a spurious correlation
+
+(a) The model may rely on grass as a shortcut rather than learning features that identify cows and horses.
+
+(b) Evaluate the model on images with the animals and backgrounds independently varied, such as placing the same animals against different backgrounds.
+
+(c) A plausible heatmap does not prove causal reliance; visual explanations may omit relevant features or fail to reflect the model's true decision process.
+
+## Topic 9 — Adversarial machine learning, PGD and robustness
+
+### Q41. Adversarial examples
+
+Correct answers: A, C, D.
+
+- A. Correct — small, carefully designed perturbations can change predictions.
+- B. Incorrect — perturbations can be visually imperceptible.
+- C. Correct — high clean accuracy does not guarantee adversarial robustness.
+- D. Correct — adversarial examples help evaluate robustness.
+- E. Incorrect — validation accuracy alone does not establish robustness.
+
+### Q42. Projected Gradient Descent (PGD)
+
+(a) The attack seeks a perturbation that maximises classification loss within a permitted region around the original input.
+
+(b) Repeated gradient updates can find stronger adversarial examples than a single step by iteratively refining the perturbation.
+
+(c) Projection ensures that the perturbation remains within the specified norm bound and any applicable input constraints.
+
+(d) Increasing the perturbation bound can make stronger attacks possible and reduce adversarial accuracy, although the changes may become more visible.
+
+### Q43. FGSM versus PGD
+
+(a) FGSM takes one gradient-sign step; PGD takes multiple gradient-based steps with projection after each update.
+
+(b) PGD can refine the perturbation iteratively, often finding higher-loss adversarial examples.
+
+(c) Attack strength depends on parameters such as perturbation budget, step size, number of iterations, and initialisation.
+
+### Q44. Adversarial training
+
+(a) It trains the model on adversarial examples to improve performance against specified perturbations.
+
+(b) Robustness may improve at the expense of clean accuracy, computational efficiency, or both.
+
+(c) Weak or poorly configured attacks can underestimate vulnerability, making robustness appear greater than it is.
+
+### Q45. Interpret a robustness experiment
+
+(a) Clean-accuracy difference:
+
+$$
+92\%-86\%=\boxed{6\text{ percentage points}}
+$$
+
+Standard training achieves 6 percentage points higher clean accuracy.
+
+(b) Adversarial training increases PGD accuracy from 18% to 57%, a gain of 39 percentage points, while reducing clean accuracy by 6 percentage points.
+
+(c) Robustness is attack-dependent. Other attacks, perturbation budgets, configurations, or threat models may still expose vulnerabilities.
+
+## Topic 10 — Privacy-preserving ML and federated learning
+
+### Q46. Federated learning fundamentals
+
+Correct answers: A, C, E.
+
+- A. Correct — raw data can remain on individual clients while updates are communicated.
+- B. Incorrect — federated learning alone does not guarantee privacy.
+- C. Correct — the server can aggregate client updates.
+- D. Incorrect — central collection of all training examples is not required.
+- E. Correct — it supports learning across distributed devices or organisations.
+
+### Q47. Federated averaging (FedAvg)
+
+(a) The server distributes the current model, clients train locally, send model updates or weights, and the server aggregates them, typically using weighted averaging.
+
+(b) Clients compute updates using their own data locally, so raw training examples need not be transmitted.
+
+(c) Non-identically distributed client data can cause client drift and reduce convergence or global model performance.
+
+### Q48. Differential privacy
+
+(a) Differential privacy limits how much an algorithm's output can reveal about the participation or data of an individual.
+
+(b) Calibrated random noise, relative to the query's sensitivity and privacy parameters, limits the influence of individual records.
+
+(c) Stronger privacy generally requires more noise, which can reduce model accuracy or utility.
+
+(d) Noise alone is insufficient: a formal guarantee requires appropriate sensitivity calibration, a privacy mechanism, and accounting for the privacy budget $(\varepsilon,\delta)$, where applicable.
+
+### Q49. Privacy threats in federated learning
+
+(a) Model updates can leak information about training examples through attacks such as gradient inversion or membership inference.
+
+(b) Differential privacy can reduce leakage by limiting individual contributions, for example through gradient clipping and calibrated noise.
+
+(c) Added noise can reduce model utility, and the privacy guarantee depends on correct calibration and privacy-budget accounting.
+
+### Q50. Compare privacy-preserving approaches
+
+(a) Federated learning: Enables local training at each hospital and aggregation of updates without centrally pooling raw records.
+
+(b) Differential privacy: Provides a formal bound on how much an individual's data can influence the released output.
+
+(c) They can be combined: federated learning decentralises data processing, while differential privacy adds protection against information leakage from updates or released models.
+
+## Topic 11 — Integrated algorithm interpretation and quantitative reasoning
+
+### Q51. Identify the learning algorithm from its update rule
+
+(a) Self-paced learning.
+
+(b) It initially selects easier, lower-loss examples and gradually includes more difficult examples as the threshold increases.
+
+(c) High loss can result from difficult but valid examples, label noise, distribution shifts, or model limitations; it does not automatically imply that an example is useless.
+
+### Q52. Distinguish model efficiency metrics
+
+(a) A model may contain frozen or non-trainable parameters, so fewer trainable parameters do not necessarily mean fewer total stored parameters.
+
+(b) Inference latency also depends on architecture, operation types, memory access, hardware, and implementation.
+
+(c) Examples include inference latency, peak memory usage, FLOPs, throughput, or total checkpoint size.
+
+### Q53. Interpret an optimisation objective
+
+Given:
+
+$$
+L=L_{\text{task}}+\lambda L_{\text{regularisation}}
+$$
+
+(a) $L_{\text{task}}$ measures the model's error on the target task.
+
+(b) $L_{\text{regularisation}}$ penalises undesirable model properties, such as excessive complexity or large parameter changes.
+
+(c) An excessively large $\lambda$ can over-constrain the model, causing underfitting and poor task performance.
+
+### Q54. Reason about a teacher–student system
+
+(a) Systematic teacher errors can be transferred to the student, reducing its performance on the rare class.
+
+(b) Ground-truth loss supplies correct supervision that can counteract incorrect teacher predictions.
+
+(c) Compare student and baseline performance on a held-out, class-stratified test set, especially the rare class's recall and accuracy.
+
+### Q55. Experimental validity and ablation studies
+
+(a) Multiple simultaneous changes confound the results, so the cause of the improvement cannot be isolated.
+
+(b) An ablation study removes or changes individual components to measure their contributions.
+
+(c) Change one factor at a time while keeping other settings fixed, and use the same data splits and evaluation protocol, ideally across multiple random seeds.
+
+## Topic 12 — Integrated application and exam-style reasoning
+
+### Q56. Choose a strategy for limited labelled data
+
+(a) Self-supervised pretraining: Learn useful visual representations from unlabelled images using a pretext or self-supervised objective.
+
+(b) Semi-supervised learning: Use labelled and unlabelled target-task data together, for example through pseudo-labels or consistency regularisation.
+
+(c) Transfer learning: Reuse representations learned by a pretrained model and adapt them to the five target classes.
+
+(d) Recommended pipeline: use self-supervised pretraining on the large unlabelled dataset if useful pretrained representations are unavailable, then fine-tune on the small labelled target dataset. If a suitable pretrained model already exists, transfer learning is a cheaper starting point. Semi-supervised learning can further exploit unlabelled target-task data.
+
+### Q57. Explain a model's prediction and test robustness
+
+(a) The heatmap may indicate that the model relies on irrelevant regions or spurious correlations rather than relevant anatomy.
+
+(b) Grad-CAM is a coarse, incomplete explanation and does not prove which features causally determine the prediction.
+
+(c) The changed prediction suggests vulnerability to small perturbations and inadequate robustness under the tested attack.
+
+(d) Test performance on an independent, clinically representative dataset and evaluate with multiple appropriately configured adversarial attacks. This helps assess generalisation and robustness.
+
+### Q58. Continual learning under privacy constraints
+
+(a) Federated learning allows hospitals to train locally and share model updates rather than raw patient data.
+
+(b) Continual learning is needed to incorporate new tasks while retaining knowledge from earlier tasks and reducing catastrophic forgetting.
+
+(c) EWC penalises changes to parameters important for previous tasks. Alternatively, LwF uses distillation to preserve previous outputs.
+
+(d) Federated updates can leak information, while differential privacy can reduce leakage at the cost of model utility. Combining privacy protection with continual learning may also make adaptation more difficult.
+
+### Q59. Evaluate a multi-method experiment
+
+(a) Full fine-tuning: highest target accuracy at 88%.
+
+(b) Frozen backbone + head: fewest trainable parameters at 100,000.
+
+(c) Methods trade off accuracy, training time, parameter count, memory, and deployment requirements; the best choice depends on the constraints.
+
+(d) LoRA: achieves 86% accuracy with 120,000 trainable parameters, satisfying the requirement of accuracy above 85% with far fewer trainable parameters than full fine-tuning.
+
+### Q60. Integrated question: understand the algorithm, not just its name
+
+(a) LoRA (Low-Rank Adaptation) is a plausible method because it freezes most pretrained parameters and learns a small number of low-rank adaptation parameters.
+
+(b) Frozen parameters are excluded from optimiser updates but still participate in forward computation and influence predictions.
+
+(c) The complete checkpoint may still include all frozen pretrained weights, so fewer trainable parameters do not necessarily mean a smaller total checkpoint.
+
+(d) Validation accuracy alone ignores training cost, inference latency, memory, checkpoint size, robustness, and generalisation.
+
+(e) Verify that the intended parameters are frozen, only the adaptation parameters receive gradients and updates, and the validation set is held out from training.
+
+End of Chunk 2 — Q31–Q60 complete. All answers retain the original question numbering and include the essential calculations and reasoning.
+
 ## Topic 6 — Meta-learning, model merging and hypernetworks
 
 ### Q26. Few-shot meta-learning (3 points)
