@@ -493,8 +493,7 @@ $$
 $$
 
 $$
-=\frac{512,000}{524,288}\times100\%
-\approx\boxed{97.66\%}.
+=\frac{512,000}{524,288}\times100\% \approx\boxed{97.66\%}.
 $$
 
 Thus, the adapter uses approximately 97.66% fewer trainable weight parameters than training the complete matrix.
