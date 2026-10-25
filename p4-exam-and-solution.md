@@ -483,9 +483,7 @@ $$
 The reduction relative to training the full matrix is
 
 $$
-\text{Reduction}
-=\frac{N_{\text{base}}-N_{\text{LoRA}}}
-{N_{\text{base}}}\times100\%.
+\text{Reduction}=\frac{N_{\text{base}}-N_{\text{LoRA}}}{N_{\text{base}}}\times100\%.
 $$
 
 Substituting the values:
