@@ -1,4 +1,4 @@
-# TD2 — Correction Guide, Chunk 1: Q1–Q30
+# Correction Guide, Chunk 1: Q1–Q30
 
 Advanced Machine Learning · Autumn 2026 · Exam-ready model answers
 
