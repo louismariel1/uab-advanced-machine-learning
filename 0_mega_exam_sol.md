@@ -306,6 +306,59 @@ The student trains using only ground-truth cross-entropy; the distillation term 
 
 (c) (1 point) A student may learn from the teacher's soft targets, gaining richer class-relation information than hard labels alone provide. Training regularization and optimization can also yield a better generalizing solution. Improvement is possible, not guaranteed.
 
+## Topic 6 — Meta-learning, Model Merging and Hypernetworks
+
+### Q26. Few-shot meta-learning (3 points)
+
+(a) Meta-learning learns how to adapt to new tasks quickly using only a few labelled examples.
+
+(b) Ordinary training optimises a model for one task, whereas meta-learning trains across a distribution of tasks to learn transferable adaptation capabilities.
+
+(c) It may fail if the new task differs significantly from the training tasks.
+
+### Q27. Reptile update rule (3 points)
+
+(a) $\theta_M$ represents the meta-parameters, while $\theta_j$ represents the parameters after adapting to a sampled task.
+
+(b) When $\beta=1$, the meta-parameters are set directly to the adapted task parameters: $\theta_M \leftarrow \theta_j$.
+
+(c) Reptile moves the initial parameters towards adapted task parameters, while MAML explicitly optimises for good post-adaptation performance using gradients through the adaptation process.
+
+### Q28. Model merging and task arithmetic (3 points)
+
+(a) A task vector is the difference between a fine-tuned model's parameters and the shared pretrained parameters:
+
+$$
+\tau_A=\theta_A-\theta_0,\qquad
+\tau_B=\theta_B-\theta_0
+$$
+
+(b) Task arithmetic combines task vectors, for example:
+
+$$
+\theta_{\text{merged}}=\theta_0+\tau_A+\tau_B
+$$
+
+(c) Task vectors may interfere through conflicting parameter updates, reducing performance on one or both tasks.
+
+### Q29. Hypernetworks (3 points)
+
+(a) A hypernetwork learns to generate the parameters of another neural network from a task representation.
+
+(b) It can generate task-specific parameters on demand, reducing the need to train and store a separate full model for every task.
+
+(c) Generating large parameter sets can be computationally expensive, and the generated models may generalise poorly to unseen tasks.
+
+### Q30. Integrated question: choosing an adaptation strategy (4 points)
+
+(a) LoRA minimises trainable parameters while preserving the pretrained weights by learning low-rank updates. A limitation is that its low-rank updates may not capture all task-specific changes.
+
+(b) Meta-learning trains an initialisation or adaptation strategy across related tasks, enabling rapid adaptation to a new task with few labelled examples.
+
+(c) Model merging combines parameter updates into a shared model, whereas separate task-specific models maintain independent parameters for each task.
+
+(d) Recommendation: Combine LoRA with meta-learning. LoRA reduces trainable parameters per task, while meta-learning enables rapid few-shot adaptation. The shared pretrained model is preserved, and small task-specific adapters can be stored instead of complete models.
+
 # TD1 — Advanced Machine Learning
 
 ## Correction Guide: Q31–Q60 (Chunk 2)
