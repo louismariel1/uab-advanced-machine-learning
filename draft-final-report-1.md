@@ -1,15 +1,3 @@
-I’ve consolidated the project’s latest calculations and findings into one report structure. One important distinction is carried through the updated version: we have a preferred candidate area, but we have not yet validated a final property.
-
-The latest property search has also identified a concrete lead in Can Roqueta, Sabadell: an advertised 2,900 m² industrial/logistics warehouse at €5/m²/month, described by the listing as immediately available. This strengthens the practical case for investigating Can Roqueta, but it does not by itself establish that this is the nearest building to the consensus coordinate or that it is suitable for a hospital laundry without further checks.&#x20;
-
-[image](https://www.google.com/s2/favicons?domain=https://www.invertica.es\&sz=32)
-
-INVERTICA+1
-
-
-
-The report below is a consolidated, updated version. I have also made the methodological qualifications explicit: the Cost Model is currently a rental-cost proxy, and the two graph-model results are preliminary because the distances used were straight-line distances rather than shortest paths through a road network. This prevents the report from presenting screening results as fully validated operational results.
-
 # Centralized Hospital Laundry Location Study
 
 ## Vallès Occidental, Catalonia — Updated Project Report
