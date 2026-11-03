@@ -1,8 +1,8 @@
 # Centralized Hospital Laundry Location Study
 
-## Vallès Occidental, Catalonia — Updated Project Report
+## Vallès Occidental, Catalonia — Project Report
 
-**Report status:** Interim analytical report — location screening completed; final premises validation pending\
+**Report status:** Analytical report — location screening completed; final premises validation pending\
 **Study area:** Vallès Occidental, Barcelona, Catalonia, Spain\
 **Reference date:** 3 November 2026
 
