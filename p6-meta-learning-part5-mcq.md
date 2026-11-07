@@ -46,6 +46,58 @@ D. To minimise the number of backbone parameters.
 
 Correct answer: AExplanation: ProtoNet learns representations that allow query images to be classified correctly using prototypes constructed from support examples. It achieves this by minimising query-set cross-entropy loss across episodes.
 
+Here is the corrected version, formatted for GitHub Markdown (GFM) using GitHub-supported LaTeX math syntax. I have replaced `\operatorname{CE}` with `\mathrm{CE}` to avoid the unsupported macro.
+
+Writing
+
+### Q4. Which mathematical expression represents the ProtoNet training objective?
+
+**A.**
+
+$$
+L = \mathrm{MSE}(x,y)
+$$
+
+**B.**
+
+$$
+L = \mathrm{CE}(z_{\text{query}}, y_{\text{query}})
+$$
+
+**C.**
+
+$$
+L = \mathrm{CE}(z_{\text{support}}, y_{\text{support}})
+$$
+
+**D.**
+
+$$
+L = \mathrm{Accuracy}(z,y)
+$$
+
+**Correct answer: B**
+
+**Explanation:**
+
+The training objective is the cross-entropy loss between the query logits and the corresponding ground-truth query labels:
+
+$$
+L_{\text{query}} =
+\mathrm{CE}(z_{\text{query}}, y_{\text{query}})
+$$
+
+This measures how well the model classifies query examples using the prototypes computed from the support set.
+
+GitHub Markdown compatibility notes:
+
+- Use `$$ ... $$` for display equations.
+- Use `$ ... $` for inline equations.
+- Use `\mathrm{}` instead of `\operatorname{}` for function names.
+- Use `{}` around subscripts containing multiple characters, e.g. `z_{\text{query}}`.
+
+You can paste this directly into a GitHub `.md` file.
+
 ### Q4. Which mathematical expression represents the ProtoNet training objective?
 
 A. $L=\operatorname{MSE}(x,y)$
