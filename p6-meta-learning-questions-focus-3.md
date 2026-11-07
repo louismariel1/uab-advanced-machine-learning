@@ -1,4 +1,3 @@
-we will use the following previous questions-focus summary to go through each of the 8 parts. generate a MCQ with answers and explanations focused on mastering part 1 of the 8 parts summary.
 # Advanced Machine Learning – Practical 6: Meta-Learning
 
 ## Part 5 – Understanding the Reptile algorithm and interpreting the results
