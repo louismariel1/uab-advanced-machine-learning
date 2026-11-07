@@ -89,34 +89,6 @@ $$
 
 This measures how well the model classifies query examples using the prototypes computed from the support set.
 
-GitHub Markdown compatibility notes:
-
-- Use `$$ ... $$` for display equations.
-- Use `$ ... $` for inline equations.
-- Use `\mathrm{}` instead of `\operatorname{}` for function names.
-- Use `{}` around subscripts containing multiple characters, e.g. `z_{\text{query}}`.
-
-You can paste this directly into a GitHub `.md` file.
-
-### Q4. Which mathematical expression represents the ProtoNet training objective?
-
-A. $L=\operatorname{MSE}(x,y)$
-
-B. $L=\operatorname{CE}(z_{\text{query}},y_{\text{query}})$
-
-C. $L=\operatorname{CE}(z_{\text{support}},y_{\text{support}})$
-
-D. $L=\operatorname{Accuracy}(z,y)$
-
-Correct answer: BExplanation: The training objective is cross-entropy loss between query logits and true query labels:
-
-$$
-L_{\text{query}}=
-\operatorname{CE}(z_{\text{query}},y_{\text{query}})
-$$
-
-This measures how well the model classifies query examples using the support-set prototypes.
-
 # Section B — Understanding Meta-Training Episodes
 
 ### Q5. What happens during one ProtoNet meta-training episode?
