@@ -273,10 +273,7 @@ Correct answer: BExplanation:
 Accuracy measures the proportion of correct predictions.
 
 $$
-\text{Accuracy}
-=
-\frac{\text{Correct predictions}}
-{\text{Total predictions}}
+\text{Accuracy} = \frac{\text{Correct predictions}}{\text{Total predictions}}
 $$
 
 For example, if a model correctly classifies 80 out of 100 images:
