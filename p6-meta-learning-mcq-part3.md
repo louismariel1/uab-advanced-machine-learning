@@ -418,10 +418,7 @@ Correct answer: BExplanation:
 The key evaluation metric is average query accuracy:
 
 $$
-\overline{A}_{\text{query}}
-=
-\frac{1}{N}
-\sum_{i=1}^{N} A_i
+\overline{A}_{\text{query}} = \frac{1}{N}\sum_{i=1}^{N} A_i
 $$
 
 Where:
