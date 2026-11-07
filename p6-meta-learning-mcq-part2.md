@@ -1,7 +1,3 @@
-Absolutely\! We'll follow exactly the same two-step workflow for every part of Practical 6.
-
-For Part 2, we are now completing Step 1 only: generating the MCQ questions with answers and explanations. Once you're happy with this, we'll move to Step 2 and convert them into an interactive practice exam.
-
 # Advanced Machine Learning — Practical 6
 
 ## Part 2: The Baseline Supervised Model
