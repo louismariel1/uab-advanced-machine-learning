@@ -410,7 +410,7 @@ $$
 A common distillation loss is:
 
 $$
-L_{\text{distill}} = T^2D_{\mathrm{KL}}\left(p_{\text{teacher}}^{(T)}\parallelp_{\text{student}}^{(T)}\right)
+L_{\text{distill}}=T^2D_{\mathrm{KL}}\left(p_{\text{teacher}}^{(T)}\parallelp_{\text{student}}^{(T)}\right)
 $$
 
 Where:
