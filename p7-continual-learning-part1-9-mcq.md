@@ -398,32 +398,19 @@ The general process is:
 A simplified objective is:
 
 $$
-L_{\text{total}}=
-L_{\text{new}}+
-\lambda L_{\text{distill}}
+L_{\text{total}} = L_{\text{new}} + \lambda L_{\text{distill}}
 $$
 
 The distillation loss can use temperature-scaled probability distributions:
 
 $$
-p_i^{(T)}
-=
-\frac{\exp(z_i/T)}
-{\sum_j\exp(z_j/T)}
+p_i^{(T)} = \frac{\exp(z_i/T)}{\sum_j\exp(z_j/T)}
 $$
 
 A common distillation loss is:
 
 $$
-L_{\text{distill}}
-=
-T^2
-D_{\mathrm{KL}}
-\left(
-p_{\text{teacher}}^{(T)}
-\parallel
-p_{\text{student}}^{(T)}
-\right)
+L_{\text{distill}} = T^2D_{\mathrm{KL}}\left(p_{\text{teacher}}^{(T)}\parallelp_{\text{student}}^{(T)}\right)
 $$
 
 Where:
